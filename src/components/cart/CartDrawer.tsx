@@ -222,7 +222,7 @@ export default function CartDrawer() {
 
                 <div className="flex items-center justify-center space-x-2 text-[10px] text-gray-500 pt-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-green-600" />
-                  <span>100% Money Back Guarantee & Fresh Desi Taste</span>
+                  <span>100% Money Back Guarantee &amp; Premium Quality</span>
                 </div>
               </div>
             )}

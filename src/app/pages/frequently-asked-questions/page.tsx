@@ -23,16 +23,16 @@ const FAQS = [
     a: 'Orders shipped to major cities (Lahore, Islamabad, Rawalpindi, Karachi, Faisalabad, Multan) take 2 to 3 working days. Other remote areas take 3 to 4 working days.'
   },
   {
-    q: 'Are your pickles made in pure mustard oil?',
-    a: 'Yes! All Wholesaler-PK pickles are prepared 100% in pure cold-pressed mustard oil (Kachi Ghani Sarson Ka Tel) without any artificial colors or synthetic chemical preservatives.'
+    q: 'Are your products authentic and genuine?',
+    a: 'Yes! All Wholesaler-PK products are sourced from trusted suppliers and are 100% authentic and genuine. We carefully verify quality before items are listed and dispatched.'
   },
   {
     q: 'What is your shipping charge policy?',
     a: 'Standard delivery charges are Rs. 200 nationwide. However, all orders over Rs. 3,000 qualify for 100% FREE Home Delivery!'
   },
   {
-    q: 'What if my glass jar breaks during transit?',
-    a: 'We package all jars in heavy-duty bubble wrap and reinforced corrugated boxes. If your jar arrives damaged or leaking, simply send us a photo on WhatsApp (0310-0005480) within 24 hours and we will dispatch a FREE replacement jar immediately!'
+    q: 'What if I receive a damaged or incorrect item?',
+    a: 'We package all items securely to prevent damage during transit. If your parcel arrives damaged or incorrect, simply send us a photo on WhatsApp (0310-0005480) within 24 hours and we will arrange a FREE replacement or refund immediately!'
   }
 ];
 
@@ -51,7 +51,7 @@ export default function FAQPage() {
             Frequently Asked Questions (FAQ)
           </h1>
           <p className="text-xs md:text-sm text-gray-600 max-w-xl mx-auto mt-2">
-            Find quick answers regarding delivery times, ingredients, COD payment, and jar guarantees.
+            Find quick answers regarding delivery times, product quality, COD payment, and our guarantees.
           </p>
         </div>
       </section>

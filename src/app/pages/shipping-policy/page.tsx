@@ -63,7 +63,7 @@ export default function ShippingPolicyPage() {
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">5. Packing &amp; Quality Protection</h2>
             <p>
-              Every glass jar is carefully wrapped in heavy-duty bubble wrap and packed inside a reinforced corrugated box to protect the product from leaking, breaking, or damage during transit.
+              Every item is carefully wrapped in protective packaging and packed inside a reinforced corrugated box to protect the product from damage during transit.
             </p>
           </div>
 
@@ -84,7 +84,7 @@ export default function ShippingPolicyPage() {
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">8. Damaged or Incorrect Delivery</h2>
             <p>
-              If you receive a damaged, leaking, or incorrect item, please notify us within <strong>24 hours of delivery</strong> with photo or video evidence on WhatsApp. We will arrange a free replacement or refund in accordance with our Returns &amp; Refund Policy.
+              If you receive a damaged, or incorrect item, please notify us within <strong>24 hours of delivery</strong> with photo or video evidence on WhatsApp. We will arrange a free replacement or refund in accordance with our Returns &amp; Refund Policy.
             </p>
           </div>
 

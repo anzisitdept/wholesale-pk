@@ -7,10 +7,10 @@ export const REVIEWS: Review[] = [
     location: 'Islamabad',
     rating: 5,
     date: '2 days ago',
-    comment: 'Authentic taste just like homemade! Packed very securely in glass jar without any oil leakage. Will order again!',
+    comment: 'Excellent quality and very securely packed! The packaging was leak-proof and the item arrived in perfect condition. Will order again!',
     verified: true,
-    productSlug: 'sarson-da-saag-pickle',
-    productName: 'Sarson Da Saag Pickle'
+    productSlug: 'premium-cotton-t-shirt',
+    productName: 'Premium Cotton T-Shirt'
   },
   {
     id: 'rev-2',
@@ -18,10 +18,10 @@ export const REVIEWS: Review[] = [
     location: 'Lahore',
     rating: 5,
     date: '1 week ago',
-    comment: 'Great quality and fast delivery. Sarson saag pickle had pure desi mustard oil aroma. Highly recommended!',
+    comment: 'Great quality and fast delivery. The product matched the description perfectly. Highly recommended!',
     verified: true,
-    productSlug: 'sarson-da-saag-pickle',
-    productName: 'Sarson Da Saag Pickle'
+    productSlug: 'wireless-buds-pro',
+    productName: 'Wireless Earbuds Pro'
   },
   {
     id: 'rev-3',
@@ -29,10 +29,10 @@ export const REVIEWS: Review[] = [
     location: 'Karachi',
     rating: 5,
     date: '2 weeks ago',
-    comment: 'Best quality pickles in Pakistan. Delivery was super fast via COD.',
+    comment: 'Best quality products in Pakistan. Delivery was super fast via COD.',
     verified: true,
-    productSlug: 'lahori-lasoora-pickle',
-    productName: 'Lahori Lasoora Pickle'
+    productSlug: 'modern-wall-clock',
+    productName: 'Modern Minimalist Wall Clock'
   },
   {
     id: 'rev-4',
@@ -40,9 +40,9 @@ export const REVIEWS: Review[] = [
     location: 'Rawalpindi',
     rating: 5,
     date: '3 weeks ago',
-    comment: 'Quince Murabba (Bahii) is excellent for acidity and heart health. Pure honey taste.',
+    comment: 'Very happy with my purchase. Great value for money and the packaging was professional and secure.',
     verified: true,
-    productSlug: 'quince-murabba',
-    productName: 'Quince Murabba'
+    productSlug: 'skincare-kit',
+    productName: 'Daily Skincare Essentials Kit'
   }
 ];

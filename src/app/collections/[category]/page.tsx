@@ -124,7 +124,7 @@ export function CategoryInner({
   const categoryData = categories.find(c => c.slug === categorySlug || c.id === categorySlug);
   const categoryTitle = (categorySlug === 'all' || categorySlug === 'all-products')
     ? 'ALL PRODUCTS'
-    : (categorySlug === 'best-selling' || categorySlug === 'best-sellers' || categorySlug === 'best-selling-pickles')
+    : (categorySlug === 'best-selling' || categorySlug === 'best-sellers')
     ? 'BEST SELLING'
     : (categoryData ? categoryData.name.split('(')[0].trim().toUpperCase() : categorySlug.replace(/-/g, ' ').toUpperCase());
 
@@ -132,7 +132,7 @@ export function CategoryInner({
   let categoryProducts: Product[] = [];
   if (categorySlug === 'all' || categorySlug === 'all-products') {
     categoryProducts = products.filter(p => p.showInAllProducts !== false);
-  } else if (categorySlug === 'best-selling' || categorySlug === 'best-sellers' || categorySlug === 'best-selling-pickles') {
+  } else if (categorySlug === 'best-selling' || categorySlug === 'best-sellers') {
     categoryProducts = products.filter(p => p.isBestSeller);
   } else if (categorySlug === 'new-arrivals') {
     categoryProducts = products.filter(p => p.isNew);

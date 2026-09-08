@@ -24,16 +24,16 @@ export default function ReturnsPolicyPage() {
         <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-xs space-y-6">
 
           <div>
-            <h2 className="font-bold text-gray-900 text-base uppercase mb-2">100% Taste &amp; Transit Guarantee</h2>
+            <h2 className="font-bold text-gray-900 text-base uppercase mb-2">100% Delivery &amp; Quality Guarantee</h2>
             <p>
-              At Wholesaler-PK, customer satisfaction is our top priority. We take immense pride in crafting authentic homemade pickles and preserves. If for any reason your order does not meet your expectations, we are here to make it right through our easy return and refund process.
+              At Wholesaler-PK, customer satisfaction is our top priority. We stand behind the quality of every product we sell. If for any reason your order does not meet your expectations, we are here to make it right through our easy return and refund process.
             </p>
           </div>
 
           <div>
-            <h2 className="font-bold text-gray-900 text-base uppercase mb-2">1. Damaged or Leaking Jar Replacement</h2>
+            <h2 className="font-bold text-gray-900 text-base uppercase mb-2">1. Damaged or Incorrect Item Replacement</h2>
             <p>
-              If your parcel arrives with a broken, cracked, or leaking glass jar, please notify us within <strong>24 hours of delivery</strong> by sending a clear photo or video of the parcel (including the packaging) to our WhatsApp helpline at <strong>0310-0005480</strong>. Once verified, we will dispatch a brand-new replacement jar absolutely <strong>free of cost</strong>.
+              If your parcel arrives with a damaged, incorrect, or defective item, please notify us within <strong>24 hours of delivery</strong> by sending a clear photo or video of the parcel (including the packaging) to our WhatsApp helpline at <strong>0310-0005480</strong>. Once verified, we will dispatch a brand-new replacement absolutely <strong>free of cost</strong>.
             </p>
           </div>
 
@@ -54,7 +54,7 @@ export default function ReturnsPolicyPage() {
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">4. Non-Returnable Items</h2>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Opened, partially consumed, or tampered products (for hygiene reasons).</li>
+              <li>Opened, partially used, or tampered products (for hygiene reasons).</li>
               <li>Products damaged due to misuse, improper storage, or mishandling after delivery.</li>
               <li>Order cancellation once the parcel has been dispatched.</li>
               <li>Change-of-mind requests. Please confirm your order carefully before placing it.</li>

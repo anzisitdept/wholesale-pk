@@ -4,15 +4,15 @@ export type { Product, ProductVariant, ProductSpecification };
 
 export const PRODUCTS: Product[] = [
   {
-    "id": "sarson-da-saag-pickle",
-    "slug": "sarson-da-saag-pickle",
-    "name": "Sarson Da Saag Pickle (Sarson Da Saag Achar)",
-    "urduName": "سرسوں دا ساگ کا اچار",
-    "category": "pickles",
-    "categoryName": "Pickles",
-    "originalPrice": 850,
-    "price": 589,
-    "discountBadge": "-30%",
+    "id": "premium-cotton-t-shirt",
+    "slug": "premium-cotton-t-shirt",
+    "name": "Premium Cotton T-Shirt (Size M)",
+    "urduName": "پریمیم کاٹن ٹی شرٹ",
+    "category": "apparel",
+    "categoryName": "Apparel",
+    "originalPrice": 1299,
+    "price": 899,
+    "discountBadge": "-31%",
     "isBestSeller": true,
     "isNew": false,
     "image": "https://nisarachar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg",
@@ -22,607 +22,423 @@ export const PRODUCTS: Product[] = [
       "https://nisarachar.com/cdn/shop/files/1_f5d5b353-617f-4ca6-ae85-3da84d1e4f8e_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "S",
+      "M",
+      "L",
+      "XL"
     ],
     "weightPrices": {
-      "500g": 589,
-      "1kg": 1050
+      "S": 899,
+      "M": 899,
+      "L": 899,
+      "XL": 949
     },
-    "description": "Sarson Da Saag Pickle is a unique Punjabi delicacy made from fresh mustard greens, aromatic spices, and pure mustard oil. Perfectly preserved to deliver an authentic taste of home with every meal.",
-    "ingredients": "Mustard Greens (Sarson), Pure Mustard Oil, Fennel Seeds, Nigella Seeds, Turmeric, Red Chili, Salt, Spices.",
-    "benefits": "Rich in fiber and vitamins A, C, & K. Boosts immunity and aids digestion.",
+    "description": "Soft, breathable 100% cotton t-shirt in a classic everyday fit. Durable stitching and comfortable feel for all-day wear.",
+    "benefits": "Comfortable everyday wear, machine washable, fade-resistant color.",
     "rating": 4.9,
     "reviewsCount": 142
   },
   {
-    "id": "aamla-pickle",
-    "slug": "aamla-pickle",
-    "name": "Amla Pickle (Amla Achar)",
-    "urduName": "آملہ کا اچار",
-    "category": "pickles",
-    "categoryName": "Pickles",
-    "originalPrice": 850,
-    "price": 629,
-    "discountBadge": "-26%",
+    "id": "wireless-buds-pro",
+    "slug": "wireless-buds-pro",
+    "name": "Wireless Earbuds Pro",
+    "urduName": "وائرلیس ایئربڈز پرو",
+    "category": "electronics",
+    "categoryName": "Electronics",
+    "originalPrice": 4999,
+    "price": 3299,
+    "discountBadge": "-34%",
     "isBestSeller": true,
-    "isNew": false,
+    "isNew": true,
     "image": "https://nisarachar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/2_2_533x.jpg",
+    "hoverImage": "https://nisachar.com/cdn/shop/files/2_2_533x.jpg",
     "images": [
       "https://nisarachar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg",
-      "https://nisarachar.com/cdn/shop/files/2_2_533x.jpg"
+      "https://nisachar.com/cdn/shop/files/2_2_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "Standard",
+      "Pro"
     ],
     "weightPrices": {
-      "500g": 629,
-      "1kg": 1150
+      "Standard": 3299,
+      "Pro": 3999
     },
-    "description": "Fresh Indian Gooseberry (Amla) pickled with traditional desi spices and cold-pressed oil. Packed with Vitamin C and digestive benefits.",
-    "ingredients": "Fresh Amla, Mustard Oil, Fenugreek, Mustard Seeds, Red Chili Powder, Salt, Hing.",
-    "benefits": "High source of natural Vitamin C. Supports hair health, skin glow, and gut health.",
+    "description": "True wireless earbuds with crystal-clear sound, deep bass, and long battery life. Includes charging case and touch controls.",
+    "benefits": "Long battery life, comfortable fit, clear calls, easy Bluetooth pairing.",
     "rating": 4.8,
     "reviewsCount": 98
   },
   {
-    "id": "lahori-lasoora-pickle",
-    "slug": "lahori-lasoora-pickle",
-    "name": "Lahori Lasoora Pickle (Lahori Lasoora Achar)",
-    "urduName": "لاہوری لیسوڑا کا اچار",
-    "category": "pickles",
-    "categoryName": "Pickles",
-    "originalPrice": 750,
-    "price": 589,
-    "discountBadge": "-21%",
+    "id": "modern-wall-clock",
+    "slug": "modern-wall-clock",
+    "name": "Modern Minimalist Wall Clock",
+    "urduName": "ماڈرن وال کلاک",
+    "category": "home-living",
+    "categoryName": "Home & Living",
+    "originalPrice": 1899,
+    "price": 1299,
+    "discountBadge": "-32%",
     "isBestSeller": true,
     "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/3_2_533x.jpg",
+    "image": "https://nisacharar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/3_2_533x.jpg",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
-      "https://nisarachar.com/cdn/shop/files/3_2_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
+      "https://nisacharar.com/cdn/shop/files/3_2_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "12 inch",
+      "16 inch"
     ],
     "weightPrices": {
-      "500g": 589,
-      "1kg": 1050
+      "12 inch": 1299,
+      "16 inch": 1599
     },
-    "description": "Authentic Lahori style Gunda / Lasoora pickle prepared according to generations-old traditional recipe.",
-    "ingredients": "Fresh Lasoora berries, Mustard oil, Rai, Kalonji, Saunf, Methi dana, Salt.",
-    "benefits": "Traditional remedy for digestion and joint health.",
+    "description": "Sleek minimalist wall clock that complements any modern living space. Quiet sweep movement and easy to mount.",
+    "benefits": "Quiet operation, durable build, easy wall mounting.",
     "rating": 4.9,
     "reviewsCount": 210
   },
   {
-    "id": "moringa-pickle",
-    "slug": "moringa-pickle",
-    "name": "Moringa Pickle (Moringa Achar)",
-    "urduName": "مورنگا (سہانجنا) کا اچار",
-    "category": "pickles",
-    "categoryName": "Pickles",
-    "originalPrice": 985,
-    "price": 689,
-    "discountBadge": "-30%",
+    "id": "nonstick-cookware-set",
+    "slug": "nonstick-cookware-set",
+    "name": "Non-Stick Cookware Set",
+    "urduName": "نان اسٹک کک ویئر سیٹ",
+    "category": "home-living",
+    "categoryName": "Home & Living",
+    "originalPrice": 5999,
+    "price": 3899,
+    "discountBadge": "-35%",
     "isBestSeller": true,
     "isNew": true,
-    "image": "https://nisarachar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/6_1_533x.png",
+    "image": "https://nisacharar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/6_1_533x.png",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
-      "https://nisarachar.com/cdn/shop/files/6_1_533x.png"
+      "https://nisacharar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
+      "https://nisacharar.com/cdn/shop/files/6_1_533x.png"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "3-Piece",
+      "5-Piece"
     ],
     "weightPrices": {
-      "500g": 689,
-      "1kg": 1250
+      "3-Piece": 3899,
+      "5-Piece": 5499
     },
-    "description": "Superfood Moringa drumsticks combined with aromatic Pakistani pickle spices. Healthy and extremely flavorful.",
-    "ingredients": "Moringa pods/roots, Mustard oil, Garlic, Fenugreek, Cumin, Turmeric, Salt.",
-    "benefits": "Superfood packed with antioxidants, calcium, and anti-inflammatory properties.",
+    "description": "Durable non-stick cookware set perfect for everyday cooking. Scratch-resistant coating and heat-safe handles.",
+    "benefits": "Easy to clean, even heat distribution, long-lasting non-stick surface.",
     "rating": 5,
     "reviewsCount": 84
   },
   {
-    "id": "onion-pickle",
-    "slug": "onion-pickle",
-    "name": "Desi Pyaaz Pickle (Onion Achar)",
-    "urduName": "دیسی پیاز کا اچار",
-    "category": "pickles",
-    "categoryName": "Pickles",
-    "originalPrice": 750,
-    "price": 549,
-    "discountBadge": "-27%",
+    "id": "weekend-backpack",
+    "slug": "weekend-backpack",
+    "name": "Waterproof Travel Backpack",
+    "urduName": "واٹر پروف ٹریول بیک پیک",
+    "category": "apparel",
+    "categoryName": "Apparel",
+    "originalPrice": 2999,
+    "price": 1999,
+    "discountBadge": "-33%",
     "isBestSeller": false,
     "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/4_62c1f1de-4c19-42a3-b8d3-a61d995b48fb_900x.png",
+    "image": "https://nisacharar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/4_62c1f1de-4c19-42a3-b8d3-a61d995b48fb_900x.png",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg",
-      "https://nisarachar.com/cdn/shop/files/4_62c1f1de-4c19-42a3-b8d3-a61d995b48fb_900x.png"
+      "https://nisacharar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg",
+      "https://nisacharar.com/cdn/shop/files/4_62c1f1de-4c19-42a3-b8d3-a61d995b48fb_900x.png"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "20L",
+      "30L"
     ],
     "weightPrices": {
-      "500g": 549,
-      "1kg": 990
+      "20L": 1999,
+      "30L": 2499
     },
-    "description": "Crispy baby onions slow-marinated in mustard oil, green chilies, and tangy spices.",
-    "ingredients": "Small Red Onions, Vinegar, Mustard Oil, Red Chili Flakes, Nigella Seeds, Salt.",
-    "benefits": "Aids metabolism, heart health, and digestive comfort.",
+    "description": "Lightweight, waterproof backpack with padded laptop sleeve and multiple compartments for organized storage.",
+    "benefits": "Water-resistant, comfortable straps, spacious and well-organized.",
     "rating": 4.7,
     "reviewsCount": 56
   },
   {
-    "id": "hyderabad-mix-pickle",
-    "slug": "hyderabad-mix-pickle",
-    "name": "Hyderabad Mix Pickle (حیدرآباد مکس اچار)",
-    "urduName": "حیدرآباد مکس اچار",
-    "category": "pickles",
-    "categoryName": "Pickles",
-    "originalPrice": 850,
-    "price": 599,
-    "discountBadge": "-29%",
+    "id": "smart-watch-series",
+    "slug": "smart-watch-series",
+    "name": "Smart Watch Series X",
+    "urduName": "سمارٹ واچ سیریز ایکس",
+    "category": "electronics",
+    "categoryName": "Electronics",
+    "originalPrice": 7999,
+    "price": 4999,
+    "discountBadge": "-37%",
     "isBestSeller": true,
     "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/1_f5d5b353-617f-4ca6-ae85-3da84d1e4f8e_533x.jpg",
+    "image": "https://nisacharar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/1_f5d5b353-617f-4ca6-ae85-3da84d1e4f8e_533x.jpg",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "Standard",
+      "Pro"
     ],
     "weightPrices": {
-      "500g": 599,
-      "1kg": 1090
+      "Standard": 4999,
+      "Pro": 5999
     },
-    "description": "Hyderabadi style tangy mixed pickle blending green mango, carrot, lemon, green chili, and lasoora.",
-    "ingredients": "Raw Mango, Carrot, Lemon, Green Chili, Lasoora, Mustard Oil, Spices.",
-    "benefits": "Rich mix of vitamins and tangy traditional flavor.",
+    "description": "Feature-packed smart watch with fitness tracking, heart-rate monitor, notifications, and up to 7 days battery life.",
+    "benefits": "Tracks health and fitness, stay connected, water resistant.",
     "rating": 4.9,
     "reviewsCount": 312
   },
   {
-    "id": "desi-lahsan-pickle",
-    "slug": "desi-lahsan-pickle",
-    "name": "Desi Lahsan Pickle (Garlic Achar)",
-    "urduName": "دیسی لہسن کا اچار",
-    "category": "pickles",
-    "categoryName": "Pickles",
-    "originalPrice": 890,
-    "price": 649,
-    "discountBadge": "-27%",
+    "id": "portable-blender",
+    "slug": "portable-blender",
+    "name": "Portable USB Blender Bottle",
+    "urduName": "پورٹیبل یو ایس بی بلینڈر",
+    "category": "home-living",
+    "categoryName": "Home & Living",
+    "originalPrice": 2499,
+    "price": 1699,
+    "discountBadge": "-32%",
     "isBestSeller": true,
     "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/3_2_533x.jpg",
+    "image": "https://nisacharar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/3_2_533x.jpg",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "400ml",
+      "600ml"
     ],
     "weightPrices": {
-      "500g": 649,
-      "1kg": 1190
+      "400ml": 1699,
+      "600ml": 1999
     },
-    "description": "Desi small garlic cloves pickled in pure mustard oil and authentic spices.",
-    "ingredients": "Desi Garlic Cloves, Mustard Oil, Red Chili, Coriander Seeds, Saunf, Salt.",
-    "benefits": "Supports cardiovascular health, controls blood pressure and cholesterol.",
+    "description": "Compact rechargeable blender bottle for shakes and smoothies on the go. USB-C charging and easy to clean.",
+    "benefits": "Portable, rechargeable, quick blend, easy to carry.",
     "rating": 4.9,
     "reviewsCount": 175
   },
   {
-    "id": "aamla-murabba",
-    "slug": "aamla-murabba",
-    "name": "Aamla Murabba (آملہ مربہ)",
-    "urduName": "آملہ کا مربہ",
-    "category": "murabba",
-    "categoryName": "Murabbas",
-    "originalPrice": 950,
-    "price": 699,
-    "discountBadge": "-26%",
+    "id": "cotton-bed-sheet-set",
+    "slug": "cotton-bed-sheet-set",
+    "name": "Premium Cotton Bed Sheet Set",
+    "urduName": "پریمیم بیڈ شیٹ سیٹ",
+    "category": "home-living",
+    "categoryName": "Home & Living",
+    "originalPrice": 3499,
+    "price": 2299,
+    "discountBadge": "-34%",
     "isBestSeller": true,
     "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/2_2_533x.jpg",
+    "image": "https://nisacharar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/2_2_533x.jpg",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "Single",
+      "Double",
+      "Queen"
     ],
     "weightPrices": {
-      "500g": 699,
-      "1kg": 1290
+      "Single": 2299,
+      "Double": 2799,
+      "Queen": 3299
     },
-    "description": "Whole organic Amla fruit preserved in crystal clear sugar syrup and cardamom infusion.",
-    "ingredients": "Fresh Organic Amla, Pure Sugar Syrup, Cardamom, Rose Water.",
-    "benefits": "Excellent tonic for eyesight, memory boost, and skin vitality.",
+    "description": "Soft, breathable 100% cotton bed sheet set with pillow covers. Fade-resistant and gentle on skin.",
+    "benefits": "Soft and breathable, easy to wash, durable colors.",
     "rating": 4.8,
     "reviewsCount": 160
   },
   {
-    "id": "quince-murabba",
-    "slug": "quince-murabba",
-    "name": "Quince Murabba (بہی کا مربہ)",
-    "urduName": "بہی کا مربہ (سفرجل)",
-    "category": "murabba",
-    "categoryName": "Murabbas",
-    "originalPrice": 1200,
-    "price": 890,
-    "discountBadge": "-25%",
+    "id": "winter-jacket",
+    "slug": "winter-jacket",
+    "name": "Warm Winter Jacket (Men)",
+    "urduName": "ونٹر جیکٹ",
+    "category": "apparel",
+    "categoryName": "Apparel",
+    "originalPrice": 4499,
+    "price": 2999,
+    "discountBadge": "-33%",
     "isBestSeller": true,
     "isNew": true,
-    "image": "https://nisarachar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/6_1_533x.png",
+    "image": "https://nisacharar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/6_1_533x.png",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "M",
+      "L",
+      "XL",
+      "XXL"
     ],
     "weightPrices": {
-      "500g": 890,
-      "1kg": 1650
+      "M": 2999,
+      "L": 2999,
+      "XL": 3199,
+      "XXL": 3399
     },
-    "description": "Prophetic medicine / Tibb-e-Nabwi Quince fruit (Safargal) preserved in pure honey syrup.",
-    "ingredients": "Fresh Quince fruit (Safarjal), Honey, Sugar Syrup, Saffron, Cardamom.",
-    "benefits": "Strengthens heart muscles, relieves anxiety and gastric ulcers.",
+    "description": "Insulated winter jacket designed to keep you warm in cold weather with a stylish, modern fit.",
+    "benefits": "Super warm, wind-resistant, durable zippers.",
     "rating": 5,
     "reviewsCount": 205
   },
   {
-    "id": "apple-murabba",
-    "slug": "apple-murabba",
-    "name": "Apple Murabba (سیب کا مربہ)",
-    "urduName": "سیب کا مربہ",
-    "category": "murabba",
-    "categoryName": "Murabbas",
-    "originalPrice": 900,
-    "price": 650,
-    "discountBadge": "-28%",
+    "id": "led-desk-lamp",
+    "slug": "led-desk-lamp",
+    "name": "Adjustable LED Desk Lamp",
+    "urduName": "ایل ای ڈی ڈیسک لیمپ",
+    "category": "electronics",
+    "categoryName": "Electronics",
+    "originalPrice": 1999,
+    "price": 1299,
+    "discountBadge": "-35%",
     "isBestSeller": false,
     "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/4_62c1f1de-4c19-42a3-b8d3-a61d995b48fb_900x.png",
+    "image": "https://nisacharar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/4_62c1f1de-4c19-42a3-b8d3-a61d995b48fb_900x.png",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "Classic",
+      "USB-C"
     ],
     "weightPrices": {
-      "500g": 650,
-      "1kg": 1190
+      "Classic": 1299,
+      "USB-C": 1499
     },
-    "description": "Delicious whole Kashmir apples infused with aromatic cardamom and saffron syrup.",
-    "ingredients": "Kashmir Apples, Sugar Syrup, Saffron threads, Cardamom.",
-    "benefits": "Heart health booster, calms nerves, and enhances stamina.",
+    "description": "Energy-efficient LED desk lamp with adjustable brightness and flexible neck for perfect task lighting.",
+    "benefits": "Energy efficient, adjustable light, eye-friendly.",
     "rating": 4.8,
     "reviewsCount": 78
   },
   {
-    "id": "carrot-murabba",
-    "slug": "carrot-murabba",
-    "name": "Desi Carrot Murabba (گاجر کا مربہ)",
-    "urduName": "گاجر کا مربہ",
-    "category": "murabba",
-    "categoryName": "Murabbas",
-    "originalPrice": 750,
-    "price": 520,
-    "discountBadge": "-30%",
+    "id": "skincare-kit",
+    "slug": "skincare-kit",
+    "name": "Daily Skincare Essentials Kit",
+    "urduName": "ڈیلی اسکن کیئر کٹ",
+    "category": "beauty-care",
+    "categoryName": "Beauty & Care",
+    "originalPrice": 2499,
+    "price": 1699,
+    "discountBadge": "-32%",
     "isBestSeller": false,
     "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/3_2_533x.jpg",
+    "image": "https://nisacharar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/3_2_533x.jpg",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "Basic",
+      "Deluxe"
     ],
     "weightPrices": {
-      "500g": 520,
-      "1kg": 950
+      "Basic": 1699,
+      "Deluxe": 2199
     },
-    "description": "Red winter carrots simmered into a tender, sweet preserve rich in Beta-Carotene.",
-    "ingredients": "Fresh Red Carrots, Sugar Syrup, Elaichi.",
-    "benefits": "Improves vision, liver function, and skin radiometry.",
+    "description": "Complete daily skincare kit with cleanser, moisturizer, and sun protection for healthy, glowing skin.",
+    "benefits": "Hydrates and nourishes, suitable for all skin types.",
     "rating": 4.6,
     "reviewsCount": 45
   },
   {
-    "id": "rose-petal-gulkand-murabba",
-    "slug": "rose-petal-gulkand-murabba",
-    "name": "Rose Petal Gulkand (گلکند)",
-    "urduName": "گلکند (گلاب کے پتے)",
-    "category": "murabba",
-    "categoryName": "Murabbas",
-    "originalPrice": 950,
-    "price": 699,
-    "discountBadge": "-26%",
+    "id": "classic-sneakers",
+    "slug": "classic-sneakers",
+    "name": "Classic Everyday Sneakers",
+    "urduName": "کلاسک سنیکرز",
+    "category": "apparel",
+    "categoryName": "Apparel",
+    "originalPrice": 3999,
+    "price": 2699,
+    "discountBadge": "-33%",
     "isBestSeller": true,
     "isNew": true,
-    "image": "https://nisarachar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/1_f5d5b353-617f-4ca6-ae85-3da84d1e4f8e_533x.jpg",
+    "image": "https://nisacharar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/1_f5d5b353-617f-4ca6-ae85-3da84d1e4f8e_533x.jpg",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg"
     ],
     "weights": [
-      "500g",
-      "1kg"
+      "40",
+      "41",
+      "42",
+      "43"
     ],
     "weightPrices": {
-      "500g": 699,
-      "1kg": 1290
+      "40": 2699,
+      "41": 2699,
+      "42": 2799,
+      "43": 2799
     },
-    "description": "Sun-cooked Damask rose petals blended with rock sugar for ultimate body cooling and digestive comfort.",
-    "ingredients": "Organic Rose Petals (Desi Gulab), Crystal Sugar, Praval Pishti.",
-    "benefits": "Cools acidity, reduces body heat, relieves fatigue and insomnia.",
+    "description": "Comfortable, stylish sneakers ideal for daily wear. Padded sole and breathable upper for all-day comfort.",
+    "benefits": "Comfortable fit, durable sole, breathable material.",
     "rating": 4.9,
     "reviewsCount": 189
   },
   {
-    "id": "aloo-bukhara-chutney",
-    "slug": "aloo-bukhara-chutney",
-    "name": "Special Aloo Bukhara Chutney (آلو بخارا چٹنی)",
-    "urduName": "آلو بخارا کی چٹنی",
-    "category": "chutney",
-    "categoryName": "Chutney",
-    "originalPrice": 850,
-    "price": 599,
-    "discountBadge": "-30%",
-    "isBestSeller": true,
-    "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/2_2_533x.jpg",
-    "images": [
-      "https://nisarachar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg"
-    ],
-    "weights": [
-      "500g",
-      "1kg"
-    ],
-    "weightPrices": {
-      "500g": 599,
-      "1kg": 1090
-    },
-    "description": "Sweet and tangy Dried Plum (Aloo Bukhara) chutney with melon seeds, almonds, and warm spices.",
-    "ingredients": "Dried Plums, Melon Seeds (Char Magaz), Almonds, Sugar, Vinegar, Cumin, Red Chili.",
-    "benefits": "Perfect accompaniment for biryani, pulao, barbecue, and weddings.",
-    "rating": 4.9,
-    "reviewsCount": 230
-  },
-  {
-    "id": "imli-chutney",
-    "slug": "imli-chutney",
-    "name": "Khatti Meethi Imli Chutney (املی کی چٹنی)",
-    "urduName": "املی کی چٹنی",
-    "category": "chutney",
-    "categoryName": "Chutney",
-    "originalPrice": 650,
-    "price": 450,
-    "discountBadge": "-31%",
-    "isBestSeller": true,
-    "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/3_2_533x.jpg",
-    "images": [
-      "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg"
-    ],
-    "weights": [
-      "500g",
-      "1kg"
-    ],
-    "weightPrices": {
-      "500g": 450,
-      "1kg": 820
-    },
-    "description": "Rich Tamarind pulp cooked with jaggery, black salt, and roasted cumin seeds.",
-    "ingredients": "Pure Tamarind Pulp, Gur (Jaggery), Black Salt, Cumin, Red Chili.",
-    "benefits": "Sparks appetite, stimulates digestive enzymes.",
-    "rating": 4.8,
-    "reviewsCount": 112
-  },
-  {
-    "id": "khajoor-chutney",
-    "slug": "khajoor-chutney",
-    "name": "Khajoor Imli Chutney (کھجور املی چٹنی)",
-    "urduName": "کھجور اور املی کی چٹنی",
-    "category": "chutney",
-    "categoryName": "Chutney",
-    "originalPrice": 750,
-    "price": 520,
-    "discountBadge": "-30%",
-    "isBestSeller": false,
-    "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/6_1_533x.png",
-    "images": [
-      "https://nisarachar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg"
-    ],
-    "weights": [
-      "500g",
-      "1kg"
-    ],
-    "weightPrices": {
-      "500g": 520,
-      "1kg": 960
-    },
-    "description": "Sweet Arabian dates blended with tangy tamarind for a royal chutney experience.",
-    "ingredients": "Soft Dates, Tamarind, Ginger Powder, Dry Spices, Rock Salt.",
-    "benefits": "Natural instant energy boost from dates.",
-    "rating": 4.7,
-    "reviewsCount": 64
-  },
-  {
-    "id": "chia-seeds",
-    "slug": "chia-seeds",
-    "name": "Organic Chia Seeds (چیا سیڈز)",
-    "urduName": "چیا سیڈز (تخم شربتی)",
-    "category": "super-foods",
-    "categoryName": "Super Foods",
-    "originalPrice": 850,
-    "price": 599,
-    "discountBadge": "-30%",
-    "isBestSeller": true,
-    "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/4_62c1f1de-4c19-42a3-b8d3-a61d995b48fb_900x.png",
-    "images": [
-      "https://nisarachar.com/cdn/shop/files/02_00c0b731-9c48-4d3a-bf59-0ad7b9a3cfbe_533x.jpg"
-    ],
-    "weights": [
-      "250g",
-      "500g",
-      "1kg"
-    ],
-    "weightPrices": {
-      "250g": 349,
-      "500g": 599,
-      "1kg": 1090
-    },
-    "description": "100% Raw and clean black chia seeds. High in Omega-3 fatty acids, dietary fiber, and protein.",
-    "ingredients": "100% Raw Chia Seeds.",
-    "benefits": "Aids weight loss, regulates blood sugar, improves digestion.",
-    "rating": 4.9,
-    "reviewsCount": 155
-  },
-  {
-    "id": "moringa-powder",
-    "slug": "moringa-powder",
-    "name": "Organic Moringa Powder (مورنگا پاؤڈر)",
-    "urduName": "مورنگا (سہانجنا) کا پاؤڈر",
-    "category": "super-foods",
-    "categoryName": "Super Foods",
-    "originalPrice": 750,
+    "id": "earbuds-case",
+    "slug": "earbuds-case",
+    "name": "Silicone Earbuds Case Cover",
+    "urduName": "سلیکون ایئربڈز کیس",
+    "category": "electronics",
+    "categoryName": "Electronics",
+    "originalPrice": 799,
     "price": 499,
-    "discountBadge": "-33%",
-    "isBestSeller": true,
-    "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/1_f5d5b353-617f-4ca6-ae85-3da84d1e4f8e_533x.jpg",
-    "images": [
-      "https://nisarachar.com/cdn/shop/files/02_2ec724f6-078a-47e4-b64a-57cd5f305606_533x.jpg"
-    ],
-    "weights": [
-      "250g",
-      "500g"
-    ],
-    "weightPrices": {
-      "250g": 499,
-      "500g": 890
-    },
-    "description": "Shade-dried pure Moringa Oleifera leaf powder. Known as the Miracle Tree.",
-    "ingredients": "100% Organic Pure Dried Moringa Leaves.",
-    "benefits": "Contains 92 nutrients, 46 antioxidants, and 18 amino acids.",
-    "rating": 4.9,
-    "reviewsCount": 92
-  },
-  {
-    "id": "pumpkin-seeds",
-    "slug": "pumpkin-seeds",
-    "name": "Raw Pumpkin Seeds (کدو کے بیج)",
-    "urduName": "کدو کے بیج (پمپکن سیڈز)",
-    "category": "super-foods",
-    "categoryName": "Super Foods",
-    "originalPrice": 950,
-    "price": 699,
-    "discountBadge": "-26%",
-    "isBestSeller": false,
-    "isNew": true,
-    "image": "https://nisarachar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/2_2_533x.jpg",
-    "images": [
-      "https://nisarachar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg"
-    ],
-    "weights": [
-      "250g",
-      "500g"
-    ],
-    "weightPrices": {
-      "250g": 420,
-      "500g": 699
-    },
-    "description": "Premium quality shelled raw green pumpkin seeds rich in Zinc and Magnesium.",
-    "ingredients": "100% Raw Pumpkin Seeds.",
-    "benefits": "Boosts immunity, prostate health, and improves sleep quality.",
-    "rating": 4.8,
-    "reviewsCount": 40
-  },
-  {
-    "id": "rose-water-syrup",
-    "slug": "rose-water-syrup",
-    "name": "Desi Gulab Sharbat / Syrup (شربت گلاب)",
-    "urduName": "شربتِ دیسی گلاب",
-    "category": "syrup",
-    "categoryName": "Syrups",
-    "originalPrice": 650,
-    "price": 450,
-    "discountBadge": "-31%",
+    "discountBadge": "-38%",
     "isBestSeller": false,
     "isNew": false,
-    "image": "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/3_2_533x.jpg",
+    "image": "https://nisacharar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/2_2_533x.jpg",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/01_e8785eb1-16a7-4ebe-a073-40cf7dce0210_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/04_e50c3509-8de8-4347-8386-7c1317eb893c_533x.jpg"
     ],
     "weights": [
-      "800ml"
+      "Standard",
+      "With Keyring"
     ],
     "weightPrices": {
-      "800ml": 450
+      "Standard": 499,
+      "With Keyring": 549
     },
-    "description": "Pure distillate of fresh red roses blended into a refreshing summer drink.",
-    "ingredients": "Distilled Rose Water, Cane Sugar, Silver Foil, Cardamom.",
-    "benefits": "Instant heat reducer, refreshing summer drink.",
+    "description": "Protective silicone case for your wireless earbuds. Soft grip, shock-resistance, and easy access to ports.",
+    "benefits": "Protects from scratches, easy grip, comes in multiple colors.",
     "rating": 4.7,
     "reviewsCount": 51
   },
   {
-    "id": "pickle-combo-bundle",
-    "slug": "pickle-combo-bundle",
-    "name": "Signature 4-in-1 Pickle Bundle Offer",
-    "urduName": "سگنیچر 4-ان-1 اچار بنڈل",
+    "id": "daily-essentials-combo",
+    "slug": "daily-essentials-combo",
+    "name": "Daily Essentials Value Bundle",
+    "urduName": "ڈیلی ایسنشیلز ویلیو بنڈل",
     "category": "bundles",
-    "categoryName": "Bundles",
-    "originalPrice": 3200,
-    "price": 2199,
+    "categoryName": "Value Bundles",
+    "originalPrice": 5499,
+    "price": 3799,
     "discountBadge": "-31%",
     "isBestSeller": true,
     "isNew": true,
-    "image": "https://nisarachar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
-    "hoverImage": "https://nisarachar.com/cdn/shop/files/6_1_533x.png",
+    "image": "https://nisacharar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg",
+    "hoverImage": "https://nisacharar.com/cdn/shop/files/6_1_533x.png",
     "images": [
-      "https://nisarachar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg"
+      "https://nisacharar.com/cdn/shop/files/06_d241e5df-955b-4d06-acda-2420ffd7af15_533x.jpg"
     ],
     "weights": [
-      "4 x 500g Jars"
+      "Value Pack",
+      "Family Pack"
     ],
     "weightPrices": {
-      "4 x 500g Jars": 2199
+      "Value Pack": 3799,
+      "Family Pack": 4999
     },
-    "description": "Ultimate value pack! Contains 500g each of Sarson Saag Pickle, Lahori Lasoora Pickle, Amla Pickle, and Hyderabad Mix Pickle.",
-    "ingredients": "4 Jars of top selling pickles.",
-    "benefits": "Save Rs. 1,000+ with Free Delivery across Pakistan!",
+    "description": "Ultimate value combo of our top-selling everyday essentials — home, apparel, and electronics picks in one bundle.",
+    "benefits": "Save Rs. 1,700+ with Free Delivery across Pakistan!",
     "rating": 5,
     "reviewsCount": 410
   }
@@ -634,7 +450,7 @@ export function getProductBySlug(slug: string): Product | undefined {
 
 export function getProductsByCategory(category: string): Product[] {
   if (category === 'all' || category === 'all-products') return PRODUCTS;
-  if (category === 'best-selling' || category === 'best-sellers' || category === 'best-selling-pickles') {
+  if (category === 'best-selling' || category === 'best-sellers') {
     return PRODUCTS.filter(p => p.isBestSeller);
   }
   if (category === 'new-arrivals') {

@@ -374,7 +374,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
                     required
                     value={formTitle}
                     onChange={(e) => setFormTitle(e.target.value)}
-                    placeholder="e.g. Delicious taste & fast delivery!"
+                    placeholder="e.g. Great quality product & fast delivery!"
                     className="w-full border border-gray-300 rounded-md px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-black"
                   />
                 </div>

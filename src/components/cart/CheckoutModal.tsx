@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { X, CheckCircle, Truck, ShieldCheck, MapPin } from 'lucide-react';
+import { X, CheckCircle, Truck, ShieldCheck, MapPin, MessageCircle } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { saveOrderToFirestore } from '@/lib/firestoreServices';
 import { loadLocationData, LocationDataSet } from '@/lib/locationData';
@@ -216,46 +216,46 @@ export default function CheckoutModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/75 backdrop-blur-sm p-2 md:p-4 overflow-y-auto font-sans">
-      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden my-4 md:my-8 max-h-[95vh] md:max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/75 backdrop-blur-sm p-3 md:p-4 overflow-y-auto font-sans">
+      <div className="relative w-full max-w-xl md:max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
 
         {/* Header */}
-        <div className="bg-[#000000] text-white p-5 flex justify-between items-center">
+        <div className="bg-[#000000] text-white p-4 sm:p-5 flex justify-between items-center flex-shrink-0">
           <div className="flex items-center space-x-3">
-            <Truck className="w-6 h-6" />
+            <Truck className="w-5 h-5 sm:w-6 sm:h-6" />
             <div>
-              <h2 className="font-bold text-lg leading-tight uppercase tracking-wider">
+              <h2 className="font-bold text-base sm:text-lg leading-tight uppercase tracking-wider">
                 {isSubmitted ? 'Order Confirmed!' : 'Cash on Delivery (COD) Checkout'}
               </h2>
-              <p className="text-xs text-gray-200">Official Store - Wholesaler-PK</p>
+              <p className="text-[11px] sm:text-xs text-gray-200">Official Store - Wholesaler-PK</p>
             </div>
           </div>
           <button
             onClick={handleClose}
             className="text-white/80 hover:text-white p-2 rounded-full transition"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
         {isSubmitted ? (
           /* Order Confirmation View */
-          <div className="p-8 text-center space-y-6">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600">
-              <CheckCircle className="w-12 h-12" />
+          <div className="p-4 sm:p-6 text-center space-y-3.5 sm:space-y-4 overflow-y-auto flex-1">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600">
+              <CheckCircle className="w-8 h-8 sm:w-9 sm:h-9" />
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-gray-900">Thank You For Your Order!</h3>
-              <p className="text-sm text-gray-600 mt-1">
-                Your order number is <span className="font-bold text-[#000000]">{orderId}</span>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Thank You For Your Order!</h3>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                Your order number is <span className="font-bold text-[#000000] bg-gray-100 px-2 py-0.5 rounded">{orderId}</span>
               </p>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-[11px] sm:text-xs text-gray-500 mt-1.5 max-w-md mx-auto leading-relaxed">
                 Order confirmation has been sent to <span className="font-semibold text-gray-800">{formData.email}</span>. Our team will also verify your order on <span className="font-semibold text-gray-800">{formData.phone}</span> before dispatch.
               </p>
             </div>
 
-            <div className="bg-gray-50 p-4 rounded-xl text-left border border-gray-200 space-y-2 text-xs">
+            <div className="bg-gray-50 p-3.5 sm:p-4 rounded-xl text-left border border-gray-200 space-y-2 text-xs">
               <div className="flex justify-between">
                 <span className="text-gray-500">Customer:</span>
                 <span className="font-bold text-gray-800">{formData.fullName}</span>
@@ -272,19 +272,20 @@ export default function CheckoutModal() {
                 <span className="text-gray-500">Shipping Address:</span>
                 <span className="font-semibold text-gray-800">{formData.address}, {fullLocation}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Total Amount (COD):</span>
-                <span className="font-extrabold text-[#000000] text-sm">Rs. {grandTotal}</span>
+              <div className="flex justify-between border-t border-gray-200 pt-2 mt-1">
+                <span className="text-gray-600 font-medium">Total Amount (COD):</span>
+                <span className="font-extrabold text-[#000000] text-sm sm:text-base">Rs. {grandTotal}</span>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center pt-2 pb-2">
               <a
                 href={`https://wa.me/923100005480?text=Hi%20Wholesaler-PK,%20I%20placed%20order%20${orderId}`}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-green-600 hover:bg-green-700 text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-lg flex items-center justify-center space-x-2 transition"
+                className="bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-lg flex items-center justify-center space-x-2 shadow-sm transition"
               >
+                <MessageCircle className="w-4 h-4" />
                 <span>Track on WhatsApp</span>
               </a>
               <button

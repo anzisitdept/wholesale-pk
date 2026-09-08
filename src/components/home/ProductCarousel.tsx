@@ -17,7 +17,7 @@ interface ProductCarouselProps {
 }
 
 export default function ProductCarousel({ 
-  title = "DISCOVER OUR SIGNATURE PICKLES", 
+  title = "DISCOVER OUR PREMIUM COLLECTION", 
   categoryFilter,
   productIds,
   viewAllLink = "/collections/all-products"
@@ -94,7 +94,7 @@ export default function ProductCarousel({
               Products Coming Soon
             </h3>
             <p className="text-xs text-gray-500 max-w-md mx-auto leading-relaxed">
-              We are curating and stocking fresh authentic products for this section. Once added from the admin panel, they will appear here automatically!
+              We are curating and stocking premium products for this section. Once added from the admin panel, they will appear here automatically!
             </p>
           </div>
         </div>

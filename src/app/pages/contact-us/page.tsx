@@ -203,7 +203,7 @@ export default function ContactUsPage() {
             <div className="bg-gray-900 text-white p-6 rounded-3xl text-center space-y-2">
               <h4 className="font-bold text-sm uppercase tracking-wider text-yellow-400">Nationwide Cash on Delivery</h4>
               <p className="text-xs text-gray-300">
-                Delivering fresh home-style pickles and murabbas to Lahore, Karachi, Islamabad, Rawalpindi, Peshawar, Multan, Quetta, and all 300+ cities in Pakistan.
+                Delivering premium quality products to Lahore, Karachi, Islamabad, Rawalpindi, Peshawar, Multan, Quetta, and all 300+ cities in Pakistan.
               </p>
             </div>
           </div>

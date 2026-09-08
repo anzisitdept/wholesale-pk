@@ -223,7 +223,7 @@ export default function HeaderCategoryNav({ onNavigate }: HeaderCategoryNavProps
         {/* Best Selling Link */}
         <div className="flex-shrink-0">
           <Link
-            href="/collections/best-selling-pickles"
+            href="/collections/best-selling"
             onClick={handleItemClick}
             className="text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider relative group py-1 transition-colors whitespace-nowrap block"
           >

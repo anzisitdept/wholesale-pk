@@ -59,21 +59,18 @@ export default function SearchModal() {
 
     // Dynamic suggestions based on query
     const baseTerms = [
-      'mango',
-      'mango pickle',
-      'mango murabba',
-      'crushed mango pickle',
-      'multani mango pickle',
-      'mangoes',
-      'amla pickle',
-      'amla murabba',
-      'aloo bukhara chutney',
-      'lasoora pickle',
-      'moringa pickle',
-      'sarson saag pickle',
-      'gulkand murabba',
-      'apple murabba',
-      'chia seeds'
+      'apparel',
+      'electronics',
+      'home items',
+      'kitchen products',
+      'grocery',
+      'beauty & care',
+      'essentials',
+      'accessories',
+      'fashion',
+      'health & wellness',
+      'cleaning supplies',
+      'stationery'
     ];
 
     const matchedSuggestions = baseTerms.filter(t => t.includes(q) || q.split(' ').some(word => t.includes(word)));
@@ -149,7 +146,7 @@ export default function SearchModal() {
                     SUGGESTIONS
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {['mango', 'pickle', 'murabba', 'chutney', 'sarson saag', 'amla', 'gulkand', 'chia seeds'].map(term => (
+                    {['apparel', 'electronics', 'grocery', 'home items', 'kitchen products', 'beauty & care', 'accessories', 'essentials'].map(term => (
                       <button
                         key={term}
                         onClick={() => setQuery(term)}
@@ -193,7 +190,7 @@ export default function SearchModal() {
                     {results.length === 0 ? (
                       <div className="text-center py-8 text-gray-500">
                         <p className="text-sm font-semibold">No products found matching "{query}"</p>
-                        <p className="text-xs text-gray-400 mt-1">Try searching for "Pickle", "Murabba", "Chutney" or "Amla"</p>
+                        <p className="text-xs text-gray-400 mt-1">Try searching for "Apparel", "Electronics", "Home" or "Grocery"</p>
                       </div>
                     ) : (
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">

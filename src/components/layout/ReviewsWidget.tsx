@@ -5,11 +5,9 @@ import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import CustomerReviewsSection from '@/components/reviews/CustomerReviewsSection';
-import { useStoreData } from '@/context/StoreDataContext';
 
 export default function ReviewsWidget() {
   const pathname = usePathname();
-  const { products } = useStoreData();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -32,12 +30,6 @@ export default function ReviewsWidget() {
 
   // Hide on cart page to avoid sticky overlay
   if (pathname === '/cart' || pathname === '/checkout') return null;
-
-  // When on a product page, scope reviews to that product so the
-  // popup shows the same dynamic section as the product page itself.
-  const productSlug = pathname.startsWith('/products/') ? pathname.split('/')[2] : null;
-  const currentProduct = productSlug ? products.find(p => p.slug === productSlug) : null;
-  const scopedProductId = currentProduct ? currentProduct.id : undefined;
 
   return (
     <>
@@ -67,10 +59,9 @@ export default function ReviewsWidget() {
             letterSpacing: '0.1em',
             fontWeight: 700,
             borderRadius: '8px 0 0 8px',
-            userSelect: 'none',
-            transition: 'all 0.2s ease'
+            userSelect: 'none'
           }}
-          className="hover:opacity-95 hover:pl-2.5 active:scale-95 py-3 px-1.5 sm:py-4 sm:px-2 text-xs sm:text-sm"
+          className="py-3 px-1.5 sm:py-4 sm:px-2 text-xs sm:text-sm"
           onClick={() => setOpen(true)}
         >
           <span className="text-xs sm:text-sm leading-none">★</span>
@@ -120,7 +111,7 @@ export default function ReviewsWidget() {
 
               {/* Scrollable Body */}
               <div className="overflow-y-auto flex-1 min-h-0 py-6 md:py-8">
-                <CustomerReviewsSection productId={scopedProductId} />
+                <CustomerReviewsSection />
               </div>
             </motion.div>
           </div>

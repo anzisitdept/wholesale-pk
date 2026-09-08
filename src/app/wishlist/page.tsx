@@ -29,7 +29,7 @@ export default function WishlistPage() {
             My Wishlist ({wishlistProducts.length})
           </h1>
           <p className="text-xs md:text-sm text-gray-600 max-w-xl mx-auto mt-2">
-            Your saved favorite pickles, murabbas, and chutneys.
+            Your saved favorite products from Wholesaler-PK.
           </p>
         </div>
       </section>

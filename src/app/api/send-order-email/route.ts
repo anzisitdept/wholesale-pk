@@ -7,8 +7,32 @@ const SMTP_SECURE = process.env.SMTP_SECURE !== "false"; // true for 465, false 
 const SMTP_USER = process.env.SMTP_USER || "theewholesaler@gmail.com";
 const SMTP_PASS = process.env.SMTP_PASS;
 const SMTP_FROM = process.env.SMTP_FROM || `"Wholesaler-PK" <${SMTP_USER}>`;
-const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "theewholesaler@gmail.com";
 const WHATSAPP_NUM = process.env.STORE_WHATSAPP_NUMBER || "923100005480";
+
+// Helper to parse order receiving email array from env
+function getReceivingEmails(): string[] {
+    const raw = process.env.ORDER_RECEIVING_EMAILS || process.env.ADMIN_NOTIFICATION_EMAILS || process.env.ADMIN_NOTIFICATION_EMAIL || "theewholesaler@gmail.com";
+    const trimmed = raw.trim();
+    if (!trimmed) {
+        return [SMTP_USER];
+    }
+    // Parse JSON array format: ["email1@domain.com", "email2@domain.com"]
+    if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+        try {
+            const parsed = JSON.parse(trimmed);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                return parsed.map((e: any) => String(e).trim()).filter(Boolean);
+            }
+        } catch {
+            // fallback to comma-separated
+        }
+    }
+    // Parse comma-separated format: email1@domain.com, email2@domain.com
+    return trimmed
+        .split(",")
+        .map((e) => e.trim().replace(/^['"\[\]]+|['"\[\]]+$/g, ""))
+        .filter(Boolean);
+}
 
 // Configure reusable Nodemailer transporter
 function getTransporter() {
@@ -70,10 +94,11 @@ export async function POST(req: Request) {
             )
             .join("");
 
-        // 1. Send Admin Notification Alert
+        // 1. Send Admin / Store Notification Alert to all receiving emails
+        const receivingEmails = getReceivingEmails();
         await transporter.sendMail({
             from: SMTP_FROM,
-            to: ADMIN_EMAIL,
+            to: receivingEmails,
             subject: `🚨 New Order #${orderId} Received - Rs. ${totalAmount.toLocaleString()}`,
             html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #222; border: 1px solid #eee; border-radius: 10px; overflow: hidden;">
@@ -121,11 +146,11 @@ export async function POST(req: Request) {
                 html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #222; border: 1px solid #eee; border-radius: 12px; overflow: hidden;">
   <div style="background: #000000; padding: 28px 20px; text-align: center; color: white;">
-    <h1 style="margin: 0; font-size: 24px;">🫙 Wholesaler-PK</h1>
+    <h1 style="margin: 0; font-size: 24px;">🛍️ Wholesaler-PK</h1>
     <p style="margin: 6px 0 0; font-size: 14px; opacity: 0.95;">Thank you for your order, ${customerName}!</p>
   </div>
   <div style="padding: 24px;">
-    <p style="font-size: 15px; line-height: 1.5;">We have received your order <strong>#${orderId}</strong> and are preparing your freshly handcrafted pickles for dispatch. Estimated delivery is <strong>2 to 4 business days</strong>.</p>
+    <p style="font-size: 15px; line-height: 1.5;">We have received your order <strong>#${orderId}</strong> and are preparing it for dispatch. Estimated delivery is <strong>2 to 4 business days</strong>.</p>
 
     <div style="margin: 20px 0; text-align: center;">
       <a href="${whatsappLink}" style="display: inline-block; background: #25D366; color: white; text-decoration: none; font-weight: bold; padding: 12px 24px; border-radius: 8px; font-size: 14px;">
@@ -160,7 +185,7 @@ export async function POST(req: Request) {
     </div>
   </div>
   <div style="background: #fafafa; border-top: 1px solid #eee; padding: 16px; text-align: center; font-size: 12px; color: #888;">
-    Wholesaler-PK · Traditional Desi Mustard Oil Pickles
+    Wholesaler-PK · Premium Products & Everyday Essentials
   </div>
 </div>
 `,

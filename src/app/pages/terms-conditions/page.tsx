@@ -25,11 +25,11 @@ export default function TermsPage() {
           <p>Welcome to Wholesaler-PK. By accessing and using our website, browsing our products, or placing an order, you agree to be bound by the following Terms &amp; Conditions. Please read them carefully before making a purchase.</p>
 
           <h3 className="font-bold text-gray-900 uppercase">1. General Terms</h3>
-          <p>Wholesaler-PK provides this website and its services for your personal, non-commercial use to purchase authentic homemade pickles and preserves. By using our site, you confirm that you are at least 18 years of age or are ordering with the supervision of a parent or guardian.</p>
+          <p>Wholesaler-PK provides this website and its services for your personal, non-commercial use to purchase premium quality products. By using our site, you confirm that you are at least 18 years of age or are ordering with the supervision of a parent or guardian.</p>
 
           <h3 className="font-bold text-gray-900 uppercase">2. Product Accuracy</h3>
-          <p>We strive to accurately display product titles, weights, prices, and imagery. Please note that product images shown are for illustration purposes. All products are weighed by volume (grams) as commonly practiced for pickles and murabbas unless clearly stated otherwise.</p>
-          <p>As our items are handcrafted in traditional batches, slight natural variations in color, texture, oil content, or packaging may occur. These variations do not affect the quality or taste of the product and are not considered defects.</p>
+          <p>We strive to accurately display product titles, weights, prices, and imagery. Please note that product images shown are for illustration purposes. All products are sold as described on the product listing unless clearly stated otherwise.</p>
+          <p>As our items are sourced in batches, slight natural variations in color, texture, or packaging may occur. These variations do not affect the quality of the product and are not considered defects.</p>
 
           <h3 className="font-bold text-gray-900 uppercase">3. Prices &amp; Availability</h3>
           <p>All prices are listed in Pakistani Rupees (PKR) and are inclusive of applicable taxes. Prices and product availability are subject to change without prior notice. We reserve the right to refuse or cancel any order due to pricing errors, stock unavailability, or suspected fraudulent activity.</p>
@@ -44,7 +44,7 @@ export default function TermsPage() {
           <p>Delivery timelines and charges are governed by our Shipping &amp; Delivery Policy, which forms part of these Terms &amp; Conditions. We are not responsible for delays caused by courier partners, adverse weather, or force majeure events beyond our reasonable control.</p>
 
           <h3 className="font-bold text-gray-900 uppercase">7. Returns &amp; Refunds</h3>
-          <p>All returns and refunds are governed by our Returns &amp; Refund Policy. No returns or refunds are accepted for opened, partially consumed, or non-defective products. Damaged or leaking jars must be reported within 24 hours of delivery.</p>
+          <p>All returns and refunds are governed by our Returns &amp; Refund Policy. No returns or refunds are accepted for opened, partially used, or non-defective products. Damaged items must be reported within 24 hours of delivery.</p>
 
           <h3 className="font-bold text-gray-900 uppercase">8. Intellectual Property</h3>
           <p>All content on this website — including text, logos, images, graphics, product descriptions, and the &quot;Wholesaler-PK&quot; brand name — is the property of Wholesaler-PK and is protected under copyright and trademark laws. You may not reproduce, copy, or reuse any content without our prior written consent.</p>

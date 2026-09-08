@@ -2,11 +2,11 @@ import { NavigationItem } from '@/types';
 
 export const MAIN_NAVIGATION: NavigationItem[] = [
   { label: 'NEW ARRIVALS', href: '/collections/new-arrivals' },
-  { label: 'ACHAR', href: '/collections/achar' },
-  { label: 'CHUTNEY', href: '/collections/chutney' },
-  { label: 'SUPER FOODS', href: '/collections/super-foods' },
-  { label: 'BEST SELLING', href: '/collections/best-selling-pickles' },
-  { label: 'BUNDLES', href: '/collections/bundles' },
+  { label: 'APPAREL', href: '/collections/apparel' },
+  { label: 'ELECTRONICS', href: '/collections/electronics' },
+  { label: 'HOME & LIVING', href: '/collections/home-living' },
+  { label: 'BEST SELLING', href: '/collections/best-selling' },
+  { label: 'GROCERY', href: '/collections/grocery' },
   { label: 'ALL PRODUCTS', href: '/collections/all-products' }
 ];
 

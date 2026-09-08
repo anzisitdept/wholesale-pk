@@ -14,7 +14,7 @@ const DEFAULT_STORE_CONTENT: StoreContent = {
   topBarMessages: [
     'GET 5% OFF ON ORDERS WITH ADVANCE PAYMENT.',
     '⚡ FREE NATIONWIDE SHIPPING ON ORDERS OVER RS. 2,999',
-    '🎁 100% PURE & HOMEMADE DESI QUALITY GUARANTEED'
+    '🎁 100% PREMIUM & GENUINE QUALITY GUARANTEED'
   ],
   heroSlides: [
     {
@@ -27,13 +27,13 @@ const DEFAULT_STORE_CONTENT: StoreContent = {
       id: 'slide-2',
       desktopImage: 'https://nisarachar.com/cdn/shop/files/Banner-01.jpg?v=1776446341&width=3840',
       mobileImage: 'https://nisarachar.com/cdn/shop/files/Mobile_banner-01.jpg?v=1776446397&width=750',
-      alt: 'Premium Desi Pickles'
+      alt: 'Premium Quality Products'
     },
     {
       id: 'slide-3',
       desktopImage: 'https://nisarachar.com/cdn/shop/files/Banner-02_1.jpg?v=1786468968&width=3840',
       mobileImage: 'https://nisarachar.com/cdn/shop/files/Mobile_banner-02_4.jpg?v=1786468989&width=750',
-      alt: 'Authentic Traditional Taste'
+      alt: 'Premium Everyday Essentials'
     }
   ],
   shopByCategory: {
@@ -116,7 +116,7 @@ export function StoreDataProvider({ children }: { children: React.ReactNode }) {
             ...(hasSubs ? {} : { subcategories: local.subcategories || [] }),
           };
           // Best Selling category should always display as "Best Selling" only
-          if (dyn.slug === 'best-selling-pickles' || dyn.id === 'best-selling-pickles') {
+          if (dyn.slug === 'best-selling' || dyn.id === 'best-selling') {
             merged.name = 'Best Selling';
           }
           return merged;

@@ -114,9 +114,9 @@ export async function saveOrderToFirestore(order: OrderPayload) {
     const ordersRef = collection(db, 'orders');
     const seq = await getNextOrderNumber();
     const orderNumber =
-      order.orderId && order.orderId.startsWith('NA-')
+      order.orderId && order.orderId.startsWith('WSP-')
         ? order.orderId
-        : `NA-${String(seq).padStart(6, '0')}`;
+        : `WSP-${String(seq).padStart(6, '0')}`;
     const docRef = await addDoc(ordersRef, {
       ...order,
       orderId: orderNumber,
@@ -169,7 +169,7 @@ export function subscribeTopBarMessages(callback: (messages: string[]) => void) 
   const fallback = [
     'GET 5% OFF ON ORDERS WITH ADVANCE PAYMENT.',
     '⚡ FREE NATIONWIDE SHIPPING ON ORDERS OVER RS. 2,999',
-    '🎁 100% PURE & HOMEMADE DESI QUALITY GUARANTEED'
+    '🎁 100% PREMIUM & GENUINE QUALITY GUARANTEED'
   ];
 
   try {

@@ -300,7 +300,7 @@ export default function Header() {
 
               {/* Best Selling Link */}
               <Link
-                href="/collections/best-selling-pickles"
+                href="/collections/best-selling"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between px-4 py-3.5 text-black font-bold text-sm tracking-wide"
               >

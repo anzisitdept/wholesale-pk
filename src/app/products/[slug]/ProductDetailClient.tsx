@@ -511,11 +511,11 @@ export default function ProductDetailClient({ product }: { product: Product }) {
       {/* RICH DESCRIPTION CONTENT SECTION BELOW PRODUCT DETAILS */}
       <div className="mt-10 md:mt-16 border-t border-gray-200 pt-8 md:pt-10 overflow-x-hidden">
 
-        {/* Content Tabs Header */}
-        <div className="flex justify-start gap-2 md:gap-4 border-b border-gray-200 mb-8 flex-wrap">
+        {/* Content Tabs Header - Single row scrollable on mobile */}
+        <div className="flex items-center justify-start gap-1 sm:gap-2 md:gap-4 border-b border-gray-200 mb-6 md:mb-8 overflow-x-auto no-scrollbar flex-nowrap scroll-smooth">
           <button
             onClick={() => setActiveTab('description')}
-            className={`pb-3 px-3 md:px-4 font-serif text-base md:text-lg font-bold border-b-2 transition ${
+            className={`whitespace-nowrap flex-shrink-0 pb-3 px-3 sm:px-3.5 md:px-4 font-serif text-sm sm:text-base md:text-lg font-bold border-b-2 transition cursor-pointer -mb-[1px] ${
               activeTab === 'description' ? 'border-[#111] text-[#111]' : 'border-transparent text-gray-400 hover:text-gray-700'
             }`}
           >
@@ -524,7 +524,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           {hasHighlights && (
             <button
               onClick={() => setActiveTab('highlights')}
-              className={`pb-3 px-3 md:px-4 font-serif text-base md:text-lg font-bold border-b-2 transition ${
+              className={`whitespace-nowrap flex-shrink-0 pb-3 px-3 sm:px-3.5 md:px-4 font-serif text-sm sm:text-base md:text-lg font-bold border-b-2 transition cursor-pointer -mb-[1px] ${
                 activeTab === 'highlights' ? 'border-[#111] text-[#111]' : 'border-transparent text-gray-400 hover:text-gray-700'
               }`}
             >
@@ -534,7 +534,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           {hasSpecs && (
             <button
               onClick={() => setActiveTab('specifications')}
-              className={`pb-3 px-3 md:px-4 font-serif text-base md:text-lg font-bold border-b-2 transition ${
+              className={`whitespace-nowrap flex-shrink-0 pb-3 px-3 sm:px-3.5 md:px-4 font-serif text-sm sm:text-base md:text-lg font-bold border-b-2 transition cursor-pointer -mb-[1px] ${
                 activeTab === 'specifications' ? 'border-[#111] text-[#111]' : 'border-transparent text-gray-400 hover:text-gray-700'
               }`}
             >
@@ -544,7 +544,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           {product.ingredients && (
             <button
               onClick={() => setActiveTab('ingredients')}
-              className={`pb-3 px-3 md:px-4 font-serif text-base md:text-lg font-bold border-b-2 transition ${
+              className={`whitespace-nowrap flex-shrink-0 pb-3 px-3 sm:px-3.5 md:px-4 font-serif text-sm sm:text-base md:text-lg font-bold border-b-2 transition cursor-pointer -mb-[1px] ${
                 activeTab === 'ingredients' ? 'border-[#111] text-[#111]' : 'border-transparent text-gray-400 hover:text-gray-700'
               }`}
             >
@@ -554,7 +554,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           {product.benefits && (
             <button
               onClick={() => setActiveTab('benefits')}
-              className={`pb-3 px-3 md:px-4 font-serif text-base md:text-lg font-bold border-b-2 transition ${
+              className={`whitespace-nowrap flex-shrink-0 pb-3 px-3 sm:px-3.5 md:px-4 font-serif text-sm sm:text-base md:text-lg font-bold border-b-2 transition cursor-pointer -mb-[1px] ${
                 activeTab === 'benefits' ? 'border-[#111] text-[#111]' : 'border-transparent text-gray-400 hover:text-gray-700'
               }`}
             >
@@ -641,7 +641,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
       {/* Customer Reviews Section */}
       <div id="customer-reviews-section" className="mt-10 md:mt-16 border-t border-gray-200 pt-8 md:pt-10">
-        <CustomerReviewsSection productId={product.id} />
+        <CustomerReviewsSection />
       </div>
 
       {/* Sticky Purchase Bar at Bottom (Desktop & Tablet) */}

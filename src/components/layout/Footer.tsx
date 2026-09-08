@@ -72,7 +72,7 @@ export default function Footer() {
     <footer className="w-full font-sans">
 
       {/* Main Footer Content */}
-      <div className="bg-[#000000] text-white pt-14 pb-16 md:pb-20">
+      <div className="bg-[#000000] text-white pt-12 md:pt-14 pb-4 md:pb-6">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1320px]">
 
           {/* 4-Column Grid matching official layout */}
@@ -176,16 +176,6 @@ export default function Footer() {
                 >
                   <TiktokIcon />
                 </a>
-                {/* YouTube */}
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-9 h-9 rounded-full bg-white text-[#000000] flex items-center justify-center transition-all duration-200 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white"
-                  title="YouTube"
-                >
-                  <YoutubeIcon />
-                </a>
               </div>
             </div>
 
@@ -237,20 +227,20 @@ export default function Footer() {
           </div>
 
           {/* Bottom Bar: Copyright & Visa / Mastercard Logos without white container background */}
-          <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row items-center justify-between text-sm md:text-base text-gray-100 font-medium gap-4">
+          <div className="border-t border-white/20 pt-5 flex flex-col md:flex-row items-center justify-between text-sm md:text-base text-gray-100 font-medium gap-4">
             <p>Wholesaler-PK @2025. All Rights Reserved</p>
 
-            {/* Payment Method Images rendered side by side directly */}
-            <div className="flex items-center gap-3">
+            {/* Payment Method Images rendered side by side directly - with margin so floating WhatsApp widget never overlaps them */}
+            <div className="flex items-center gap-3 sm:mr-16 md:mr-20">
               <img
                 src="/Visa.png"
                 alt="Visa"
-                className="h-10 w-auto object-contain rounded-sm"
+                className="h-9 md:h-10 w-auto object-contain rounded-sm"
               />
               <img
                 src="/mastercard.jpg"
                 alt="Mastercard"
-                className="h-10 w-auto object-contain rounded-sm"
+                className="h-9 md:h-10 w-auto object-contain rounded-sm"
               />
             </div>
           </div>

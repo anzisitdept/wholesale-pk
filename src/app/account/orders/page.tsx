@@ -12,18 +12,18 @@ import ReviewsWidget from '@/components/layout/ReviewsWidget';
 export default function OrdersPage() {
   const sampleOrders = [
     {
-      id: 'NA-000001',
+      id: 'WSP-000001',
       date: 'Aug 10, 2026',
       status: 'In Transit',
-      items: 'Sarson Da Saag Pickle (1kg), Amla Murabba (500g)',
+      items: 'Premium Fashion Item (Size M), Daily Essentials Pack',
       total: 1639,
       payment: 'Cash on Delivery (COD)'
     },
     {
-      id: 'NA-000002',
+      id: 'WSP-000002',
       date: 'Jul 24, 2026',
       status: 'Delivered',
-      items: 'Special Aloo Bukhara Chutney (500g)',
+      items: 'Home & Living Set (Bundle of 3)',
       total: 799,
       payment: 'Cash on Delivery (COD)'
     }

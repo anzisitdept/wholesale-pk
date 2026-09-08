@@ -3,10 +3,10 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 
 const texts = [
-  "Freshly Handmade",
+  "Premium Quality Products",
   "Loved by Thousands",
-  "Pakistan's Most Trusted Pickles",
-  "100% Chemical-Free"
+  "Pakistan's Most Trusted Online Store",
+  "100% Genuine Products"
 ];
 
 function Items() {
