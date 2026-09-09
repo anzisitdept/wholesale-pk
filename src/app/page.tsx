@@ -49,12 +49,6 @@ export default function Home() {
           productIds={storeContent.bundleOffers?.productIds}
         />
 
-        {/* 7. Special Items */}
-        <ProductCarousel 
-          title={storeContent.specialItems?.title || "Special Items"} 
-          categoryFilter="special"
-          productIds={storeContent.specialItems?.productIds}
-        />
 
         {/* Customer Reviews */}
         <CustomerReviews />

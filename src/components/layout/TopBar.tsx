@@ -1,33 +1,32 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useStoreData } from '@/context/StoreDataContext';
 
 export default function TopBar() {
   const { storeContent } = useStoreData();
   const messages = storeContent.topBarMessages;
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    if (messages.length <= 1) return;
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % messages.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [messages]);
 
   if (messages.length === 0) return null;
 
+  // Duplicate the set exactly twice so the -50% shift loops seamlessly
+  const items = messages.length === 1 ? [messages[0], messages[0]] : [...messages, ...messages];
+  const duration = Math.max(10, items.length * 2.5);
+
   return (
-    <div className="bg-[#000000] text-white text-xs md:text-[13px] font-bold py-2 md:py-2.5 px-4 flex items-center justify-center select-none overflow-hidden">
-      <div className="flex-1 text-center truncate px-1 md:px-2">
-        <span
-          key={currentIndex}
-          className="inline-block tracking-wider uppercase animate-slideIn text-[10px] md:text-[13px]"
-        >
-          {messages[currentIndex % messages.length]}
-        </span>
+    <div className="bg-[#101114] text-white border-b border-[#22252e] text-xs md:text-[13px] font-bold py-2 md:py-2.5 overflow-hidden select-none font-display">
+      <div
+        className="flex items-center whitespace-nowrap animate-marquee w-max"
+        style={{ animationDuration: `${duration}s` }}
+      >
+        {items.map((msg, i) => (
+          <span
+            key={i}
+            className="inline-block tracking-wider uppercase text-[10px] md:text-[12px] font-black text-white/95 px-10"
+          >
+            {msg}
+          </span>
+        ))}
       </div>
     </div>
   );

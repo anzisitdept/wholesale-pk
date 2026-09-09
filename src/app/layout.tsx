@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Josefin_Sans, Abril_Fatface } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { StoreDataProvider } from "@/context/StoreDataContext";
@@ -7,15 +7,18 @@ import CartDrawer from "@/components/cart/CartDrawer";
 import CheckoutModal from "@/components/cart/CheckoutModal";
 import SearchModal from "@/components/layout/SearchModal";
 
-const josefinSans = Josefin_Sans({
-  variable: "--font-josefin-sans",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
-const abrilFatface = Abril_Fatface({
-  weight: "400",
-  variable: "--font-abril-fatface",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${josefinSans.variable} ${abrilFatface.variable}`} suppressHydrationWarning>
-      <body className="antialiased min-h-screen flex flex-col font-sans bg-white" suppressHydrationWarning>
+    <html lang="en" className={`${montserrat.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body className="antialiased min-h-screen flex flex-col font-sans bg-[#141415] text-[#f4f4f5]" suppressHydrationWarning>
         <StoreDataProvider>
           <CartProvider>
             {children}

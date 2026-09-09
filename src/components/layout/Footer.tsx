@@ -69,10 +69,10 @@ export default function Footer() {
   const { categories } = useStoreData();
 
   return (
-    <footer className="w-full font-sans">
+    <footer className="w-full font-body">
 
       {/* Main Footer Content */}
-      <div className="bg-[#000000] text-white pt-12 md:pt-14 pb-4 md:pb-6">
+      <div className="bg-[#101114] border-t border-[#22252e] text-white pt-12 md:pt-14 pb-4 md:pb-6">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1320px]">
 
           {/* 4-Column Grid matching official layout */}
@@ -81,19 +81,19 @@ export default function Footer() {
             {/* Column 1: SHOP (Main Categories only) */}
             <div>
               <FooterSection title="SHOP">
-                <ul className="space-y-2.5 text-xs font-normal text-gray-200">
+                <ul className="space-y-2.5 text-xs font-normal text-gray-300">
                   {categories.map((cat) => (
                     <li key={cat.id || cat.slug}>
                       <Link
                         href={`/collections/${cat.slug}`}
-                        className="hover:underline"
+                        className="hover:text-white transition hover:underline"
                       >
                         {cat.name.replace(/\s*\([^)]*\)/g, '')}
                       </Link>
                     </li>
                   ))}
                   <li>
-                    <Link href="/collections/all-products" className="hover:underline">
+                    <Link href="/collections/all-products" className="hover:text-white transition hover:underline">
                       All Products
                     </Link>
                   </li>
@@ -104,25 +104,25 @@ export default function Footer() {
             {/* Column 2: INFORMATION */}
             <div>
               <FooterSection title="INFORMATION">
-                <ul className="space-y-2.5 text-xs font-normal text-gray-200">
-                  <li><Link href="/pages/returns-and-refund-policy" className="hover:underline">Returns And Refund Policy</Link></li>
-                  <li><Link href="/pages/cancellation-policy" className="hover:underline">Cancellation Policy</Link></li>
-                  <li><Link href="/pages/terms-conditions" className="hover:underline">Terms & Conditions</Link></li>
-                  <li><Link href="/pages/shipping-policy" className="hover:underline">Shipping Policy</Link></li>
-                  <li><Link href="/pages/privacy-policy" className="hover:underline">Privacy Policy</Link></li>
-                  <li><Link href="/pages/frequently-asked-questions" className="hover:underline">FAQ's</Link></li>
-                  <li><Link href="/pages/cookie-policy" className="hover:underline">Cookie Policy</Link></li>
-                  <li><Link href="/pages/contact-us" className="hover:underline">Contact Us</Link></li>
+                <ul className="space-y-2.5 text-xs font-normal text-gray-300">
+                  <li><Link href="/pages/returns-and-refund-policy" className="hover:text-white transition hover:underline">Returns And Refund Policy</Link></li>
+                  <li><Link href="/pages/cancellation-policy" className="hover:text-white transition hover:underline">Cancellation Policy</Link></li>
+                  <li><Link href="/pages/terms-conditions" className="hover:text-white transition hover:underline">Terms & Conditions</Link></li>
+                  <li><Link href="/pages/shipping-policy" className="hover:text-white transition hover:underline">Shipping Policy</Link></li>
+                  <li><Link href="/pages/privacy-policy" className="hover:text-white transition hover:underline">Privacy Policy</Link></li>
+                  <li><Link href="/pages/frequently-asked-questions" className="hover:text-white transition hover:underline">FAQ's</Link></li>
+                  <li><Link href="/pages/cookie-policy" className="hover:text-white transition hover:underline">Cookie Policy</Link></li>
+                  <li><Link href="/pages/contact-us" className="hover:text-white transition hover:underline">Contact Us</Link></li>
                 </ul>
               </FooterSection>
             </div>
 
             {/* Column 3: SIGN UP AND AVAIL 10% EXTRA DISCOUNT */}
             <div>
-              <h3 className="font-bold text-xs tracking-wider uppercase mb-3 text-white leading-snug">
+              <h3 className="font-display font-black text-xs tracking-wider uppercase mb-3 text-white leading-snug">
                 SIGN UP AND AVAIL 10% EXTRA DISCOUNT
               </h3>
-              <p className="text-xs mb-4 text-gray-200 leading-relaxed">
+              <p className="text-xs mb-4 text-gray-300 leading-relaxed font-body">
                 Sign up for exclusive updates, new arrivals & insider only discounts
               </p>
 
@@ -133,12 +133,12 @@ export default function Footer() {
                   type="email"
                   required
                   placeholder="Enter Your Email Address"
-                  className="w-full px-3 py-2.5 bg-white text-[#000000] text-xs font-medium focus:outline-none placeholder-gray-500 rounded-none"
+                  className="w-full px-3 py-2.5 bg-[#1c1e25] text-white text-xs font-medium border border-[#2b2f3a] focus:outline-none focus:border-[#007aff] placeholder-gray-500 rounded-xl"
                 />
                 <button
                   suppressHydrationWarning
                   type="submit"
-                  className="bg-white text-[#000000] font-bold text-xs tracking-wider uppercase px-4 py-2.5 hover:bg-gray-100 transition rounded-none flex-shrink-0"
+                  className="bg-[#007aff] text-white font-display font-black text-xs tracking-wider uppercase px-4 py-2.5 hover:bg-[#0069d9] transition rounded-xl flex-shrink-0 cursor-pointer shadow-sm"
                 >
                   SUBMIT
                 </button>

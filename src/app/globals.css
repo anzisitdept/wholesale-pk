@@ -3,55 +3,68 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-josefin-sans);
-  --font-serif: var(--font-abril-fatface);
-  --color-primary: #000000;
-  --color-secondary: #f5f5f5;
-  --color-sale: #000000;
-  --color-accent: #000000;
-  --color-surface: #f9fafb;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
+  --font-sans: var(--font-body);
+  --font-display: "Gilroy ExtraBold", var(--font-montserrat), "Montserrat Black", "Akrobat Black", sans-serif;
+  --font-body: var(--font-inter), "Inter", "Roboto", "Helvetica Neue", sans-serif;
+  
+  --color-primary: #007aff;
+  --color-secondary: #20232a;
+  --color-sale: #ff5722;
+  --color-accent: #007aff;
+  --color-surface: #1a1c22;
+  --color-surface-card: #20232a;
+  --color-muted: #8e9297;
+  --color-border: #262932;
+  --color-accent-blue: #007aff;
+  --color-accent-gold: #ff9800;
+  --color-accent-green: #00c853;
+  --color-accent-orange: #ff5722;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #232323;
-  --color-primary: #000000;
-  --color-secondary: #f5f5f5;
-  --color-sale: #000000;
-  --color-accent: #000000;
-  --color-surface: #f9fafb;
-  --color-text: #232323;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
+  --background: #141415;
+  --foreground: #f4f4f5;
+  --font-display: "Gilroy ExtraBold", var(--font-montserrat), "Montserrat Black", "Akrobat Black", sans-serif;
+  --font-body: var(--font-inter), "Inter", "Roboto", "Helvetica Neue", sans-serif;
+  --color-primary: #007aff;
+  --color-secondary: #20232a;
+  --color-sale: #ff5722;
+  --color-accent: #007aff;
+  --color-surface: #1a1c22;
+  --color-surface-card: #20232a;
+  --color-text: #ffffff;
+  --color-muted: #8e9297;
+  --color-border: #262932;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-josefin-sans), sans-serif;
+  background: #141415;
+  color: #f4f4f5;
+  font-family: var(--font-body), "Inter", "Roboto", sans-serif;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-abril-fatface), serif;
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: "Gilroy ExtraBold", var(--font-montserrat), "Montserrat Black", "Akrobat Black", sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar (Dark Theme) */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #141415;
 }
 ::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: #2b2e38;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #333333;
+  background: #3b3f4d;
 }
 
 /* Hide scrollbar utility */
@@ -88,6 +101,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-slideIn {
   animation: slideIn 0.6s ease-out forwards;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }
 
 /* Hide WhatsApp button on cart page */
