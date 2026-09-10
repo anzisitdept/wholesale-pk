@@ -4,6 +4,7 @@ import {
   getDocs,
   setDoc,
   addDoc,
+  deleteDoc,
   onSnapshot,
   query,
   where,
@@ -70,6 +71,47 @@ export function subscribeCategories(callback: (categories: Category[]) => void) 
     console.warn('Firestore Categories connection failed:', err);
     callback(CATEGORIES);
     return () => {};
+  }
+}
+
+/* ─── Seed Categories to Firestore (overwrites wrong docs) ── */
+export async function seedCategoriesToFirestore(): Promise<void> {
+  try {
+    const categoriesRef = collection(db, 'categories');
+    const existing = await getDocs(categoriesRef);
+    const existingIds = new Set(existing.docs.map(d => d.id));
+
+    // Upsert the correct jewelry categories
+    for (const cat of CATEGORIES) {
+      const catId = cat.id || cat.slug;
+      await setDoc(doc(categoriesRef, catId), {
+        id: catId,
+        slug: cat.slug || catId,
+        name: cat.name,
+        urduName: cat.urduName || '',
+        description: cat.description || '',
+        image: cat.image || '',
+        itemCount: cat.itemCount || 0,
+        subcategories: (cat.subcategories || []).map(s => ({
+          id: s.id || s.slug,
+          slug: s.slug,
+          name: s.name,
+          urduName: s.urduName || '',
+          image: s.image || '',
+          itemCount: s.itemCount || 0,
+        })),
+      }, { merge: true });
+      existingIds.delete(catId);
+    }
+
+    // Remove categories that are no longer valid (the old wrong ones)
+    for (const removeId of existingIds) {
+      await deleteDoc(doc(categoriesRef, removeId));
+    }
+
+    console.log('Categories seeded to Firestore successfully.');
+  } catch (error) {
+    console.warn('Categories seeding failed (may be permissions or offline):', error);
   }
 }
 
@@ -314,4 +356,26 @@ export function subscribeAllApprovedReviews(callback: (reviews: Review[]) => voi
     callback([]);
     return () => {};
   }
+}
+
+/* ─── Product Admin CRUD Services ───────────────────── */
+export async function saveProductToFirestore(productData: Partial<Product>) {
+  const productId = productData.id || productData.slug || `prod-${Date.now()}`;
+  const slug = productData.slug || productData.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || productId;
+
+  const payload = {
+    ...productData,
+    id: productId,
+    slug,
+    updatedAt: serverTimestamp(),
+  };
+
+  const docRef = doc(db, 'products', productId);
+  await setDoc(docRef, payload, { merge: true });
+  return productId;
+}
+
+export async function deleteProductFromFirestore(productId: string) {
+  const docRef = doc(db, 'products', productId);
+  await deleteDoc(docRef);
 }

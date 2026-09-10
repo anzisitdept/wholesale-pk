@@ -1,138 +1,96 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { ShoppingBag, Star, Heart } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Product } from '@/types';
 import { useCart } from '@/context/CartContext';
-import { getProductEffectivePrice, getProductEffectiveOriginalPrice, getProductDisplayWeight } from '@/lib/productPrice';
+import { getProductEffectivePrice, getProductEffectiveOriginalPrice } from '@/lib/productPrice';
 
 export default function ProductCardClient({ product }: { product: Product }) {
-  const [hovered, setHovered] = useState(false);
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
-  const isWishlisted = isInWishlist(product.id);
+  const { openQuickView } = useCart();
 
   const primaryImg = (product.image && product.image.trim() !== '') 
     ? product.image 
     : ((product.images && product.images[0] && product.images[0].trim() !== '') ? product.images[0] : '');
-  const hoverImg = (product.hoverImage && product.hoverImage.trim() !== '') ? product.hoverImage : primaryImg;
 
   const displayPrice = getProductEffectivePrice(product);
   const originalPrice = getProductEffectiveOriginalPrice(product, displayPrice);
-  const displayWeight = getProductDisplayWeight(product);
   const hasDiscount = originalPrice > displayPrice;
+
+  const subtitleText =
+    product.shortDescription ||
+    product.ingredients ||
+    product.description ||
+    '';
 
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="bg-[#1a1c22] group border border-[#262932] rounded-2xl overflow-hidden hover:border-[#383d4a] hover:shadow-2xl hover:shadow-black/60 transition-all duration-300 flex flex-col justify-between relative h-full"
+      onClick={() => openQuickView(product)}
+      className="bg-[#1a1c22] border border-[#262932] hover:border-[#007aff]/60 rounded-3xl p-3.5 sm:p-4 transition-all duration-300 flex items-center justify-between gap-3 relative group shadow-md hover:shadow-2xl hover:shadow-black/70 cursor-pointer overflow-hidden"
     >
       {/* Badges */}
-      <div className="absolute top-2 left-2 z-20 flex flex-col items-start gap-1 pointer-events-none">
-        {product.discountBadge && (
-          <div className="bg-[#ff5722] text-white text-[9px] md:text-[10px] font-black uppercase px-2 py-0.5 rounded-md shadow-xs font-display tracking-tight">
-            {product.discountBadge}
-          </div>
-        )}
-        {product.isBestSeller && (
-          <div className="bg-[#ff9800] text-white text-[9px] md:text-[10px] font-black uppercase px-2 py-0.5 rounded-md shadow-xs font-display tracking-tight">
-            Best Selling
-          </div>
-        )}
-      </div>
+      {product.discountBadge && (
+        <div className="absolute top-2 left-2 z-10 bg-[#ff5722] text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-md shadow-xs font-display tracking-tight pointer-events-none">
+          {product.discountBadge}
+        </div>
+      )}
 
-      {/* Wishlist Button */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleWishlist(product.id);
-        }}
-        aria-label="Toggle wishlist"
-        className={`absolute top-2 right-2 z-20 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-md transition-all cursor-pointer ${
-          isWishlisted
-            ? 'bg-[#ff5722] text-white shadow-md'
-            : 'bg-black/40 text-gray-300 hover:text-white hover:bg-black/60'
-        }`}
-      >
-        <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current text-white' : ''}`} />
-      </button>
-
-      {/* Image Container with crossfade */}
-      <Link href={`/products/${product.slug}`} className="relative aspect-square overflow-hidden bg-[#20232a] block">
-        {primaryImg ? (
-          <>
-            <img
-              src={primaryImg}
-              alt={product.name || 'Product Image'}
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0 z-10"
-            />
-            <img
-              src={hoverImg}
-              alt={`${product.name || 'Product'} Alternate`}
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100 z-0"
-            />
-          </>
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs">
-            No Image
-          </div>
-        )}
-      </Link>
-
-      {/* Quick Add Button */}
-      <div className="p-2 md:p-2.5 bg-[#17191e] border-t border-[#232630]">
-        <button
-          type="button"
-          onClick={() => addToCart(product)}
-          className="w-full bg-[#007aff] hover:bg-[#0069d9] active:scale-[0.98] text-white font-extrabold text-[10px] md:text-xs uppercase tracking-wider py-2 md:py-2.5 rounded-xl flex items-center justify-center space-x-1.5 md:space-x-2 transition font-display shadow-xs cursor-pointer"
-        >
-          <ShoppingBag className="w-3.5 h-3.5" />
-          <span>QUICK ADD</span>
-        </button>
-      </div>
-
-      {/* Product Details */}
-      <div className="p-3 md:p-4 text-center flex-1 flex flex-col justify-between">
+      {/* Left Column: Title, Subtitle/Ingredients, Price Badge */}
+      <div className="flex-1 min-w-0 flex flex-col justify-between h-full pr-1">
         <div>
-          <Link
-            href={`/products/${product.slug}`}
-            className="text-[11px] md:text-xs font-bold text-gray-100 hover:text-[#007aff] transition-colors leading-relaxed line-clamp-2 block mb-1 font-body"
-          >
+          <h3 className="text-sm sm:text-base font-extrabold text-white group-hover:text-[#007aff] transition-colors leading-snug line-clamp-3 font-display">
             {product.name}
-          </Link>
-          {product.urduName && (
-            <p className="text-[10px] md:text-[11px] text-gray-400 font-medium mb-2">{product.urduName}</p>
+          </h3>
+          {subtitleText && (
+            <p className="text-[11px] sm:text-xs text-gray-400 font-medium line-clamp-2 mt-1 mb-3 leading-relaxed font-body">
+              {subtitleText}
+            </p>
           )}
         </div>
 
-        <div>
-          <div className="flex justify-center items-center space-x-1 text-yellow-400 text-[10px] md:text-xs mb-2">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-2.5 h-2.5 md:w-3 md:h-3 fill-yellow-400" />
-            ))}
-            <span className="text-[9px] md:text-[10px] text-gray-400 ml-1">({product.reviewsCount || 100})</span>
+        {/* Price Pill Badge */}
+        <div className="flex items-center gap-2 mt-auto">
+          <div className="bg-[#007aff] group-hover:bg-[#0066d9] text-white text-xs sm:text-sm font-extrabold px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl shadow-xs transition-colors font-display tracking-tight inline-flex items-center">
+            Rs. {displayPrice.toLocaleString()}
           </div>
-
-          <div className="flex justify-center items-center space-x-1.5 text-[10px] md:text-xs flex-wrap">
-            {hasDiscount && (
-              <span className="text-gray-400 line-through">Rs. {originalPrice.toLocaleString()}</span>
-            )}
-            {product.weights && product.weights.length > 1 && (
-              <span className="text-gray-400 text-[10px] md:text-[11px] font-medium">{displayWeight}:</span>
-            )}
-            <span className="text-white font-black text-xs md:text-sm font-display tracking-tight">
-              Rs. {displayPrice.toLocaleString()}
+          {hasDiscount && (
+            <span className="text-[11px] text-gray-400 line-through font-medium">
+              Rs. {originalPrice.toLocaleString()}
             </span>
-          </div>
+          )}
         </div>
       </div>
+
+      {/* Right Column: Image Thumbnail & Floating Action Button */}
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-[#20232a] flex-shrink-0 border border-white/5">
+        
+        {primaryImg ? (
+          <img
+            src={primaryImg}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-gray-500 text-[10px]">
+            No Image
+          </div>
+        )}
+
+        {/* Floating Circle '+' Add Button */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            openQuickView(product);
+          }}
+          className="absolute bottom-1.5 right-1.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#007aff] hover:bg-[#0066d9] active:scale-95 text-white flex items-center justify-center shadow-lg transition-transform duration-200 cursor-pointer"
+          aria-label="Quick View product"
+        >
+          <Plus className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+        </button>
+      </div>
+
     </div>
   );
 }

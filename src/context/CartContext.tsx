@@ -5,6 +5,7 @@ import { Product, ProductVariant } from '@/data/products';
 import { getProductUnit } from '@/lib/productPrice';
 
 export interface CartItem {
+  specialInstructions: string | undefined;
   cartId: string;
   productId: string;
   slug: string;
@@ -22,7 +23,7 @@ export interface CartItem {
 
 interface CartContextType {
   cart: CartItem[];
-  addToCart: (product: Product, variantOrWeight?: ProductVariant | string, quantity?: number) => void;
+  addToCart: (product: Product, variantOrWeight?: ProductVariant | string, quantity?: number, specialInstructions?: string) => void;
   removeFromCart: (cartId: string) => void;
   updateQuantity: (cartId: string, quantity: number) => void;
   clearCart: () => void;
@@ -34,6 +35,9 @@ interface CartContextType {
   setIsSearchOpen: (open: boolean) => void;
   isCheckoutOpen: boolean;
   setIsCheckoutOpen: (open: boolean) => void;
+  quickViewProduct: Product | null;
+  openQuickView: (product: Product) => void;
+  closeQuickView: () => void;
   wishlist: string[];
   toggleWishlist: (productId: string) => void;
   isInWishlist: (productId: string) => boolean;
@@ -50,8 +54,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const openQuickView = (product: Product) => setQuickViewProduct(product);
+  const closeQuickView = () => setQuickViewProduct(null);
 
   const freeShippingThreshold = 3000;
 
@@ -89,7 +97,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  const addToCart = (product: Product, variantOrWeight?: ProductVariant | string, quantity?: number) => {
+  const addToCart = (product: Product, variantOrWeight?: ProductVariant | string, quantity?: number, specialInstructions?: string) => {
     // 1. Enforce Minimum Order Quantity (MOQ)
     const moq = product.moq && product.moq > 0 ? product.moq : 1;
     const qty = Math.max(quantity && quantity > 0 ? quantity : moq, moq);
@@ -129,14 +137,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       : (typeof product.originalPrice === 'number' && product.originalPrice > price ? product.originalPrice : 0);
 
     const displayLabel = variant ? variant.name : weightLabel;
-    const cartId = `${product.id || product.slug}-${variant?.id || variant?.name || weightLabel}`;
+    const cartId = `${product.id || product.slug}-${variant?.id || variant?.name || weightLabel}${specialInstructions ? '-' + specialInstructions.slice(0, 10) : ''}`;
 
     setCart(prev => {
       const existing = prev.find(item => item.cartId === cartId);
       if (existing) {
         return prev.map(item =>
           item.cartId === cartId
-            ? { ...item, quantity: item.quantity + qty }
+            ? { ...item, quantity: item.quantity + qty, specialInstructions: specialInstructions || item.specialInstructions }
             : item
         );
       }
@@ -155,13 +163,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           selectedVariant: variant ? variant.name : '',
           unit: getProductUnit(product),
           quantity: qty,
+          specialInstructions: specialInstructions || '',
           moq
         }
       ];
     });
 
-    showToast(`Added "${product.name}" (${displayLabel}) to cart!`);
-    setIsCartOpen(true);
+    showToast(`Added ${qty}x ${product.name} to cart!`);
   };
 
   const removeFromCart = (cartId: string) => {
@@ -195,8 +203,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const isInWishlist = (productId: string) => wishlist.includes(productId);
 
-  const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const amountNeededForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
   return (
@@ -215,6 +223,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setIsSearchOpen,
         isCheckoutOpen,
         setIsCheckoutOpen,
+        quickViewProduct,
+        openQuickView,
+        closeQuickView,
         wishlist,
         toggleWishlist,
         isInWishlist,

@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, ShoppingBag, Menu, Heart } from 'lucide-react';
+import { Search, ShoppingBag, Menu, User as UserIcon, LogOut } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import HeaderMainNav from './HeaderMainNav';
 import MobileNavDrawer from './MobileNavDrawer';
 
 export default function Header() {
-  const { totalCount, wishlist, setIsCartOpen, setIsSearchOpen } = useCart();
+  const { totalCount, setIsCartOpen, setIsSearchOpen } = useCart();
+  const { user, profile, openAuthModal, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -142,22 +144,6 @@ export default function Header() {
                   <span>Search products...</span>
                 </button>
 
-                {/* Desktop Wishlist */}
-                <Link
-                  href="/wishlist"
-                  className="flex items-center space-x-2 bg-[#20232a] text-white font-semibold text-xs px-3.5 py-2 rounded-xl border border-white/5 hover:bg-[#282c35] transition cursor-pointer"
-                >
-                  <div className="relative">
-                    <Heart className="w-4 h-4 text-white" />
-                    {mounted && wishlist.length > 0 && (
-                      <span className="absolute -top-2 -right-2 bg-[#007aff] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-black animate-pulse font-display">
-                        {wishlist.length}
-                      </span>
-                    )}
-                  </div>
-                  <span className="hidden xl:inline uppercase tracking-wider font-display text-[11px]">Wishlist</span>
-                </Link>
-
                 {/* Shopping Cart Button */}
                 <button
                   suppressHydrationWarning
@@ -174,6 +160,32 @@ export default function Header() {
                   </div>
                   <span className="hidden xl:inline uppercase tracking-wider font-display text-[11px]">Cart</span>
                 </button>
+
+                {/* Account / Sign In Button */}
+                {mounted && (
+                  user ? (
+                    <div className="flex items-center gap-2 bg-[#20232a] text-white px-3 py-1.5 rounded-xl border border-white/5">
+                      <span className="text-xs font-semibold max-w-[90px] truncate text-gray-200">
+                        {profile?.displayName || user.email?.split('@')[0] || 'User'}
+                      </span>
+                      <button
+                        onClick={() => signOut()}
+                        className="text-gray-400 hover:text-red-400 p-1 transition cursor-pointer"
+                        title="Sign Out"
+                      >
+                        <LogOut className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => openAuthModal('login')}
+                      className="flex items-center space-x-2 bg-[#007aff] hover:bg-[#0066cc] text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow-xs transition cursor-pointer"
+                    >
+                      <UserIcon className="w-4 h-4 text-white" />
+                      <span className="hidden xl:inline uppercase tracking-wider font-display text-[11px]">Sign In</span>
+                    </button>
+                  )
+                )}
 
               </div>
             </div>

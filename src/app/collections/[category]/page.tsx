@@ -10,8 +10,7 @@ import {
   X, 
   Clock, 
   ShoppingBag, 
-  Star, 
-  Heart
+  Star
 } from 'lucide-react';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
@@ -23,6 +22,7 @@ import { Product } from '@/types';
 import { useStoreData } from '@/context/StoreDataContext';
 import { useCart } from '@/context/CartContext';
 import { getProductEffectivePrice, getProductEffectiveOriginalPrice, getProductDisplayWeight } from '@/lib/productPrice';
+import { getJewelryMetaLabel } from '@/lib/productMeta';
 
 /* ─── Sidebar Section Wrapper ────────────────────────── */
 function SideSection({ title, children }: { title: string; children: React.ReactNode }) {
@@ -48,136 +48,7 @@ function SideSection({ title, children }: { title: string; children: React.React
   );
 }
 
-/* ─── Product Card ───────────────────────────── */
-function ProductCard({ product }: { product: Product }) {
-  const [hovered, setHovered] = useState(false);
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
-  const isWishlisted = isInWishlist(product.id);
-
-  const primaryImg = (product.image && product.image.trim() !== '') 
-    ? product.image 
-    : ((product.images && product.images[0] && product.images[0].trim() !== '') ? product.images[0] : '');
-  const hoverImg = (product.hoverImage && product.hoverImage.trim() !== '') ? product.hoverImage : primaryImg;
-
-  const displayPrice = getProductEffectivePrice(product);
-  const originalPrice = getProductEffectiveOriginalPrice(product, displayPrice);
-  const displayWeight = getProductDisplayWeight(product);
-  const hasDiscount = originalPrice > displayPrice;
-
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="bg-[#1a1c22] group border border-[#262932] rounded-2xl overflow-hidden hover:border-[#383d4a] hover:shadow-2xl hover:shadow-black/60 transition-all duration-300 flex flex-col justify-between relative h-full"
-    >
-      {/* Badges */}
-      <div className="absolute top-2 left-2 z-20 flex flex-col items-start gap-1 pointer-events-none">
-        {product.discountBadge && (
-          <div className="bg-[#ff5722] text-white text-[9px] md:text-[10px] font-black uppercase px-2 py-0.5 rounded-md shadow-xs font-display tracking-tight">
-            {product.discountBadge}
-          </div>
-        )}
-        {product.isBestSeller && (
-          <div className="bg-[#ff9800] text-white text-[9px] md:text-[10px] font-black uppercase px-2 py-0.5 rounded-md shadow-xs font-display tracking-tight">
-            Best Selling
-          </div>
-        )}
-      </div>
-
-      {/* Wishlist Button */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleWishlist(product.id);
-        }}
-        aria-label="Toggle wishlist"
-        className={`absolute top-2 right-2 z-20 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-md transition-all cursor-pointer ${
-          isWishlisted
-            ? 'bg-[#ff5722] text-white shadow-md'
-            : 'bg-black/40 text-gray-300 hover:text-white hover:bg-black/60'
-        }`}
-      >
-        <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current text-white' : ''}`} />
-      </button>
-
-      {/* Image Container with crossfade */}
-      <Link href={`/products/${product.slug}`} className="relative aspect-square overflow-hidden bg-[#20232a] block">
-        {primaryImg ? (
-          <>
-            <img
-              src={primaryImg}
-              alt={product.name || 'Product Image'}
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0 z-10"
-            />
-            <img
-              src={hoverImg}
-              alt={`${product.name || 'Product'} Alternate`}
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100 z-0"
-            />
-          </>
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs">
-            No Image
-          </div>
-        )}
-      </Link>
-
-      {/* Quick Add Button */}
-      <div className="p-2 md:p-2.5 bg-[#17191e] border-t border-[#232630]">
-        <button
-          type="button"
-          onClick={() => addToCart(product)}
-          className="w-full bg-[#007aff] hover:bg-[#0069d9] active:scale-[0.98] text-white font-extrabold text-[10px] md:text-xs uppercase tracking-wider py-2 md:py-2.5 rounded-xl flex items-center justify-center space-x-1.5 md:space-x-2 transition font-display shadow-xs cursor-pointer"
-        >
-          <ShoppingBag className="w-3.5 h-3.5" />
-          <span>QUICK ADD</span>
-        </button>
-      </div>
-
-      {/* Product Details */}
-      <div className="p-3 md:p-4 text-center flex-1 flex flex-col justify-between">
-        <div>
-          <Link
-            href={`/products/${product.slug}`}
-            className="text-[11px] md:text-xs font-bold text-gray-100 hover:text-[#007aff] transition-colors leading-relaxed line-clamp-2 block mb-1 font-body"
-          >
-            {product.name}
-          </Link>
-          {product.urduName && (
-            <p className="text-[10px] md:text-[11px] text-gray-400 font-medium mb-2">{product.urduName}</p>
-          )}
-        </div>
-
-        <div>
-          <div className="flex justify-center items-center space-x-1 text-yellow-400 text-[10px] md:text-xs mb-2">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-2.5 h-2.5 md:w-3 md:h-3 fill-yellow-400" />
-            ))}
-            <span className="text-[9px] md:text-[10px] text-gray-400 ml-1">({product.reviewsCount || 100})</span>
-          </div>
-
-          <div className="flex justify-center items-center space-x-1.5 text-[10px] md:text-xs flex-wrap">
-            {hasDiscount && (
-              <span className="text-gray-400 line-through">Rs. {originalPrice.toLocaleString()}</span>
-            )}
-            {product.weights && product.weights.length > 1 && (
-              <span className="text-gray-400 text-[10px] md:text-[11px] font-medium">{displayWeight}:</span>
-            )}
-            <span className="text-white font-black text-xs md:text-sm font-display tracking-tight">
-              Rs. {displayPrice.toLocaleString()}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+import ProductCardClient from './ProductCardClient';
 
 export function CategoryInner({
   forcedCategory,
@@ -194,6 +65,8 @@ export function CategoryInner({
   const categorySlug = forcedCategory || (params?.category as string) || 'all-products';
   const paramSubCategory = forcedSubCategory || (params?.subcategory as string) || searchParams.get('sub') || null;
   const [activeSub, setActiveSub] = useState<string | null>(paramSubCategory);
+  const [materialFilter, setMaterialFilter] = useState<string | null>(null);
+  const [gemstoneFilter, setGemstoneFilter] = useState<string | null>(null);
 
   const categoryData = categories.find(c => c.slug === categorySlug || c.id === categorySlug);
   const categoryTitle = (categorySlug === 'all' || categorySlug === 'all-products')
@@ -252,6 +125,20 @@ export function CategoryInner({
     filtered = filtered.filter(p => p.inStock === false);
   }
 
+  if (materialFilter) {
+    const materialQuery = materialFilter.toLowerCase();
+    filtered = filtered.filter(p =>
+      (p.material || '').trim().toLowerCase() === materialQuery
+    );
+  }
+
+  if (gemstoneFilter) {
+    const gemstoneQuery = gemstoneFilter.toLowerCase();
+    filtered = filtered.filter(p =>
+      (p.gemstone || '').trim().toLowerCase() === gemstoneQuery
+    );
+  }
+
   if (sortBy === 'price-low') filtered.sort((a, b) => a.price - b.price);
   else if (sortBy === 'price-high') filtered.sort((a, b) => b.price - a.price);
   else if (sortBy === 'title') filtered.sort((a, b) => a.name.localeCompare(b.name));
@@ -259,6 +146,23 @@ export function CategoryInner({
 
   const displayed = filtered.slice(0, itemsPerPage);
   const bestSellers = products.filter(p => p.isBestSeller).slice(0, 3);
+
+  const materialOptions = [
+    { label: 'Gold', value: 'gold' },
+    { label: 'Silver', value: 'silver' },
+    { label: 'Platinum', value: 'platinum' },
+    { label: 'Rose Gold', value: 'rose gold' }
+  ];
+  const availableMaterials = materialOptions.filter(option =>
+    displayProductsList.some(p => (p.material || '').trim().toLowerCase() === option.value)
+  );
+  const availableGemstones = Array.from(
+    displayProductsList.reduce((acc, p) => {
+      const label = (p.gemstone || '').trim();
+      if (label && label.toLowerCase() !== 'none') acc.set(label.toLowerCase(), label);
+      return acc;
+    }, new Map<string, string>()).entries()
+  ).map(([value, label]) => ({ label, value }));
 
   const Sidebar = () => (
     <aside className="lg:border-r lg:border-[#262932] lg:pr-5">
@@ -446,6 +350,76 @@ export function CategoryInner({
             </div>
           )}
 
+          {/* Material Filter Chips */}
+          {availableMaterials.length > 0 && (
+            <div className="flex items-center gap-2 overflow-x-auto py-3 mb-2 no-scrollbar">
+              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider flex-shrink-0">Material</span>
+              <button
+                type="button"
+                onClick={() => setMaterialFilter(null)}
+                className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer ${
+                  !materialFilter
+                    ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
+                    : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                }`}
+              >
+                All
+              </button>
+              {availableMaterials.map(m => {
+                const isActive = materialFilter?.toLowerCase() === m.value;
+                return (
+                  <button
+                    key={m.value}
+                    type="button"
+                    onClick={() => setMaterialFilter(isActive ? null : m.value)}
+                    className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
+                        : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                    }`}
+                  >
+                    {m.label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Gemstone Filter Chips */}
+          {availableGemstones.length > 0 && (
+            <div className="flex items-center gap-2 overflow-x-auto py-3 mb-4 no-scrollbar">
+              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider flex-shrink-0">Gemstone</span>
+              <button
+                type="button"
+                onClick={() => setGemstoneFilter(null)}
+                className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer ${
+                  !gemstoneFilter
+                    ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
+                    : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                }`}
+              >
+                All
+              </button>
+              {availableGemstones.map(g => {
+                const isActive = gemstoneFilter?.toLowerCase() === g.value;
+                return (
+                  <button
+                    key={g.value}
+                    type="button"
+                    onClick={() => setGemstoneFilter(isActive ? null : g.value)}
+                    className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
+                        : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                    }`}
+                  >
+                    {g.label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
           {/* Control Bar */}
           <div className="flex items-center gap-3 py-3 border-y border-[#262932] mb-6 flex-wrap">
 
@@ -497,13 +471,29 @@ export function CategoryInner({
           </div>
 
           {/* Active Filter Chips */}
-          {(inStockFilter || outOfStockFilter || activeSub) && (
+          {(inStockFilter || outOfStockFilter || activeSub || materialFilter || gemstoneFilter) && (
             <div className="flex items-center gap-2 mb-6 flex-wrap">
               <span className="text-xs text-gray-400">Filtered by:</span>
               {activeSub && (
                 <span className="inline-flex items-center gap-1.5 bg-[#20232a] text-xs px-3 py-1 rounded-full text-gray-200 border border-[#262932]">
                   Sub: {activeSub}
                   <button onClick={() => setActiveSub(null)} className="hover:text-white transition cursor-pointer">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
+              {materialFilter && (
+                <span className="inline-flex items-center gap-1.5 bg-[#20232a] text-xs px-3 py-1 rounded-full text-gray-200 border border-[#262932]">
+                  Material: {materialFilter}
+                  <button onClick={() => setMaterialFilter(null)} className="hover:text-white transition cursor-pointer">
+                    <X size={12} />
+                  </button>
+                </span>
+              )}
+              {gemstoneFilter && (
+                <span className="inline-flex items-center gap-1.5 bg-[#20232a] text-xs px-3 py-1 rounded-full text-gray-200 border border-[#262932]">
+                  Gemstone: {gemstoneFilter}
+                  <button onClick={() => setGemstoneFilter(null)} className="hover:text-white transition cursor-pointer">
                     <X size={12} />
                   </button>
                 </span>
@@ -529,6 +519,8 @@ export function CategoryInner({
                   setInStockFilter(false);
                   setOutOfStockFilter(false);
                   setActiveSub(null);
+                  setMaterialFilter(null);
+                  setGemstoneFilter(null);
                 }}
                 className="text-xs text-[#ff5722] hover:underline font-bold ml-1 cursor-pointer"
               >
@@ -557,9 +549,9 @@ export function CategoryInner({
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4">
               {displayed.map(product => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCardClient key={product.id} product={product} />
               ))}
             </div>
           )}

@@ -3,9 +3,12 @@ import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { StoreDataProvider } from "@/context/StoreDataContext";
+import { AuthProvider } from "@/context/AuthContext";
 import CartDrawer from "@/components/cart/CartDrawer";
 import CheckoutModal from "@/components/cart/CheckoutModal";
 import SearchModal from "@/components/layout/SearchModal";
+import AuthModal from "@/components/auth/AuthModal";
+import ProductQuickViewModal from "@/components/products/ProductQuickViewModal";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -42,14 +45,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col font-sans bg-[#141415] text-[#f4f4f5]" suppressHydrationWarning>
-        <StoreDataProvider>
-          <CartProvider>
-            {children}
-            <CartDrawer />
-            <CheckoutModal />
-            <SearchModal />
-          </CartProvider>
-        </StoreDataProvider>
+        <AuthProvider>
+          <StoreDataProvider>
+            <CartProvider>
+              {children}
+              <CartDrawer />
+              <CheckoutModal />
+              <SearchModal />
+              <AuthModal />
+              <ProductQuickViewModal />
+            </CartProvider>
+          </StoreDataProvider>
+        </AuthProvider>
       </body>
     </html>
   );

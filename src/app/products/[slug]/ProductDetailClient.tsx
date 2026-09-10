@@ -2,18 +2,19 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Heart, Share2, MessageCircle, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Share2, MessageCircle, Check, BadgeCheck } from 'lucide-react';
 import { Product, Review } from '@/types';
 import { useCart } from '@/context/CartContext';
 import CustomerReviewsSection from '@/components/reviews/CustomerReviewsSection';
 import { subscribeProductReviews } from '@/lib/firestoreServices';
 
 import { getProductEffectivePrice } from '@/lib/productPrice';
+import { getJewelryMetaLabel, getJewelrySpecRows, getTrustBadges } from '@/lib/productMeta';
 
 type TabKey = 'description' | 'highlights' | 'specifications' | 'ingredients' | 'benefits';
 
 export default function ProductDetailClient({ product }: { product: Product }) {
-  const { addToCart, toggleWishlist, isInWishlist, setIsCheckoutOpen } = useCart();
+  const { addToCart, setIsCheckoutOpen } = useCart();
   const [productReviews, setProductReviews] = useState<Review[]>([]);
 
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
   const moq = product.moq && product.moq > 0 ? product.moq : 1;
   const [quantity, setQuantity] = useState(moq);
+  const [specialInstructions, setSpecialInstructions] = useState('');
   const [activeTab, setActiveTab] = useState<TabKey>('description');
 
   // Price from selected variant, otherwise legacy weight / base price
@@ -69,6 +71,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
     const defaultW = weights.find(w => w.toLowerCase().replace(/\s+/g, '') === '1kg') || weights[0] || '1kg';
     setSelectedWeight(defaultW);
     setQuantity(product.moq && product.moq > 0 ? product.moq : 1);
+    setSpecialInstructions('');
     const img = (product.image && product.image.trim() !== '')
       ? product.image
       : (product.images && product.images[0] && product.images[0].trim() !== '' ? product.images[0] : '');
@@ -92,9 +95,9 @@ export default function ProductDetailClient({ product }: { product: Product }) {
       return;
     }
     if (hasVariants) {
-      addToCart(product, selectedVariant, quantity);
+      addToCart(product, selectedVariant, quantity, specialInstructions);
     } else {
-      addToCart(product, selectedWeight, quantity);
+      addToCart(product, selectedWeight, quantity, specialInstructions);
     }
   };
 
@@ -104,9 +107,9 @@ export default function ProductDetailClient({ product }: { product: Product }) {
       return;
     }
     if (hasVariants) {
-      addToCart(product, selectedVariant, quantity);
+      addToCart(product, selectedVariant, quantity, specialInstructions);
     } else {
-      addToCart(product, selectedWeight, quantity);
+      addToCart(product, selectedWeight, quantity, specialInstructions);
     }
     setIsCheckoutOpen(true);
   };
@@ -117,7 +120,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   };
 
   const hasHighlights = Array.isArray(product.highlights) && product.highlights.length > 0;
-  const hasSpecs = Array.isArray(product.specifications) && product.specifications.length > 0;
+  const jewelrySpecRows = getJewelrySpecRows(product);
+  const hasSpecs = (Array.isArray(product.specifications) && product.specifications.length > 0) || jewelrySpecRows.length > 0;
 
   return (
     <div style={{ fontFamily: 'sans-serif', color: '#222' }}>
@@ -263,6 +267,16 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             )}
           </p>
 
+          {/* Jewelry Metadata: 22K Gold · Diamond · 5.5 g */}
+          {(() => {
+            const jewelryLabel = getJewelryMetaLabel(product);
+            return jewelryLabel ? (
+              <p style={{ fontSize: '13px', color: '#a9822b', fontWeight: 700, marginBottom: '14px', letterSpacing: '0.02em' }}>
+                {jewelryLabel}
+              </p>
+            ) : null;
+          })()}
+
           {/* Price Line */}
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '10px', flexWrap: 'wrap' }}>
             {originalPrice > currentPrice && (
@@ -374,10 +388,22 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             )}
           </div>
 
-          {/* Subtotal */}
-          <p style={{ fontSize: '13px', color: '#333', marginBottom: '14px' }}>
-            Subtotal: <strong>Rs.{subtotal.toLocaleString()}.00</strong>
-          </p>
+          {/* Special Instructions Input */}
+          <div className="mb-4 bg-[#f8f9fa] border border-gray-200/80 rounded-2xl p-4 space-y-1.5">
+            <label className="block text-xs font-bold text-gray-800 tracking-wide">
+              Special Instructions
+            </label>
+            <textarea
+              placeholder="Please enter instructions about this item"
+              value={specialInstructions}
+              onChange={(e) => setSpecialInstructions(e.target.value.slice(0, 500))}
+              maxLength={500}
+              className="w-full bg-white border border-gray-200 rounded-xl p-3 text-xs text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-[#007aff] outline-none resize-none min-h-[85px] transition"
+            />
+            <div className="text-right text-[10px] text-gray-400 font-medium">
+              {specialInstructions.length}/500
+            </div>
+          </div>
 
           {/* Action Controls: Quantity, Add to Cart, Wishlist, Share */}
           <div className="flex flex-col md:flex-row gap-2.5 md:gap-3 items-stretch md:items-center mb-3">
@@ -403,21 +429,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 </button>
               </div>
 
-              {/* Mobile-only Wishlist and Share buttons */}
+              {/* Mobile-only Share button */}
               <div className="flex items-center gap-2 md:hidden">
-                <button
-                  onClick={() => toggleWishlist(product.id)}
-                  className={`w-[46px] h-[46px] rounded-lg border flex items-center justify-center transition active:scale-95 shadow-2xs cursor-pointer ${
-                    isInWishlist(product.id)
-                      ? 'border-gray-300 bg-gray-100 text-[#000000]'
-                      : 'border-gray-300 bg-white text-gray-600 hover:border-gray-400'
-                  }`}
-                  aria-label="Save to wishlist"
-                  title="Save to wishlist"
-                >
-                  <Heart size={18} fill={isInWishlist(product.id) ? '#000000' : 'none'} color={isInWishlist(product.id) ? '#000000' : 'currentColor'} />
-                </button>
-
                 <button
                   onClick={() => {
                     if (navigator.share) {
@@ -458,21 +471,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               )}
             </button>
 
-            {/* Desktop/Tablet Wishlist and Share icons */}
+            {/* Desktop/Tablet Share icon */}
             <div className="hidden md:flex items-center gap-2 flex-shrink-0">
-              <button
-                onClick={() => toggleWishlist(product.id)}
-                className={`w-[48px] h-[48px] rounded-lg border flex items-center justify-center transition active:scale-95 shadow-2xs cursor-pointer ${
-                  isInWishlist(product.id)
-                    ? 'border-gray-300 bg-gray-100 text-[#000000]'
-                    : 'border-gray-300 bg-white text-gray-600 hover:border-gray-400 hover:bg-gray-50'
-                }`}
-                aria-label="Save to wishlist"
-                title="Save to wishlist"
-              >
-                <Heart size={18} fill={isInWishlist(product.id) ? '#000000' : 'none'} color={isInWishlist(product.id) ? '#000000' : 'currentColor'} />
-              </button>
-
               <button
                 onClick={() => {
                   if (navigator.share) {
@@ -496,7 +496,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           <button
             onClick={handleBuyNow}
             disabled={isOutOfStock}
-            className={`w-full min-h-[48px] sm:min-h-[50px] px-5 py-3.5 rounded-lg font-bold text-xs sm:text-sm tracking-wider uppercase transition duration-200 shadow-sm active:scale-[0.99] mb-6 flex items-center justify-center gap-2 cursor-pointer ${
+            className={`w-full min-h-[48px] sm:min-h-[50px] px-5 py-3.5 rounded-lg font-bold text-xs sm:text-sm tracking-wider uppercase transition duration-200 shadow-sm active:scale-[0.99] mb-4 flex items-center justify-center gap-2 cursor-pointer ${
               isOutOfStock
                 ? 'bg-gray-100 border border-gray-300 text-gray-400 cursor-not-allowed'
                 : 'bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-900'
@@ -504,6 +504,21 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           >
             <span>{isOutOfStock ? 'OUT OF STOCK' : 'BUY IT NOW'}</span>
           </button>
+
+          {/* Trust Badges (BIS Hallmarked / Certified / Certificate Included) */}
+          {getTrustBadges(product).length > 0 && (
+            <div className="flex flex-wrap items-center gap-2 mb-6">
+              {getTrustBadges(product).map((badge) => (
+                <span
+                  key={badge}
+                  className="inline-flex items-center gap-1.5 border border-gray-200 bg-gray-50 text-gray-700 text-[10px] sm:text-[11px] font-semibold px-2.5 py-1.5 rounded-full"
+                >
+                  <BadgeCheck size={13} className="text-[#00663a] flex-shrink-0" />
+                  {badge}
+                </span>
+              ))}
+            </div>
+          )}
 
         </div>
       </div>
@@ -601,8 +616,14 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               <div className="border rounded-lg overflow-hidden">
                 <table className="w-full text-sm">
                   <tbody>
+                    {jewelrySpecRows.map((row, i) => (
+                      <tr key={`jewelry-${row.key}`} className={i % 2 === 0 ? "bg-amber-50/60" : "bg-white"}>
+                        <td className="px-4 py-2.5 font-semibold text-gray-600 w-1/3 border-b">{row.key}</td>
+                        <td className="px-4 py-2.5 text-gray-900 border-b">{row.value}</td>
+                      </tr>
+                    ))}
                     {product.specifications!.map((spec, i) => (
-                      <tr key={i} className={i % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                      <tr key={`spec-${i}`} className={(i + jewelrySpecRows.length) % 2 === 0 ? "bg-gray-50" : "bg-white"}>
                         <td className="px-4 py-2.5 font-semibold text-gray-600 w-1/3 border-b">{spec.key}</td>
                         <td className="px-4 py-2.5 text-gray-900 border-b">{spec.value}</td>
                       </tr>

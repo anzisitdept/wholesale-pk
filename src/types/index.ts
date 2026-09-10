@@ -56,11 +56,23 @@ export interface Product {
   description: string;
   highlights?: string[];                   // Bullet points
   specifications?: ProductSpecification[]; // Key-value attributes
+  // Jewelry-specific fields (optional — hide UI when missing)
+  material?: string;          // "Gold", "Silver", "Platinum", "Rose Gold"
+  metalPurity?: string;       // "22K", "18K", "925 Silver"
+  gemstone?: string;          // "Diamond", "Ruby", "Pearl", "None"
+  gemstoneQuality?: string;   // "VS1", "VVS2", "AAA"
+  weightGrams?: number;       // e.g. 5.5
+  chainLength?: string;       // "18 inch", "20 inch", "Adjustable"
+  ringSize?: string;          // "7", "8", "Adjustable"
+  hallmark?: string;          // "BIS 916", "BIS 750"
+  certification?: string;     // "IGI Certified", "GIA Certified"
   // Legacy fields (optional fallback)
   weights?: string[];
   weightPrices?: Record<string, number>;
   ingredients?: string;
   benefits?: string;
+  shortDescription?: string;
+  specialInstructionsNote?: string;
   rating?: number;
   reviewsCount?: number;
 }
@@ -92,6 +104,7 @@ export interface CartItem {
   selectedVariant: string;
   unit: string;
   quantity: number;
+  specialInstructions?: string;
   moq?: number;
 }
 
@@ -201,6 +214,5 @@ export interface StoreContent {
   newArrivals: ProductCuratedSection;
   midBanners: Banner[];
   bundleOffers: ProductCuratedSection;
-  specialItems: ProductCuratedSection;
   reels?: ReelItem[];
 }

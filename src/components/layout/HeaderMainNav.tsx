@@ -11,8 +11,15 @@ interface HeaderMainNavProps {
 
 export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
   const { categories } = useStoreData();
-  const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string>(categories[0]?.id || '');
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (categories.length > 0 && !categories.some(c => c.id === activeCategory)) {
+      setActiveCategory(categories[0].id);
+    }
+  }, [categories, activeCategory]);
 
   useEffect(() => {
     return () => {
@@ -27,7 +34,7 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
     }
-    setCategoriesOpen(true);
+    setIsOpen(true);
   };
 
   const handleHideDropDown = () => {
@@ -35,16 +42,16 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
       clearTimeout(closeTimeoutRef.current);
     }
     closeTimeoutRef.current = setTimeout(() => {
-      setCategoriesOpen(false);
+      setIsOpen(false);
     }, 150);
   };
 
   const handleItemClick = () => {
-    setCategoriesOpen(false);
-    if (onNavigate) {
-      onNavigate();
-    }
+    setIsOpen(false);
+    if (onNavigate) onNavigate();
   };
+
+  const activeCat = categories.find(c => c.id === activeCategory) || categories[0];
 
   return (
     <nav className="flex items-center gap-5 xl:gap-8 select-none">
@@ -58,7 +65,7 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
       </Link>
 
-      {/* Shop — simple link to All Products */}
+      {/* Shop */}
       <Link
         href="/collections/all-products"
         onClick={handleItemClick}
@@ -68,7 +75,7 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
       </Link>
 
-      {/* Categories with Mega Dropdown */}
+      {/* Collections — Mega Dropdown */}
       <div
         className="relative"
         onMouseEnter={handleShowDropDown}
@@ -78,123 +85,126 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
           href="/collections/all-products"
           onClick={handleItemClick}
           className={`flex items-center gap-1.5 font-bold text-[11px] sm:text-xs uppercase tracking-wider relative group py-1 transition-colors whitespace-nowrap ${
-            categoriesOpen ? 'text-white' : 'text-white/90 hover:text-white'
+            isOpen ? 'text-white' : 'text-white/90 hover:text-white'
           }`}
         >
-          <span>Categories</span>
+          <span>Collections</span>
           <ChevronDown
             size={14}
             className={`transition-transform duration-200 ${
-              categoriesOpen ? 'rotate-180 text-white' : 'rotate-0 opacity-70 group-hover:opacity-100'
+              isOpen ? 'rotate-180 text-white' : 'rotate-0 opacity-70 group-hover:opacity-100'
             }`}
           />
           <span
             className={`absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-300 ${
-              categoriesOpen ? 'w-full' : 'w-0 group-hover:w-full'
+              isOpen ? 'w-full' : 'w-0 group-hover:w-full'
             }`}
           />
         </Link>
 
-        {/* Categories Mega Dropdown */}
-        {categoriesOpen && (
+        {isOpen && (
           <div
             className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50 animate-in fade-in duration-150"
             onMouseEnter={handleShowDropDown}
             onMouseLeave={handleHideDropDown}
           >
             <div
-              className="w-[640px] max-w-[85vw] bg-[#000000] border border-white/20 rounded-xl p-4 shadow-2xl"
-              style={{
-                boxShadow: '0 20px 40px -10px rgba(0,0,0,0.85), 0 0 1px 1px rgba(255,255,255,0.1)',
-              }}
+              className="flex bg-[#0a0a0a] border border-white/15 rounded-2xl overflow-hidden shadow-2xl"
+              style={{ width: 560, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.9), 0 0 1px 1px rgba(255,255,255,0.08)' }}
             >
-              {/* Quick Links */}
-              <div className="flex items-center flex-wrap gap-x-6 gap-y-1 pb-3 mb-3 border-b border-white/10">
-                <span className="text-[11px] font-semibold tracking-wider text-white/50 uppercase flex-shrink-0">
-                  Categories
-                </span>
+              {/* Left Sidebar — Categories */}
+              <div className="w-[200px] flex-shrink-0 border-r border-white/10 py-2 bg-[#0f0f0f]">
                 <Link
                   href="/collections/all-products"
                   onClick={handleItemClick}
-                  className="text-white font-bold text-[11px] uppercase tracking-wider relative group py-0.5 transition-colors whitespace-nowrap block"
+                  className={`flex items-center justify-between px-4 py-2.5 text-[12px] font-semibold tracking-wide transition-colors ${
+                    activeCategory === '__all' ? 'text-white bg-white/[0.06]' : 'text-white/60 hover:text-white hover:bg-white/[0.03]'
+                  }`}
+                  onMouseEnter={() => setActiveCategory('__all')}
                 >
-                  All Products
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
+                  <span>All Products</span>
+                  <ChevronDown size={12} className="rotate-[-90deg] opacity-50" />
                 </Link>
-                <Link
-                  href="/collections/new-arrivals"
-                  onClick={handleItemClick}
-                  className="text-white font-bold text-[11px] uppercase tracking-wider relative group py-0.5 transition-colors whitespace-nowrap block"
-                >
-                  New Arrivals
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
-                </Link>
-                <Link
-                  href="/collections/best-selling"
-                  onClick={handleItemClick}
-                  className="text-white font-bold text-[11px] uppercase tracking-wider relative group py-0.5 transition-colors whitespace-nowrap block"
-                >
-                  Best Selling
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
-                </Link>
-              </div>
-
-              {/* Categories Grid */}
-              <div className="grid grid-cols-2 gap-x-5 gap-y-4 max-h-[380px] overflow-y-auto pr-1">
                 {categories.map((cat) => {
                   const subs = cat.subcategories || [];
+                  const needsDropdown = subs.length > 0;
                   return (
-                    <div key={cat.id || cat.slug} className="min-w-0">
+                    <div
+                      key={cat.id}
+                      onMouseEnter={() => setActiveCategory(needsDropdown ? cat.id : `__link_${cat.id}`)}
+                      onClick={handleItemClick}
+                    >
                       <Link
-                        href={`/collections/${cat.slug}`}
-                        onClick={handleItemClick}
-                        className="flex items-center gap-1.5 font-bold text-[11px] uppercase tracking-wider text-white group/cat py-1 transition-colors"
+                        href={needsDropdown ? cat.slug : `/collections/${cat.slug}`}
+                        className={`flex items-center justify-between px-4 py-2.5 text-[12px] font-semibold tracking-wide transition-colors ${
+                          activeCategory === cat.id || activeCategory === `__link_${cat.id}`
+                            ? 'text-white bg-white/[0.06]'
+                            : 'text-white/60 hover:text-white hover:bg-white/[0.03]'
+                        }`}
                       >
-                        <span className="truncate">{cat.name.replace(/\s*\([^)]*\)/g, '')}</span>
-                        <ChevronDown size={12} className="rotate-[-90deg] opacity-60 group-hover/cat:opacity-100" />
+                        <span>{cat.name.replace(/\s*\([^)]*\)/g, '')}</span>
+                        {needsDropdown ? (
+                          <ChevronDown size={12} className="rotate-[-90deg] opacity-50" />
+                        ) : null}
                       </Link>
-                      <ul className="mt-1 space-y-1 border-l border-white/10 pl-2.5">
-                        {subs.slice(0, 6).map((sub) => (
-                          <li key={sub.id || sub.slug}>
-                            <Link
-                              href={`/collections/${cat.slug}/${sub.slug}`}
-                              onClick={handleItemClick}
-                              className="block text-[11px] text-white/70 hover:text-white py-0.5 transition-colors truncate"
-                            >
-                              {sub.name}
-                            </Link>
-                          </li>
-                        ))}
-                        {subs.length > 6 && (
-                          <li>
-                            <Link
-                              href={`/collections/${cat.slug}`}
-                              onClick={handleItemClick}
-                              className="block text-[11px] font-semibold text-white/80 hover:text-white py-0.5 transition-colors"
-                            >
-                              View all {cat.name.replace(/\s*\([^)]*\)/g, '')} &rarr;
-                            </Link>
-                          </li>
-                        )}
-                      </ul>
                     </div>
                   );
                 })}
               </div>
+
+              {/* Right Panel — Subcategories */}
+              {activeCat && activeCat.subcategories && activeCat.subcategories.length > 0 ? (
+                <div className="flex-1 py-3 px-5 min-h-[200px]">
+                  <div className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-3">
+                    {activeCat.name.replace(/\s*\([^)]*\)/g, '')}
+                  </div>
+                  <div className="flex flex-col space-y-0.5">
+                    <Link
+                      href={`/collections/${activeCat.slug}`}
+                      onClick={handleItemClick}
+                      className="text-[12px] text-white/70 hover:text-white hover:bg-white/[0.04] px-3 py-2 rounded-lg transition-colors"
+                    >
+                      All {activeCat.name.replace(/\s*\([^)]*\)/g, '')}
+                    </Link>
+                    {activeCat.subcategories.map((sub) => (
+                      <Link
+                        key={sub.id || sub.slug}
+                        href={`/collections/${activeCat.slug}/${sub.slug}`}
+                        onClick={handleItemClick}
+                        className="text-[12px] text-white/70 hover:text-white hover:bg-white/[0.04] px-3 py-2 rounded-lg transition-colors"
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                  <Link
+                    href={`/collections/${activeCat.slug}`}
+                    onClick={handleItemClick}
+                    className="inline-block mt-4 text-[11px] font-bold text-white/50 hover:text-white uppercase tracking-wider transition-colors"
+                  >
+                    View All {activeCat.name.replace(/\s*\([^)]*\)/g, '')} →
+                  </Link>
+                </div>
+              ) : (
+                <div className="flex-1 py-3 px-5 min-h-[200px] flex flex-col items-start justify-center">
+                  <div className="text-[12px] text-white/70 mb-2">
+                    {activeCategory === '__all'
+                      ? 'Browse every product in our store.'
+                      : `Explore our ${(activeCat?.name || '').replace(/\s*\([^)]*\)/g, '')} collection.`}
+                  </div>
+                  <Link
+                    href={activeCategory === '__all' ? '/collections/all-products' : `/collections/${activeCat?.slug}`}
+                    onClick={handleItemClick}
+                    className="inline-block mt-2 text-[11px] font-bold text-white/50 hover:text-white uppercase tracking-wider transition-colors"
+                  >
+                    {activeCategory === '__all' ? 'All Products →' : `View All ${(activeCat?.name || '').replace(/\s*\([^)]*\)/g, '')} →`}
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         )}
       </div>
-
-      {/* Reviews */}
-      <Link
-        href="/#reviews"
-        onClick={handleItemClick}
-        className="text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider relative group py-1 transition-colors whitespace-nowrap block"
-      >
-        Reviews
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
-      </Link>
     </nav>
   );
 }

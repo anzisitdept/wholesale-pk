@@ -5,7 +5,8 @@ import { Product, Category, StoreContent } from '@/types';
 import {
   subscribeProducts,
   subscribeCategories,
-  subscribeStoreContent
+  subscribeStoreContent,
+  seedCategoriesToFirestore
 } from '@/lib/firestoreServices';
 import { PRODUCTS } from '@/data/products';
 import { CATEGORIES } from '@/data/categories';
@@ -60,10 +61,6 @@ const DEFAULT_STORE_CONTENT: StoreContent = {
     title: 'Bundle Offers',
     productIds: []
   },
-  specialItems: {
-    title: 'Special Items',
-    productIds: []
-  },
   reels: []
 };
 
@@ -85,6 +82,9 @@ export function StoreDataProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // 0. Seed correct jewelry categories to Firestore (replaces wrong ones)
+    seedCategoriesToFirestore();
+
     // 1. Subscribe to dynamic products collection in Firestore
     const unsubProducts = subscribeProducts((dynamicProducts) => {
       if (dynamicProducts && dynamicProducts.length > 0) {
@@ -163,12 +163,6 @@ export function StoreDataProvider({ children }: { children: React.ReactNode }) {
             productIds: Array.isArray(dynamicContent.bundleOffers?.productIds) 
               ? dynamicContent.bundleOffers.productIds 
               : DEFAULT_STORE_CONTENT.bundleOffers.productIds
-          },
-          specialItems: {
-            title: dynamicContent.specialItems?.title || DEFAULT_STORE_CONTENT.specialItems.title,
-            productIds: Array.isArray(dynamicContent.specialItems?.productIds) 
-              ? dynamicContent.specialItems.productIds 
-              : DEFAULT_STORE_CONTENT.specialItems.productIds
           },
           reels: dynamicContent.reels && dynamicContent.reels.length > 0 
             ? dynamicContent.reels 
