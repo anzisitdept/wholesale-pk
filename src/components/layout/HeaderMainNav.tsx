@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { useStoreData } from '@/context/StoreDataContext';
+import { WHATSAPP_CUSTOM_DESIGN_URL } from '@/lib/whatsapp';
 
 interface HeaderMainNavProps {
   onNavigate?: () => void;
@@ -135,7 +136,9 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
                       onClick={handleItemClick}
                     >
                       <Link
-                        href={needsDropdown ? cat.slug : `/collections/${cat.slug}`}
+                        href={cat.slug === 'custom-design' ? WHATSAPP_CUSTOM_DESIGN_URL : (needsDropdown ? cat.slug : `/collections/${cat.slug}`)}
+                        target={cat.slug === 'custom-design' ? '_blank' : undefined}
+                        rel={cat.slug === 'custom-design' ? 'noopener noreferrer' : undefined}
                         className={`flex items-center justify-between px-4 py-2.5 text-[12px] font-semibold tracking-wide transition-colors ${
                           activeCategory === cat.id || activeCategory === `__link_${cat.id}`
                             ? 'text-white bg-white/[0.06]'
@@ -143,7 +146,7 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
                         }`}
                       >
                         <span>{cat.name.replace(/\s*\([^)]*\)/g, '')}</span>
-                        {needsDropdown ? (
+                        {needsDropdown && !(cat.slug === 'custom-design') ? (
                           <ChevronDown size={12} className="rotate-[-90deg] opacity-50" />
                         ) : null}
                       </Link>

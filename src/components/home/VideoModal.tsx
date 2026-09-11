@@ -2,7 +2,6 @@
 
 import React, { useRef, useState } from 'react';
 import { X, Volume2, VolumeX, ShoppingBag } from 'lucide-react';
-import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { getProductBySlug } from '@/data/products';
 import { ReelItem } from '@/types';
@@ -15,7 +14,7 @@ interface VideoModalProps {
 export default function VideoModal({ reel, onClose }: VideoModalProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, openQuickView } = useCart();
 
   if (!reel) return null;
 
@@ -87,13 +86,16 @@ export default function VideoModal({ reel, onClose }: VideoModalProps) {
                 className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
               />
               <div className="flex-1 min-w-0">
-                <Link 
-                  href={`/products/${product.slug}`}
-                  onClick={onClose}
-                  className="font-bold text-xs text-gray-900 truncate block hover:text-[#000000]"
+                <button
+                  type="button"
+                  onClick={() => {
+                    openQuickView(product);
+                    onClose();
+                  }}
+                  className="font-bold text-xs text-gray-900 truncate block hover:text-[#000000] text-left cursor-pointer"
                 >
                   {product.name}
-                </Link>
+                </button>
                 <div className="flex items-center space-x-2 text-xs">
                   <span className="text-[#000000] font-extrabold">Rs. {product.price}</span>
                   <span className="text-gray-400 line-through text-[10px]">Rs. {product.originalPrice}</span>

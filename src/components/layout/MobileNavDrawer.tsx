@@ -15,6 +15,7 @@ import {
   User as UserIcon,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import { WHATSAPP_CUSTOM_DESIGN_URL } from '@/lib/whatsapp';
 
 /* ─── Jewelry-specific SVG Icons to match screenshot ─────────────────── */
 
@@ -489,7 +490,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
 
                 {/* Custom Design */}
                 <a
-                  href="https://wa.me/923100005480?text=Hello%2C%20I%20am%20interested%20in%20a%20Custom%20Design"
+                  href={WHATSAPP_CUSTOM_DESIGN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onClose}

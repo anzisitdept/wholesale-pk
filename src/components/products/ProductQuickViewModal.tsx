@@ -129,7 +129,7 @@ export default function ProductQuickViewModal({
             <div className="text-2xl font-extrabold text-[#007aff] tracking-tight font-display">
               Rs. {displayPrice.toLocaleString()}
             </div>
-            {product.originalPrice && product.originalPrice > displayPrice && (
+            {typeof product.originalPrice === 'number' && product.originalPrice > displayPrice && (
               <span className="text-sm text-gray-500 line-through font-semibold">
                 Rs. {product.originalPrice.toLocaleString()}
               </span>

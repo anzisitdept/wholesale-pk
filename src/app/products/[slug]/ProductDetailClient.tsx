@@ -28,15 +28,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
     : [];
   const hasVariants = variants.length > 0;
 
-  // Legacy weight support (older food products)
-  const availableWeights = (product.weights && Array.isArray(product.weights) && product.weights.length > 0)
-    ? product.weights
-    : ['1kg'];
-  const defaultWeight = availableWeights.find(w => w.toLowerCase().replace(/\s+/g, '') === '1kg') || availableWeights[0] || '1kg';
-
   const defaultVariantId = (variants.find(v => v.inStock !== false) || variants[0])?.id;
   const [selectedVariantId, setSelectedVariantId] = useState<string | undefined>(defaultVariantId);
-  const [selectedWeight, setSelectedWeight] = useState<string>(defaultWeight);
   const selectedVariant = variants.find(v => v.id === selectedVariantId) || variants[0];
 
   const moq = product.moq && product.moq > 0 ? product.moq : 1;
@@ -44,10 +37,10 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const [specialInstructions, setSpecialInstructions] = useState('');
   const [activeTab, setActiveTab] = useState<TabKey>('description');
 
-  // Price from selected variant, otherwise legacy weight / base price
+  // Price from selected variant, otherwise base price
   const currentPrice = selectedVariant
     ? selectedVariant.price
-    : getProductEffectivePrice(product, selectedWeight);
+    : getProductEffectivePrice(product);
 
   const originalPrice = (selectedVariant && typeof selectedVariant.originalPrice === 'number' && selectedVariant.originalPrice > currentPrice)
     ? selectedVariant.originalPrice
@@ -65,11 +58,6 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   useEffect(() => {
     const nextVariantId = (variants.find(v => v.inStock !== false) || variants[0])?.id;
     setSelectedVariantId(nextVariantId);
-    const weights = (product.weights && Array.isArray(product.weights) && product.weights.length > 0)
-      ? product.weights
-      : ['1kg'];
-    const defaultW = weights.find(w => w.toLowerCase().replace(/\s+/g, '') === '1kg') || weights[0] || '1kg';
-    setSelectedWeight(defaultW);
     setQuantity(product.moq && product.moq > 0 ? product.moq : 1);
     setSpecialInstructions('');
     const img = (product.image && product.image.trim() !== '')
@@ -86,7 +74,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const optionLabel = selectedVariant ? selectedVariant.name : selectedWeight;
+  const optionLabel = selectedVariant ? selectedVariant.name : '';
   const isOutOfStock = product.inStock === false || selectedVariant?.inStock === false;
 
   const handleAddToCart = () => {
@@ -97,7 +85,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
     if (hasVariants) {
       addToCart(product, selectedVariant, quantity, specialInstructions);
     } else {
-      addToCart(product, selectedWeight, quantity, specialInstructions);
+      addToCart(product, undefined, quantity, specialInstructions);
     }
   };
 
@@ -109,7 +97,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
     if (hasVariants) {
       addToCart(product, selectedVariant, quantity, specialInstructions);
     } else {
-      addToCart(product, selectedWeight, quantity, specialInstructions);
+      addToCart(product, undefined, quantity, specialInstructions);
     }
     setIsCheckoutOpen(true);
   };
@@ -322,13 +310,12 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             </button>
           </div>
 
-          {/* Universal Variant Selector (OR legacy weight selector) */}
-          <div className="mb-5">
-            <p className="text-xs text-gray-600 mb-2">
-              {hasVariants ? 'Select Option:' : 'Gross Weight:'} <strong className="text-gray-900 font-bold">{optionLabel}</strong>
-            </p>
-
-            {hasVariants ? (
+          {/* Universal Variant Selector */}
+          {hasVariants && (
+            <div className="mb-5">
+              <p className="text-xs text-gray-600 mb-2">
+                Select Option: <strong className="text-gray-900 font-bold">{optionLabel}</strong>
+              </p>
               <div className="flex flex-wrap gap-2.5">
                 {variants.map(v => {
                   const active = selectedVariant?.id === v.id;
@@ -356,37 +343,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   );
                 })}
               </div>
-            ) : (
-              <div className={`grid gap-2.5 ${availableWeights.length === 1 ? 'grid-cols-1 max-w-[200px]' : availableWeights.length === 2 ? 'grid-cols-2' : availableWeights.length === 3 ? 'grid-cols-3' : 'grid-cols-2 sm:grid-cols-4'}`}>
-                {availableWeights.map(w => {
-                  const active = selectedWeight === w;
-                  const weightPrice = getProductEffectivePrice(product, w);
-
-                  return (
-                    <button
-                      key={w}
-                      onClick={() => setSelectedWeight(w)}
-                      className={`min-h-[46px] rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 flex flex-col items-center justify-center gap-0.5 px-3 py-2 active:scale-[0.98] cursor-pointer ${
-                        active
-                          ? 'bg-gray-100/70 border-2 border-[#000000] text-[#000000] shadow-xs font-bold'
-                          : 'bg-white border border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-1.5">
-                        <span>{w}</span>
-                        {active && <span className="font-bold text-xs">✓</span>}
-                      </div>
-                      {weightPrice > 0 && (
-                        <span className={`text-[10px] ${active ? 'text-[#000000]' : 'text-gray-500'}`}>
-                          Rs. {weightPrice.toLocaleString()}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Special Instructions Input */}
           <div className="mb-4 bg-[#f8f9fa] border border-gray-200/80 rounded-2xl p-4 space-y-1.5">
@@ -693,15 +651,6 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 {variants.map(v => <option key={v.id} value={v.id} disabled={v.inStock === false}>{v.name} - Rs.{v.price.toLocaleString()}</option>)}
               </select>
             )}
-            {!hasVariants && availableWeights.length > 1 && (
-              <select
-                value={selectedWeight}
-                onChange={e => setSelectedWeight(e.target.value)}
-                className="border border-gray-300 rounded px-2.5 py-2 text-xs bg-white font-medium cursor-pointer focus:outline-none focus:border-[#000000]"
-              >
-                {availableWeights.map(w => <option key={w} value={w}>{w}</option>)}
-              </select>
-            )}
 
             <button
               onClick={handleAddToCart}
@@ -730,7 +679,9 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               <p className="text-[11px] font-bold text-gray-900 m-0 truncate">{product.name}</p>
               <div className="flex items-center gap-2 mt-0.5">
                 <span className="text-xs text-[#000000] font-extrabold">Rs.{currentPrice.toLocaleString()}</span>
-                <span className="text-[10px] text-gray-600 bg-gray-100 px-1.5 py-0.5 rounded font-medium">{optionLabel}</span>
+                {hasVariants && optionLabel && (
+                  <span className="text-[10px] text-gray-600 bg-gray-100 px-1.5 py-0.5 rounded font-medium">{optionLabel}</span>
+                )}
               </div>
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">

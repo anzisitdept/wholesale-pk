@@ -148,13 +148,9 @@ export default function CartDrawer() {
                     <div className="flex-1 flex flex-col justify-between">
                       <div>
                         <div className="flex justify-between items-start">
-                          <Link
-                            href={`/products/${item.slug}`}
-                            onClick={() => setIsCartOpen(false)}
-                            className="font-semibold text-xs text-gray-800 hover:text-[#000000] line-clamp-2"
-                          >
+                          <span className="font-semibold text-xs text-gray-800 line-clamp-2">
                             {item.name}
-                          </Link>
+                          </span>
                           <button 
                             onClick={() => removeFromCart(item.cartId)}
                             className="text-gray-400 hover:text-gray-900 p-1 transition"
@@ -162,9 +158,6 @@ export default function CartDrawer() {
                             <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
-                        <span className="inline-block bg-gray-100 text-gray-600 text-[10px] px-2 py-0.5 rounded mt-1 font-medium">
-                          Weight: {item.selectedWeight}
-                        </span>
                       </div>
 
                       <div className="flex justify-between items-center mt-2">

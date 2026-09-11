@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { useStoreData } from '@/context/StoreDataContext';
+import { WHATSAPP_CUSTOM_DESIGN_URL } from '@/lib/whatsapp';
 
 /* ─── Collapsible Footer Section (dropdown on mobile, always open on desktop) ─── */
 function FooterSection({ title, children }: { title: string; children: React.ReactNode }) {
@@ -82,16 +83,21 @@ export default function Footer() {
             <div>
               <FooterSection title="SHOP">
                 <ul className="space-y-2.5 text-xs font-normal text-gray-300">
-                  {categories.map((cat) => (
+                  {categories.map((cat) => {
+                      const isCustomDesign = cat.slug === 'custom-design' || cat.id === 'custom-design';
+                      return (
                     <li key={cat.id || cat.slug}>
                       <Link
-                        href={`/collections/${cat.slug}`}
+                        href={isCustomDesign ? WHATSAPP_CUSTOM_DESIGN_URL : `/collections/${cat.slug}`}
+                        target={isCustomDesign ? '_blank' : undefined}
+                        rel={isCustomDesign ? 'noopener noreferrer' : undefined}
                         className="hover:text-white transition hover:underline"
                       >
                         {cat.name.replace(/\s*\([^)]*\)/g, '')}
                       </Link>
                     </li>
-                  ))}
+                      );
+                    })}
                   <li>
                     <Link href="/collections/all-products" className="hover:text-white transition hover:underline">
                       All Products

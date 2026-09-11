@@ -61,6 +61,7 @@ export function CategoryInner({
   const router = useRouter();
   const searchParams = useSearchParams();
   const { products, categories } = useStoreData();
+  const { openQuickView } = useCart();
 
   const categorySlug = forcedCategory || (params?.category as string) || 'all-products';
   const paramSubCategory = forcedSubCategory || (params?.subcategory as string) || searchParams.get('sub') || null;
@@ -214,10 +215,11 @@ export function CategoryInner({
       <SideSection title="Bestselling">
         <div className="flex flex-col gap-2.5">
           {bestSellers.map(p => (
-            <Link
+            <button
               key={p.id}
-              href={`/products/${p.slug}`}
-              className="flex gap-2.5 items-center p-1.5 rounded-xl hover:bg-white/[0.04] transition group"
+              type="button"
+              onClick={() => openQuickView(p)}
+              className="w-full flex gap-2.5 items-center p-1.5 rounded-xl hover:bg-white/[0.04] transition group text-left cursor-pointer"
             >
               <div className="relative w-14 h-14 rounded-lg bg-[#20232a] border border-[#262932] overflow-hidden flex-shrink-0">
                 {p.discountBadge && (
@@ -228,10 +230,10 @@ export function CategoryInner({
                 <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs text-gray-300 group-hover:text-white leading-snug line-clamp-2 mb-1 transition-colors">
+                <p className="text-xs text-gray-300 group-hover:text-white leading-snug line-clamp-2 mb-1 transition-colors text-left">
                   {p.name.split('(')[0].trim()}
                 </p>
-                <p className="text-xs">
+                <p className="text-xs text-left">
                   {p.originalPrice && p.originalPrice > p.price ? (
                     <span className="line-through text-gray-500 mr-1.5 text-[11px]">
                       Rs.{p.originalPrice.toLocaleString()}
@@ -242,7 +244,7 @@ export function CategoryInner({
                   </span>
                 </p>
               </div>
-            </Link>
+            </button>
           ))}
         </div>
       </SideSection>

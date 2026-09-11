@@ -5,6 +5,7 @@ import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useStoreData } from '@/context/StoreDataContext';
 import { Category } from '@/types';
+import { WHATSAPP_CUSTOM_DESIGN_URL } from '@/lib/whatsapp';
 
 interface CategoryCarouselProps {
   title?: string;
@@ -74,9 +75,13 @@ export default function CategoryCarousel({
 
       <div className="overflow-hidden w-full px-4 sm:px-6 md:px-8" ref={emblaRef}>
         <div className="flex gap-3 md:gap-8 max-w-6xl mx-auto">
-          {displayedCategories.map((cat, i) => (
+          {displayedCategories.map((cat, i) => {
+            const isCustomDesign = cat.slug === 'custom-design' || cat.id === 'custom-design';
+            return (
             <Link
-              href={`/collections/${cat.slug || cat.id}`}
+              href={isCustomDesign ? WHATSAPP_CUSTOM_DESIGN_URL : `/collections/${cat.slug || cat.id}`}
+              target={isCustomDesign ? '_blank' : undefined}
+              rel={isCustomDesign ? 'noopener noreferrer' : undefined}
               key={cat.id || i}
               className="flex-[0_0_50%] sm:flex-[0_0_33.33%] md:flex-[0_0_25%] min-w-0 flex flex-col items-center group cursor-pointer"
             >
@@ -95,7 +100,8 @@ export default function CategoryCarousel({
                 {cat.name}
               </h3>
             </Link>
-          ))}
+            );
+          })}
         </div>
       </div>
 

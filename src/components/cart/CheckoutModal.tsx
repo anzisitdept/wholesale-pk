@@ -430,7 +430,7 @@ export default function CheckoutModal() {
                     <div key={item.cartId} className="pt-2 first:pt-0 flex justify-between items-center text-xs">
                       <div>
                         <p className="font-semibold text-gray-800 line-clamp-1">{item.name}</p>
-                        <p className="text-[10px] text-gray-500">{item.selectedWeight} × {item.quantity}</p>
+                        <p className="text-[10px] text-gray-500">Qty: {item.quantity}</p>
                       </div>
                       <span className="font-bold text-gray-900">Rs. {item.price * item.quantity}</span>
                     </div>

@@ -74,10 +74,9 @@ export default function CartPage() {
                     </div>
                   )}
                   <div className="flex-1 min-w-0">
-                    <Link href={`/products/${item.slug}`} className="font-bold text-[11px] md:text-xs text-gray-900 hover:text-[#000000] line-clamp-1">
+                    <span className="font-bold text-[11px] md:text-xs text-gray-900 line-clamp-1">
                       {item.name}
-                    </Link>
-                    <p className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-0.5">Weight: {item.selectedWeight}</p>
+                    </span>
                     <div className="flex items-center space-x-2 md:space-x-3 mt-1.5 md:mt-2">
                       <div className="flex items-center border rounded-lg bg-gray-50">
                         <button onClick={() => updateQuantity(item.cartId, item.quantity - 1)} className="px-2 py-0.5 text-xs">-</button>

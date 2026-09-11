@@ -12,7 +12,7 @@ import { useCart } from '@/context/CartContext';
 import { useStoreData } from '@/context/StoreDataContext';
 
 export default function WishlistPage() {
-  const { wishlist, toggleWishlist, addToCart } = useCart();
+  const { wishlist, toggleWishlist, addToCart, openQuickView } = useCart();
   const { products } = useStoreData();
 
   const wishlistProducts = products.filter(p => wishlist.includes(p.id));
@@ -69,12 +69,13 @@ export default function WishlistPage() {
 
                 <div className="p-4 flex-1 flex flex-col justify-between text-center">
                   <div>
-                    <Link
-                      href={`/products/${product.slug}`}
-                      className="font-bold text-xs text-gray-900 hover:text-[#000000] line-clamp-2 block"
+                    <button
+                      type="button"
+                      onClick={() => openQuickView(product)}
+                      className="font-bold text-xs text-gray-900 hover:text-[#000000] line-clamp-2 block w-full cursor-pointer"
                     >
                       {product.name}
-                    </Link>
+                    </button>
                     <p className="text-[11px] text-gray-400 mt-1">{product.urduName}</p>
                   </div>
 

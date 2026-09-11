@@ -86,7 +86,7 @@ export async function POST(req: Request) {
                 (it: any) => `
 <tr style="border-bottom: 1px solid #f0f0f0;">
   <td style="padding: 10px 0; color: #333;">
-    <strong>${it.name}</strong> ${it.selectedWeight ? `<span style="color:#888; font-size:12px;">(${it.selectedWeight})</span>` : ""}
+    <strong>${it.name}</strong>
   </td>
   <td style="padding: 10px 0; text-align: center; color: #555;">${it.quantity}</td>
   <td style="padding: 10px 0; text-align: right; color: #111; font-weight: 600;">Rs. ${(it.price * it.quantity).toLocaleString()}</td>

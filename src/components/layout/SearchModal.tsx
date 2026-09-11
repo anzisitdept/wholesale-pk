@@ -3,13 +3,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ShoppingBag } from 'lucide-react';
-import Link from 'next/link';
 import { Product } from '@/types';
 import { useStoreData } from '@/context/StoreDataContext';
 import { useCart } from '@/context/CartContext';
 
 export default function SearchModal() {
-  const { isSearchOpen, setIsSearchOpen, addToCart } = useCart();
+  const { isSearchOpen, setIsSearchOpen, openQuickView } = useCart();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Product[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -199,10 +198,12 @@ export default function SearchModal() {
                             key={product.id}
                             className="bg-white border border-gray-100 rounded-lg p-2 hover:border-[#000000] hover:shadow-md transition flex flex-col justify-between group"
                           >
-                            <Link
-                              href={`/products/${product.slug}`}
-                              onClick={() => setIsSearchOpen(false)}
-                              className="block"
+                            <div
+                              onClick={() => {
+                                openQuickView(product);
+                                setIsSearchOpen(false);
+                              }}
+                              className="block cursor-pointer"
                             >
                               <div className="relative aspect-square rounded-md overflow-hidden bg-gray-50 mb-2">
                                 <img
@@ -220,7 +221,7 @@ export default function SearchModal() {
                               <p className="font-semibold text-xs text-gray-900 group-hover:text-[#000000] line-clamp-2 leading-tight mb-1 text-center">
                                 {product.name}
                               </p>
-                            </Link>
+                            </div>
 
                             <div className="text-center mt-1">
                               <span className="text-xs font-bold text-[#000000]">
