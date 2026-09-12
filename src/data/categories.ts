@@ -46,34 +46,6 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: 'earrings',
-    slug: 'earrings',
-    name: 'Earrings',
-    urduName: 'بالیاں',
-    description: 'Studs, drops, dangles, and hoops for everyday elegance.',
-    itemCount: 0,
-    subcategories: [
-      {
-        id: 'stud-earrings',
-        slug: 'stud-earrings',
-        name: 'Studs',
-        itemCount: 0,
-      },
-      {
-        id: 'drop-earrings',
-        slug: 'drop-earrings',
-        name: 'Drops & Dangles',
-        itemCount: 0,
-      },
-      {
-        id: 'hoop-earrings',
-        slug: 'hoop-earrings',
-        name: 'Hoops',
-        itemCount: 0,
-      },
-    ],
-  },
-  {
     id: 'bracelets',
     slug: 'bracelets',
     name: 'Bracelets',
@@ -90,35 +62,20 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: 'jewelry-sets',
-    slug: 'jewelry-sets',
-    name: 'Jewelry Sets',
-    urduName: 'جیولری سیٹس',
-    description: 'Matching bridal and everyday jewelry sets for a complete look.',
+    id: 'firefighters',
+    slug: 'firefighters',
+    name: 'Firefighters',
+    urduName: 'فائر فائٹرز',
+    description: 'Premium firefighters equipment and essentials.',
     itemCount: 0,
     subcategories: [
       {
-        id: 'bridal-sets',
-        slug: 'bridal-sets',
-        name: 'Bridal Sets',
-        itemCount: 0,
-      },
-      {
-        id: 'everyday-sets',
-        slug: 'everyday-sets',
-        name: 'Everyday Sets',
+        id: 'firefighter-equipment',
+        slug: 'firefighter-equipment',
+        name: 'Equipment & Gear',
         itemCount: 0,
       },
     ],
-  },
-  {
-    id: 'custom-design',
-    slug: 'custom-design',
-    name: 'Custom Design',
-    urduName: 'کسٹم ڈیزائن',
-    description: 'Bespoke jewelry made to your exact design and specifications.',
-    itemCount: 0,
-    subcategories: [],
   },
 ];
 

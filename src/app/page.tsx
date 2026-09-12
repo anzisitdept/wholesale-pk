@@ -4,10 +4,8 @@ import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import ReviewsWidget from '@/components/layout/ReviewsWidget';
 import HeroSlider from '@/components/home/HeroSlider';
 import ProductCarousel from '@/components/home/ProductCarousel';
-import MidBanners from '@/components/home/MidBanners';
 import CustomerReviews from '@/components/reviews/ReviewCarousel';
 import { useStoreData } from '@/context/StoreDataContext';
 
@@ -19,7 +17,6 @@ export default function Home() {
       {/* 1. TOP BAR */}
       <TopBar />
       <Header />
-      <ReviewsWidget />
 
       <main className="flex-1 w-full overflow-hidden">
         {/* 2. HERO SECTION */}
@@ -31,24 +28,6 @@ export default function Home() {
           categoryFilter="best-selling"
           productIds={storeContent.bestSellers?.productIds}
         />
-
-        {/* 4. New Arrivals */}
-        <ProductCarousel 
-          title={storeContent.newArrivals?.title || "New Arrivals"} 
-          categoryFilter="new-arrivals"
-          productIds={storeContent.newArrivals?.productIds}
-        />
-
-        {/* 5. MID BANNER */}
-        <MidBanners />
-
-        {/* 6. Bundle Offers */}
-        <ProductCarousel 
-          title={storeContent.bundleOffers?.title || "Bundle Offers"} 
-          categoryFilter="bundles"
-          productIds={storeContent.bundleOffers?.productIds}
-        />
-
 
         {/* Customer Reviews */}
         <CustomerReviews />

@@ -46,10 +46,22 @@ const ADMIN_CATEGORIES = [
       { id: 'bands', name: 'Bands & Stacks' },
     ],
   },
-  { id: 'earrings', name: 'Earrings', subcategories: [] },
-  { id: 'bracelets', name: 'Bracelets', subcategories: [] },
-  { id: 'jewelry-sets', name: 'Jewelry Sets', subcategories: [] },
-  { id: 'custom-design', name: 'Custom Design', subcategories: [] },
+  {
+    id: 'bracelets',
+    name: 'Bracelets',
+    subcategories: [
+      { id: 'bracelets', name: 'All Bracelets' },
+      { id: 'bangles', name: 'Bangles & Cuffs' },
+    ],
+  },
+  {
+    id: 'firefighters',
+    name: 'Firefighters',
+    subcategories: [
+      { id: 'firefighters', name: 'All Firefighters' },
+      { id: 'firefighter-equipment', name: 'Equipment & Gear' },
+    ],
+  },
   {
     id: 'apparel',
     name: 'Apparel',

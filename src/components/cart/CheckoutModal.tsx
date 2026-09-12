@@ -29,13 +29,11 @@ export default function CheckoutModal() {
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [location, setLocation] = useState({
     provinceId: '',
-    districtId: '',
-    tehsilId: ''
+    districtId: ''
   });
   const [locationNames, setLocationNames] = useState({
     province: '',
-    district: '',
-    tehsil: ''
+    district: ''
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -72,35 +70,16 @@ export default function CheckoutModal() {
     }));
   }, [locationData, location.provinceId]);
 
-  const tehsils = useMemo(() => {
-    const list = locationData?.tehsils ?? [];
-    const filtered = location.districtId
-      ? list.filter(t => t.parent.id === location.districtId)
-      : [];
-    return filtered.map(t => ({
-      value: t.id,
-      label: t.name.en
-    }));
-  }, [locationData, location.districtId]);
-
   // Auto-select a single available option
   useEffect(() => {
     if (districts.length === 1) {
       setLocation(l => ({
         ...l,
-        districtId: districts[0].value,
-        tehsilId: ''
+        districtId: districts[0].value
       }));
-      setLocationNames(n => ({ ...n, district: districts[0].label, tehsil: '' }));
+      setLocationNames(n => ({ ...n, district: districts[0].label }));
     }
   }, [districts]);
-
-  useEffect(() => {
-    if (tehsils.length === 1) {
-      setLocation(l => ({ ...l, tehsilId: tehsils[0].value }));
-      setLocationNames(n => ({ ...n, tehsil: tehsils[0].label }));
-    }
-  }, [tehsils]);
 
   if (!isCheckoutOpen) return null;
 
@@ -108,21 +87,16 @@ export default function CheckoutModal() {
   const grandTotal = subtotal + deliveryFee;
 
   const handleProvinceChange = (value: string, label: string) => {
-    setLocation({ provinceId: value, districtId: '', tehsilId: '' });
-    setLocationNames({ province: label, district: '', tehsil: '' });
+    setLocation({ provinceId: value, districtId: '' });
+    setLocationNames({ province: label, district: '' });
   };
 
   const handleDistrictChange = (value: string, label: string) => {
-    setLocation(l => ({ ...l, districtId: value, tehsilId: '' }));
-    setLocationNames(n => ({ ...n, district: label, tehsil: '' }));
+    setLocation(l => ({ ...l, districtId: value }));
+    setLocationNames(n => ({ ...n, district: label }));
   };
 
-  const handleTehsilChange = (value: string, label: string) => {
-    setLocation(l => ({ ...l, tehsilId: value }));
-    setLocationNames(n => ({ ...n, tehsil: label }));
-  };
-
-  const fullLocation = [locationNames.province, locationNames.district, locationNames.tehsil]
+  const fullLocation = [locationNames.province, locationNames.district]
     .filter(Boolean)
     .join(', ');
 
@@ -137,8 +111,8 @@ export default function CheckoutModal() {
       alert('Please enter a valid email address so we can send your order confirmation.');
       return;
     }
-    if (!location.provinceId || !location.districtId || !location.tehsilId) {
-      alert('Please select your Province, District, and Tehsil.');
+    if (!location.provinceId || !location.districtId) {
+      alert('Please select your Province and District.');
       return;
     }
 
@@ -157,10 +131,6 @@ export default function CheckoutModal() {
       district: {
         id: location.districtId,
         name: locationNames.district
-      },
-      tehsil: {
-        id: location.tehsilId,
-        name: locationNames.tehsil
       },
       items: cart.map(item => ({
         productId: item.productId,
@@ -355,7 +325,7 @@ export default function CheckoutModal() {
                 <div className="flex items-center gap-1.5 border-b pb-2">
                   <MapPin size={14} className="text-[#000000]" />
                   <h4 className="font-bold text-gray-900 text-sm uppercase tracking-wide">
-                    Province, District & Tehsil
+                    Province & District
                   </h4>
                 </div>
               </div>
@@ -377,16 +347,6 @@ export default function CheckoutModal() {
                 value={location.districtId}
                 onChange={handleDistrictChange}
                 disabled={!location.provinceId}
-                required
-              />
-
-              <SearchableSelect
-                label="Tehsil"
-                placeholder={location.districtId ? 'Select Tehsil' : 'Select District first'}
-                options={tehsils}
-                value={location.tehsilId}
-                onChange={handleTehsilChange}
-                disabled={!location.districtId}
                 required
               />
 

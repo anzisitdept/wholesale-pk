@@ -39,19 +39,6 @@ function NecklaceIcon({ className = 'w-5 h-5' }: { className?: string }) {
   );
 }
 
-function EarringsIcon({ className = 'w-5 h-5' }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="8" cy="6" r="1.5" />
-      <path d="M8 7.5v6" />
-      <circle cx="8" cy="16.5" r="2.5" />
-      <circle cx="16" cy="6" r="1.5" />
-      <path d="M16 7.5v6" />
-      <circle cx="16" cy="16.5" r="2.5" />
-    </svg>
-  );
-}
-
 function BraceletIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -62,15 +49,33 @@ function BraceletIcon({ className = 'w-5 h-5' }: { className?: string }) {
   );
 }
 
-function JewelrySetIcon({ className = 'w-5 h-5' }: { className?: string }) {
+function HomeIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M6 3c1 5 4 8 6 8s5-3 6-8" />
-      <circle cx="12" cy="12" r="1.5" />
-      <circle cx="8" cy="18" r="3" />
-      <path d="M6.5 15.5L8 14l1.5 1.5" />
-      <circle cx="16" cy="17" r="3" />
-      <path d="M14.5 14.5L16 13l1.5 1.5" />
+      <path d="M3 10.5L12 3l9 7.5" />
+      <path d="M5 9.5V21h14V9.5" />
+      <path d="M9 21v-6h6v6" />
+    </svg>
+  );
+}
+
+function ShopIcon({ className = 'w-5 h-5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 11h16" />
+      <path d="M5 6.5h14l1 4.5v10h-16v-10l1-4.5z" />
+      <path d="M9 11v2a3 3 0 0 0 6 0v-2" />
+      <path d="M9 6.5L12 3l3 3.5" />
+    </svg>
+  );
+}
+
+function FirefighterIcon({ className = 'w-5 h-5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2C6.5 2 2 6.5 2 12c0 5 4 9.5 10 10 6-.5 10-5 10-10 0-5.5-4.5-10-10-10z" />
+      <path d="M12 6v8" />
+      <path d="M8 10l4-4 4 4" />
     </svg>
   );
 }
@@ -112,6 +117,14 @@ function InstagramIcon({ className }: { className?: string }) {
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ className = 'w-5 h-5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12z" />
     </svg>
   );
 }
@@ -226,7 +239,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
           >
             {/* Scrollable Content Container */}
             <div className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar px-3 pt-3 pb-2">
-              
+
               {/* 1. TOP ROW: User Profile or Sign In / Join */}
               {user ? (
                 <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.04] mb-3 border border-white/5">
@@ -284,9 +297,37 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                 />
               </Link>
 
-              {/* 3. PRIMARY MENU ITEMS (Necklaces, Rings, Earrings, Bracelets, Collections) */}
+              {/* 3. PRIMARY MENU ITEMS (Home, Shop, Necklaces, Earrings, Rings, Bracelets) */}
               <nav className="flex flex-col space-y-0.5">
-                
+
+                {/* Home */}
+                <Link
+                  href="/"
+                  onClick={onClose}
+                  className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <HomeIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
+                    <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
+                      Home
+                    </span>
+                  </div>
+                </Link>
+
+                {/* Shop */}
+                <Link
+                  href="/collections/all-products"
+                  onClick={onClose}
+                  className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <ShopIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
+                    <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
+                      Shop
+                    </span>
+                  </div>
+                </Link>
+
                 {/* Necklaces */}
                 <div>
                   <div
@@ -300,9 +341,8 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                       </span>
                     </div>
                     <ChevronDown
-                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
-                        expandedMenu === 'necklaces' ? 'rotate-180 text-white' : ''
-                      }`}
+                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${expandedMenu === 'necklaces' ? 'rotate-180 text-white' : ''
+                        }`}
                     />
                   </div>
                   <AnimatePresence>
@@ -341,9 +381,8 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                       </span>
                     </div>
                     <ChevronDown
-                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
-                        expandedMenu === 'rings' ? 'rotate-180 text-white' : ''
-                      }`}
+                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${expandedMenu === 'rings' ? 'rotate-180 text-white' : ''
+                        }`}
                     />
                   </div>
                   <AnimatePresence>
@@ -369,20 +408,6 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                   </AnimatePresence>
                 </div>
 
-                {/* Earrings */}
-                <Link
-                  href="/collections/all-products?category=earrings"
-                  onClick={onClose}
-                  className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <EarringsIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
-                    <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
-                      Earrings
-                    </span>
-                  </div>
-                </Link>
-
                 {/* Bracelets */}
                 <div>
                   <div
@@ -396,9 +421,8 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                       </span>
                     </div>
                     <ChevronDown
-                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
-                        expandedMenu === 'bracelets' ? 'rotate-180 text-white' : ''
-                      }`}
+                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${expandedMenu === 'bracelets' ? 'rotate-180 text-white' : ''
+                        }`}
                     />
                   </div>
                   <AnimatePresence>
@@ -421,136 +445,25 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                   </AnimatePresence>
                 </div>
 
-                {/* Collections */}
-                <div>
-                  <div
-                    onClick={() => toggleSection('collections')}
-                    className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <JewelrySetIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
-                      <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
-                        Collections
-                      </span>
-                    </div>
-                    <ChevronDown
-                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
-                        expandedMenu === 'collections' ? 'rotate-180 text-white' : ''
-                      }`}
-                    />
+                {/* Firefighters */}
+                <Link
+                  href="/collections/all-products?category=firefighters"
+                  onClick={onClose}
+                  className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <FirefighterIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
+                    <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
+                      Firefighters
+                    </span>
                   </div>
-                  <AnimatePresence>
-                    {expandedMenu === 'collections' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden pl-11 pr-2 py-1 flex flex-col space-y-1"
-                      >
-                        <Link href="/collections/all-products" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          All Collections
-                        </Link>
-                        <Link href="/collections/all-products?filter=new" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          New Arrivals
-                        </Link>
-                        <Link href="/collections/all-products?filter=best" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          Best Sellers
-                        </Link>
-                        <Link href="/collections/all-products?filter=bundle" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          Bundle Offers
-                        </Link>
-                        <Link href="/collections/all-products?filter=gift" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          Gift Guides
-                        </Link>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                </Link>
 
               </nav>
 
               {/* 4. SUBTLE DIVIDER LINE */}
               <div className="h-px bg-white/10 my-3 mx-1" />
 
-              {/* 5. SECONDARY 2-COLUMN GRID (Gift Guides, Custom Design, Fine Watches, Men's Jewelry, Care & Sizing, Store Locator) */}
-              <div className="grid grid-cols-2 gap-x-2 gap-y-2 px-1 py-1">
-                
-                {/* Gift Guides */}
-                <Link
-                  href="/collections/all-products?filter=gift"
-                  onClick={onClose}
-                  className="flex items-center gap-2 p-2 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group min-w-0"
-                >
-                  <Gift className="w-5 h-5 text-gray-400 group-hover:text-white flex-shrink-0 transition" />
-                  <span className="text-xs sm:text-[13px] font-medium text-gray-200 group-hover:text-white truncate">
-                    Gift Guides
-                  </span>
-                </Link>
-
-                {/* Custom Design */}
-                <a
-                  href={WHATSAPP_CUSTOM_DESIGN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={onClose}
-                  className="flex items-center gap-2 p-2 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group min-w-0"
-                >
-                  <CustomDesignIcon className="w-5 h-5 text-gray-400 group-hover:text-white flex-shrink-0 transition" />
-                  <span className="text-xs sm:text-[13px] font-medium text-gray-200 group-hover:text-white leading-tight truncate">
-                    Custom Design
-                  </span>
-                </a>
-
-                {/* Fine Watches */}
-                <Link
-                  href="/collections/all-products?category=watches"
-                  onClick={onClose}
-                  className="flex items-center gap-2 p-2 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group min-w-0"
-                >
-                  <Watch className="w-5 h-5 text-gray-400 group-hover:text-white flex-shrink-0 transition" />
-                  <span className="text-xs sm:text-[13px] font-medium text-gray-200 group-hover:text-white truncate">
-                    Fine Watches
-                  </span>
-                </Link>
-
-                {/* Men's Jewelry */}
-                <Link
-                  href="/collections/all-products?category=mens-jewelry"
-                  onClick={onClose}
-                  className="flex items-center gap-2 p-2 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group min-w-0"
-                >
-                  <ChainIcon className="w-5 h-5 text-gray-400 group-hover:text-white flex-shrink-0 transition" />
-                  <span className="text-xs sm:text-[13px] font-medium text-gray-200 group-hover:text-white truncate">
-                    Men&apos;s Jewelry
-                  </span>
-                </Link>
-
-                {/* Care & Sizing */}
-                <Link
-                  href="/pages/frequently-asked-questions"
-                  onClick={onClose}
-                  className="flex items-center gap-2 p-2 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group min-w-0"
-                >
-                  <SizingIcon className="w-5 h-5 text-gray-400 group-hover:text-white flex-shrink-0 transition" />
-                  <span className="text-xs sm:text-[13px] font-medium text-gray-200 group-hover:text-white truncate">
-                    Care &amp; Sizing
-                  </span>
-                </Link>
-
-                {/* Store Locator */}
-                <Link
-                  href="/pages/contact-us"
-                  onClick={onClose}
-                  className="flex items-center gap-2 p-2 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group min-w-0"
-                >
-                  <MapPin className="w-5 h-5 text-gray-400 group-hover:text-white flex-shrink-0 transition" />
-                  <span className="text-xs sm:text-[13px] font-medium text-gray-200 group-hover:text-white truncate">
-                    Store Locator
-                  </span>
-                </Link>
-
-              </div>
 
               {/* Social Icons Row (WhatsApp, TikTok, Instagram) */}
               <div className="grid grid-cols-3 gap-2 px-1 mt-2">
@@ -594,7 +507,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
               >
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-[#202328] flex items-center justify-center text-white border border-white/5">
-                    <MessageCircle className="w-4 h-4" />
+                    <FacebookIcon className="w-4 h-4" />
                   </div>
                   <span className="text-sm font-semibold text-gray-100">
                     Support

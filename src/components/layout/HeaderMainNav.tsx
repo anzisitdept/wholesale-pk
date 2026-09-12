@@ -54,6 +54,12 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
 
   const activeCat = categories.find(c => c.id === activeCategory) || categories[0];
 
+  // Desktop Collections dropdown shows the same set as the mobile drawer:
+  // Necklaces, Rings, Bracelets, Firefighters
+  const navCategories = categories.filter(c =>
+    ['necklaces', 'rings', 'bracelets', 'firefighters'].includes(c.id || c.slug)
+  );
+
   return (
     <nav className="flex items-center gap-5 xl:gap-8 select-none">
       {/* Home */}
@@ -126,7 +132,7 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
                   <span>All Products</span>
                   <ChevronDown size={12} className="rotate-[-90deg] opacity-50" />
                 </Link>
-                {categories.map((cat) => {
+                {navCategories.map((cat) => {
                   const subs = cat.subcategories || [];
                   const needsDropdown = subs.length > 0;
                   return (
