@@ -14,7 +14,7 @@ export default function TopBar() {
   const duration = Math.max(10, items.length * 2.5);
 
   return (
-    <div className="bg-[#101114] text-white border-b border-[#22252e] text-xs md:text-[13px] font-bold py-2 md:py-2.5 overflow-hidden select-none font-display">
+    <div className="bg-[#6f0c07] text-white border-b border-[#580a06] text-xs md:text-[13px] font-bold py-2 md:py-2.5 overflow-hidden select-none font-display">
       <div
         className="flex items-center whitespace-nowrap animate-marquee w-max"
         style={{ animationDuration: `${duration}s` }}

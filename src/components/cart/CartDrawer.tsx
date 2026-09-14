@@ -73,7 +73,7 @@ export default function CartDrawer() {
             {/* Header */}
             <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gray-50">
               <div className="flex items-center space-x-2">
-                <ShoppingBag className="w-5 h-5 text-[#000000]" />
+                <ShoppingBag className="w-5 h-5 text-[#6f0c07]" />
                 <h2 className="font-bold text-gray-900 uppercase text-sm tracking-wide">
                   Your Shopping Cart ({cart.reduce((a, c) => a + c.quantity, 0)})
                 </h2>
@@ -108,7 +108,7 @@ export default function CartDrawer() {
               )}
               <div className="w-full bg-white/70 h-2 rounded-full mt-2 overflow-hidden">
                 <motion.div 
-                  className="bg-[#000000] h-full rounded-full"
+                  className="bg-[#6f0c07] h-full rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${progressPercent}%` }}
                   transition={{ duration: 0.5 }}
@@ -126,7 +126,7 @@ export default function CartDrawer() {
                   <Link
                     href="/collections/all-products"
                     onClick={() => setIsCartOpen(false)}
-                    className="inline-block bg-[#000000] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-md hover:bg-[#333333] transition"
+                    className="inline-block bg-[#6f0c07] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-md hover:bg-[#580a06] transition"
                   >
                     Explore Products
                   </Link>
@@ -179,7 +179,7 @@ export default function CartDrawer() {
                         </div>
 
                         <div className="text-right">
-                          <span className="text-[#000000] font-bold text-sm">
+                          <span className="text-[#6f0c07] font-bold text-sm">
                             Rs. {item.price * item.quantity}
                           </span>
                         </div>
@@ -207,7 +207,7 @@ export default function CartDrawer() {
                     setIsCartOpen(false);
                     setIsCheckoutOpen(true);
                   }}
-                  className="w-full bg-[#000000] hover:bg-[#333333] text-white font-bold text-xs uppercase tracking-widest py-3.5 rounded-lg flex items-center justify-center space-x-2 shadow-lg transition-all"
+                  className="w-full bg-[#6f0c07] hover:bg-[#580a06] text-white font-bold text-xs uppercase tracking-widest py-3.5 rounded-lg flex items-center justify-center space-x-2 shadow-lg transition-all"
                 >
                   <span>PROCEED TO CHECKOUT</span>
                   <ArrowRight className="w-4 h-4" />

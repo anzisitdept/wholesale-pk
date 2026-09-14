@@ -132,9 +132,9 @@ export default function SearchableSelect({
         aria-expanded={isOpen}
         aria-controls={isOpen ? `${label}-listbox` : undefined}
         aria-labelledby={`${label}-aria`}
-        className={`w-full text-xs p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#000000] outline-none bg-white text-left flex items-center justify-between gap-2 transition ${
+        className={`w-full text-xs p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f0c07] outline-none bg-white text-left flex items-center justify-between gap-2 transition ${
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-gray-400'
-        } ${isOpen ? 'ring-2 ring-[#000000] border-[#000000]' : ''}`}
+        } ${isOpen ? 'ring-2 ring-[#6f0c07] border-[#6f0c07]' : ''}`}
       >
         <span className={`truncate ${selected ? 'text-gray-900' : 'text-gray-400'}`}>
           {selected ? selected.label : placeholder}
@@ -187,7 +187,7 @@ export default function SearchableSelect({
                     } ${isSelected ? 'font-semibold' : ''}`}
                   >
                     <span className="truncate">{o.label}</span>
-                    {isSelected && <Check size={14} className="flex-shrink-0 text-[#000000]" />}
+                    {isSelected && <Check size={14} className="flex-shrink-0 text-[#6f0c07]" />}
                   </li>
                 );
               })

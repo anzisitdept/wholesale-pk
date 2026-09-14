@@ -7,7 +7,6 @@ const SMTP_SECURE = process.env.SMTP_SECURE !== "false"; // true for 465, false 
 const SMTP_USER = process.env.SMTP_USER || "theewholesaler@gmail.com";
 const SMTP_PASS = process.env.SMTP_PASS;
 const SMTP_FROM = process.env.SMTP_FROM || `"Wholesaler-PK" <${SMTP_USER}>`;
-const WHATSAPP_NUM = process.env.STORE_WHATSAPP_NUMBER || "923100005480";
 
 // Helper to parse order receiving email array from env
 function getReceivingEmails(): string[] {
@@ -75,11 +74,6 @@ export async function POST(req: Request) {
             totalAmount = 0,
             paymentMethod = "Cash on Delivery (COD)",
         } = data;
-
-        const trackingMsg = encodeURIComponent(
-            `Assalam o Alaikum! I would like to track my order #${orderId} for ${customerName}.`
-        );
-        const whatsappLink = `https://wa.me/${WHATSAPP_NUM}?text=${trackingMsg}`;
 
         const itemsHtml = items
             .map(
@@ -151,12 +145,6 @@ export async function POST(req: Request) {
   </div>
   <div style="padding: 24px;">
     <p style="font-size: 15px; line-height: 1.5;">We have received your order <strong>#${orderId}</strong> and are preparing it for dispatch. Estimated delivery is <strong>2 to 4 business days</strong>.</p>
-
-    <div style="margin: 20px 0; text-align: center;">
-      <a href="${whatsappLink}" style="display: inline-block; background: #25D366; color: white; text-decoration: none; font-weight: bold; padding: 12px 24px; border-radius: 8px; font-size: 14px;">
-        💬 Track Order on WhatsApp
-      </a>
-    </div>
 
     <h3 style="border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; font-size: 15px;">Order Summary</h3>
     <table style="width: 100%; border-collapse: collapse;">

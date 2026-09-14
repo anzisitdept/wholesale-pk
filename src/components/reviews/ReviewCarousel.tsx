@@ -143,7 +143,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
               <button
                 type="button"
                 onClick={() => setWriteModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-black text-white hover:bg-gray-800 px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider transition shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-2 bg-[#6f0c07] text-white hover:bg-[#580a06] px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider transition shadow-sm cursor-pointer"
               >
                 <MessageSquarePlus size={15} />
                 Write a Review
@@ -159,7 +159,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
                   className="bg-white border border-gray-300 hover:border-gray-400 shadow-sm rounded-full w-10 h-10 flex items-center justify-center cursor-pointer disabled:opacity-30 disabled:cursor-default transition"
                   aria-label="Previous review"
                 >
-                  <ChevronLeft size={20} color="#333" />
+                  <ChevronLeft size={20} color="#6f0c07" />
                 </button>
                 <button
                   onClick={() => emblaApi?.scrollNext()}
@@ -167,7 +167,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
                   className="bg-white border border-gray-300 hover:border-gray-400 shadow-sm rounded-full w-10 h-10 flex items-center justify-center cursor-pointer disabled:opacity-30 disabled:cursor-default transition"
                   aria-label="Next review"
                 >
-                  <ChevronRight size={20} color="#333" />
+                  <ChevronRight size={20} color="#6f0c07" />
                 </button>
               </div>
             )}
@@ -190,7 +190,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
                 <button
                   type="button"
                   onClick={() => setWriteModalOpen(true)}
-                  className="inline-flex items-center gap-2 bg-black hover:bg-gray-800 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-md transition shadow-sm"
+                  className="inline-flex items-center gap-2 bg-[#6f0c07] hover:bg-[#580a06] text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-md transition shadow-sm"
                 >
                   <MessageSquarePlus size={14} />
                   Write the First Review
@@ -207,7 +207,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
                     className="lg:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 shadow-md rounded-full p-1.5 sm:p-2 flex-shrink-0 cursor-pointer disabled:opacity-30 disabled:cursor-default"
                     aria-label="Previous review"
                   >
-                    <ChevronLeft size={22} color="#333" />
+                    <ChevronLeft size={22} color="#6f0c07" />
                   </button>
                 )}
 
@@ -238,7 +238,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
                             <div className="flex items-center gap-2 min-w-0">
                               <p className="text-xs text-gray-900 font-semibold truncate">{r.author}</p>
                               {r.isVerified && (
-                                <span className="bg-black text-white text-[9px] font-bold px-1.5 py-0.5 rounded-xs flex-shrink-0">
+                                <span className="bg-[#6f0c07] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-xs flex-shrink-0">
                                   ✓ Verified
                                 </span>
                               )}
@@ -263,7 +263,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
                     className="lg:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 shadow-md rounded-full p-1.5 sm:p-2 flex-shrink-0 cursor-pointer disabled:opacity-30 disabled:cursor-default"
                     aria-label="Next review"
                   >
-                    <ChevronRight size={22} color="#333" />
+                    <ChevronRight size={22} color="#6f0c07" />
                   </button>
                 )}
               </>
@@ -398,7 +398,7 @@ export default function ReviewCarousel({ compact = false }: { compact?: boolean 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-black hover:bg-gray-800 disabled:opacity-60 text-white font-bold text-xs uppercase tracking-wider py-3 rounded-md transition shadow-sm cursor-pointer"
+                  className="w-full bg-[#6f0c07] hover:bg-[#580a06] disabled:opacity-60 text-white font-bold text-xs uppercase tracking-wider py-3 rounded-md transition shadow-sm cursor-pointer"
                 >
                   {submitting ? 'Submitting Review...' : 'Submit Review'}
                 </button>

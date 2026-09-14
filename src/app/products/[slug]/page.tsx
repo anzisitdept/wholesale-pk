@@ -6,7 +6,6 @@ import { useParams } from 'next/navigation';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import ReviewsWidget from '@/components/layout/ReviewsWidget';
 import ProductCarousel from '@/components/home/ProductCarousel';
 import { useStoreData } from '@/context/StoreDataContext';
@@ -39,7 +38,6 @@ export default function ProductDetailPage({ params }: { params?: Promise<{ slug:
           <p className="text-gray-400 text-xs tracking-wider uppercase font-medium">Loading Product...</p>
         </div>
         <Footer />
-        <WhatsAppButton />
       </>
     );
   }
@@ -56,13 +54,12 @@ export default function ProductDetailPage({ params }: { params?: Promise<{ slug:
           </p>
           <Link
             href="/collections/all-products"
-            className="inline-block bg-[#000000] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-[#333333] transition shadow-xs"
+            className="inline-block bg-[#6f0c07] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-[#580a06] transition shadow-xs"
           >
             Explore All Products
           </Link>
         </div>
         <Footer />
-        <WhatsAppButton />
       </>
     );
   }
@@ -122,7 +119,6 @@ export default function ProductDetailPage({ params }: { params?: Promise<{ slug:
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

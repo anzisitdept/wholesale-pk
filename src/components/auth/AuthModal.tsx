@@ -340,7 +340,7 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                     <button
                       type="button"
                       onClick={() => setShowPromoField(true)}
-                      className="text-sm font-semibold text-[#007aff] hover:underline cursor-pointer"
+                      className="text-sm font-semibold text-[#6f0c07] hover:underline cursor-pointer"
                     >
                       Add promo code
                     </button>
@@ -353,11 +353,11 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                     type="checkbox"
                     checked={acceptTerms}
                     onChange={(e) => setAcceptTerms(e.target.checked)}
-                    className="mt-0.5 w-4 h-4 rounded accent-[#007aff] border-gray-300 cursor-pointer"
+                    className="mt-0.5 w-4 h-4 rounded accent-[#6f0c07] border-gray-300 cursor-pointer"
                   />
                   <span>
                     By clicking &quot;Register&quot;, I accept{' '}
-                    <a href="/pages/terms-conditions" target="_blank" className="text-[#007aff] font-semibold hover:underline">
+                    <a href="/pages/terms-conditions" target="_blank" className="text-[#6f0c07] font-semibold hover:underline">
                       the user agreement
                     </a>
                   </span>
@@ -367,7 +367,7 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#52d699] hover:bg-[#42c589] text-white font-extrabold text-base py-3.5 rounded-2xl shadow-sm transition-all duration-200 active:scale-[0.99] disabled:opacity-60 cursor-pointer mt-2"
+                  className="w-full bg-[#6f0c07] hover:bg-[#580a06] text-white font-extrabold text-base py-3.5 rounded-2xl shadow-sm transition-all duration-200 active:scale-[0.99] disabled:opacity-60 cursor-pointer mt-2"
                 >
                   {loading ? 'Registering...' : 'Register'}
                 </button>
@@ -388,7 +388,7 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                     }}
                     className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer ${
                       loginTab === 'phone'
-                        ? 'bg-[#007aff] text-white shadow-xs'
+                        ? 'bg-[#6f0c07] text-white shadow-xs'
                         : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
@@ -403,7 +403,7 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                     }}
                     className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer ${
                       loginTab === 'email'
-                        ? 'bg-[#007aff] text-white shadow-xs'
+                        ? 'bg-[#6f0c07] text-white shadow-xs'
                         : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
@@ -461,7 +461,7 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                   <button
                     type="button"
                     onClick={handleForgotPassword}
-                    className="text-xs text-[#007aff] font-semibold hover:underline cursor-pointer"
+                    className="text-xs text-[#6f0c07] font-semibold hover:underline cursor-pointer"
                   >
                     Forgot your password?
                   </button>
@@ -477,7 +477,7 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#10b981] hover:bg-[#059669] text-white font-extrabold text-base py-3.5 rounded-2xl shadow-sm transition-all duration-200 active:scale-[0.99] disabled:opacity-60 cursor-pointer mt-3"
+                  className="w-full bg-[#6f0c07] hover:bg-[#580a06] text-white font-extrabold text-base py-3.5 rounded-2xl shadow-sm transition-all duration-200 active:scale-[0.99] disabled:opacity-60 cursor-pointer mt-3"
                 >
                   {loading ? 'Logging in...' : 'Log in'}
                 </button>
@@ -514,7 +514,7 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                       setMode('login');
                       resetFormState();
                     }}
-                    className="text-[#007aff] font-bold hover:underline cursor-pointer ml-1"
+                    className="text-[#6f0c07] font-bold hover:underline cursor-pointer ml-1"
                   >
                     Log in
                   </button>
@@ -528,7 +528,7 @@ export default function AuthModal({ isOpen: propIsOpen, onClose: propOnClose, in
                       setMode('register');
                       resetFormState();
                     }}
-                    className="text-[#007aff] font-bold hover:underline cursor-pointer ml-1"
+                    className="text-[#6f0c07] font-bold hover:underline cursor-pointer ml-1"
                   >
                     Register
                   </button>

@@ -2,15 +2,12 @@ import React from 'react';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import ReviewsWidget from '@/components/layout/ReviewsWidget';
 
 export default function TermsPage() {
   return (
     <>
       <TopBar />
       <Header />
-      <ReviewsWidget />
 
       <section className="bg-[#f5f5f5] py-10 border-b border-gray-200">
         <div className="container mx-auto px-4 max-w-7xl text-center">
@@ -62,12 +59,11 @@ export default function TermsPage() {
           <p>We reserve the right to update or modify these Terms &amp; Conditions at any time without prior notice. Continued use of the website after changes are posted constitutes acceptance of the revised terms.</p>
 
           <h3 className="font-bold text-gray-900 uppercase">Contact Us</h3>
-          <p>If you have any questions regarding these Terms &amp; Conditions, please contact us at <strong>0310-0005480</strong>, WhatsApp <strong>+92 310 0005480</strong>, or email <strong>theewholesaler@gmail.com</strong>.</p>
+          <p>If you have any questions regarding these Terms &amp; Conditions, please email us at <strong>theewholesaler@gmail.com</strong>.</p>
         </div>
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

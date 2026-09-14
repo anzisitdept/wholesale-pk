@@ -2,15 +2,12 @@ import React from 'react';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import ReviewsWidget from '@/components/layout/ReviewsWidget';
 
 export default function PrivacyPolicyPage() {
   return (
     <>
       <TopBar />
       <Header />
-      <ReviewsWidget />
 
       <section className="bg-[#f5f5f5] py-10 border-b border-gray-200">
         <div className="container mx-auto px-4 max-w-7xl text-center">
@@ -30,7 +27,7 @@ export default function PrivacyPolicyPage() {
           <h3 className="font-bold text-gray-900 uppercase">How We Use Your Information</h3>
           <ul className="list-disc pl-5 space-y-1">
             <li>To process and deliver your orders.</li>
-            <li>To verify orders before dispatch (via WhatsApp or phone call).</li>
+            <li>To verify orders before dispatch (via phone call or email).</li>
             <li>To provide customer support and respond to your inquiries.</li>
             <li>To send order status and delivery updates.</li>
           </ul>
@@ -51,12 +48,11 @@ export default function PrivacyPolicyPage() {
           <p>You may request access to, correction of, or deletion of your personal data at any time. To exercise these rights, please contact us using the details below.</p>
 
           <h3 className="font-bold text-gray-900 uppercase">Contact Us</h3>
-          <p>If you have any questions about this Privacy Policy or how your data is handled, please contact us at <strong>0310-0005480</strong>, WhatsApp <strong>+92 310 0005480</strong>, or email <strong>theewholesaler@gmail.com</strong>.</p>
+          <p>If you have any questions about this Privacy Policy or how your data is handled, please email us at <strong>theewholesaler@gmail.com</strong>.</p>
         </div>
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

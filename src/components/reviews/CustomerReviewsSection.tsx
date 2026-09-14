@@ -143,7 +143,7 @@ export default function CustomerReviewsSection({ productId }: CustomerReviewsSec
         {!writeReviewOpen ? (
           <button
             onClick={() => setWriteReviewOpen(true)}
-            className="w-full sm:w-auto bg-[#000000] hover:bg-[#333333] active:scale-[0.98] text-white font-bold text-xs sm:text-sm tracking-wider px-6 py-3 rounded-md transition shadow uppercase cursor-pointer"
+            className="w-full sm:w-auto bg-[#6f0c07] hover:bg-[#580a06] active:scale-[0.98] text-white font-bold text-xs sm:text-sm tracking-wider px-6 py-3 rounded-md transition shadow uppercase cursor-pointer"
           >
             Write A Review (رائے لکھیں)
           </button>
@@ -228,7 +228,7 @@ export default function CustomerReviewsSection({ productId }: CustomerReviewsSec
               <button
                 type="submit"
                 disabled={isSubmittingReview}
-                className="w-full sm:w-auto bg-[#000000] hover:bg-[#333333] disabled:bg-gray-400 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-md transition cursor-pointer disabled:cursor-not-allowed shadow-sm active:scale-[0.98]"
+                className="w-full sm:w-auto bg-[#6f0c07] hover:bg-[#580a06] disabled:bg-gray-400 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-md transition cursor-pointer disabled:cursor-not-allowed shadow-sm active:scale-[0.98]"
               >
                 {isSubmittingReview ? 'Submitting...' : 'Submit Review (رائے ارسال کریں)'}
               </button>
@@ -254,7 +254,7 @@ export default function CustomerReviewsSection({ productId }: CustomerReviewsSec
             {!writeReviewOpen && (
               <button
                 onClick={() => setWriteReviewOpen(true)}
-                className="inline-flex items-center gap-1.5 bg-black hover:bg-gray-800 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-md transition shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-1.5 bg-[#6f0c07] hover:bg-[#580a06] text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-md transition shadow-xs cursor-pointer"
               >
                 <MessageSquarePlus size={14} />
                 Write A Review

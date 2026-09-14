@@ -3,15 +3,12 @@ import Link from 'next/link';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import ReviewsWidget from '@/components/layout/ReviewsWidget';
 
 export default function ShippingPolicyPage() {
   return (
     <>
       <TopBar />
       <Header />
-      <ReviewsWidget />
 
       <section className="bg-[#f5f5f5] py-10 border-b border-gray-200">
         <div className="container mx-auto px-4 max-w-7xl text-center">
@@ -56,7 +53,7 @@ export default function ShippingPolicyPage() {
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">4. Order Verification</h2>
             <p>
-              Before dispatching your Cash on Delivery (COD) parcel, our customer support team verifies every order to minimize delivery failures. We will contact you via <strong>WhatsApp message or phone call</strong> on the number provided at checkout. Please keep this number reachable, as failed verification may delay dispatch.
+              Before dispatching your Cash on Delivery (COD) parcel, our customer support team verifies every order to minimize delivery failures. We will contact you via <strong>phone call or message</strong> on the number provided at checkout. Please keep this number reachable, as failed verification may delay dispatch.
             </p>
           </div>
 
@@ -77,14 +74,14 @@ export default function ShippingPolicyPage() {
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">7. Order Tracking &amp; Support</h2>
             <p>
-              Once your parcel is dispatched, you will receive a tracking number on WhatsApp. For any delivery-related query, contact our helpline at <strong>0310-0005480</strong> or WhatsApp us at <strong>+92 310 0005480</strong>. Our support team is available Mon - Sat (9:00 AM - 9:00 PM).
+              Once your parcel is dispatched, you will receive a tracking number by email. For any delivery-related query, please email our support team at <strong>theewholesaler@gmail.com</strong>. Our support team is available Mon - Sat (9:00 AM - 9:00 PM).
             </p>
           </div>
 
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">8. Damaged or Incorrect Delivery</h2>
             <p>
-              If you receive a damaged, or incorrect item, please notify us within <strong>24 hours of delivery</strong> with photo or video evidence on WhatsApp. We will arrange a free replacement or refund in accordance with our Returns &amp; Refund Policy.
+              If you receive a damaged, or incorrect item, please notify us within <strong>24 hours of delivery</strong> with photo or video evidence by email. We will arrange a free replacement or refund in accordance with our Returns &amp; Refund Policy.
             </p>
           </div>
 
@@ -95,7 +92,6 @@ export default function ShippingPolicyPage() {
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

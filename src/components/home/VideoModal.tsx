@@ -103,7 +103,7 @@ export default function VideoModal({ reel, onClose }: VideoModalProps) {
               </div>
               <button
                 onClick={handleAddToCart}
-                className="bg-[#000000] hover:bg-[#333333] text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center space-x-1 flex-shrink-0 transition"
+                className="bg-[#6f0c07] hover:bg-[#580a06] text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center space-x-1 flex-shrink-0 transition"
               >
                 <ShoppingBag className="w-3.5 h-3.5" />
                 <span>ADD</span>

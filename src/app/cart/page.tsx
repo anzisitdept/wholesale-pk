@@ -6,12 +6,11 @@ import { ShoppingBag, ArrowRight, X } from 'lucide-react';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import ReviewsWidget from '@/components/layout/ReviewsWidget';
 import { useCart } from '@/context/CartContext';
 
 export default function CartPage() {
-  const { cart, subtotal, removeFromCart, updateQuantity, setIsCheckoutOpen, freeShippingThreshold, amountNeededForFreeShipping } = useCart();
+  const { cart, subtotal, deliveryFee, grandTotal, shippingFee, removeFromCart, updateQuantity, setIsCheckoutOpen, freeShippingThreshold, amountNeededForFreeShipping } = useCart();
   const [shippingDismissed, setShippingDismissed] = useState(false);
 
   const progressPercent = Math.min(100, (subtotal / freeShippingThreshold) * 100);
@@ -24,7 +23,7 @@ export default function CartPage() {
 
       <section className="bg-[#f5f5f5] py-6 md:py-10 border-b border-gray-200 w-full">
         <div className="mx-auto px-4 max-w-7xl text-center">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-[#000000] uppercase tracking-wide">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-[#6f0c07] uppercase tracking-wide">
             Shopping Cart ({cart.reduce((a, c) => a + c.quantity, 0)})
           </h1>
         </div>
@@ -32,10 +31,10 @@ export default function CartPage() {
 
       {/* Shipping Notification Banner */}
       {!shippingDismissed && cart.length > 0 && amountNeededForFreeShipping > 0 && (
-        <div className="bg-[#000000] text-white py-2.5 px-4 w-full relative">
+        <div className="bg-[#6f0c07] text-white py-2.5 px-4 w-full relative">
           <div className="mx-auto max-w-7xl text-center">
             <p className="text-xs md:text-sm font-semibold pr-6">
-              Add <span className="font-bold">Rs. {amountNeededForFreeShipping}</span> more for <span className="underline">FREE Shipping</span>! Shipping fee is Rs. 200.
+              Add <span className="font-bold">Rs. {amountNeededForFreeShipping}</span> more for <span className="underline">FREE Shipping</span>! Shipping fee is Rs. {shippingFee}.
             </p>
           </div>
           <button
@@ -55,7 +54,7 @@ export default function CartPage() {
             <p className="text-gray-600 font-medium text-xs md:text-sm">Your cart is currently empty.</p>
             <Link
               href="/collections/all-products"
-              className="inline-block bg-[#000000] text-white text-[10px] md:text-xs font-bold uppercase tracking-wider px-5 md:px-6 py-2.5 md:py-3 rounded-lg hover:bg-[#333333] transition"
+              className="inline-block bg-[#6f0c07] text-white text-[10px] md:text-xs font-bold uppercase tracking-wider px-5 md:px-6 py-2.5 md:py-3 rounded-lg hover:bg-[#580a06] transition"
             >
               Explore Products
             </Link>
@@ -86,7 +85,7 @@ export default function CartPage() {
                       <button onClick={() => removeFromCart(item.cartId)} className="text-[10px] md:text-xs text-gray-900 font-medium hover:underline">Remove</button>
                     </div>
                   </div>
-                  <span className="font-extrabold text-xs md:text-sm text-[#000000] flex-shrink-0">Rs. {item.price * item.quantity}</span>
+                  <span className="font-extrabold text-xs md:text-sm text-[#6f0c07] flex-shrink-0">Rs. {item.price * item.quantity}</span>
                 </div>
               ))}
             </div>
@@ -101,7 +100,7 @@ export default function CartPage() {
                     Add <span className="font-bold">Rs. {amountNeededForFreeShipping}</span> more for FREE Shipping
                   </p>
                   <div className="w-full bg-white/70 h-1.5 rounded-full mt-1.5 overflow-hidden">
-                    <div className="bg-[#000000] h-full rounded-full transition-all duration-500" style={{ width: `${progressPercent}%` }} />
+                    <div className="bg-[#6f0c07] h-full rounded-full transition-all duration-500" style={{ width: `${progressPercent}%` }} />
                   </div>
                 </div>
               )}
@@ -112,15 +111,15 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between text-[11px] md:text-xs font-medium">
                 <span>Shipping</span>
-                <span className="font-bold text-green-700">{amountNeededForFreeShipping === 0 ? 'FREE' : 'Rs. 200'}</span>
+                <span className="font-bold text-green-700">{deliveryFee === 0 ? 'FREE' : `Rs. ${deliveryFee}`}</span>
               </div>
-              <div className="border-t pt-3 flex justify-between font-extrabold text-[#000000]">
+              <div className="border-t pt-3 flex justify-between font-extrabold text-[#6f0c07]">
                 <span>Total Payable</span>
-                <span>Rs. {subtotal + (amountNeededForFreeShipping === 0 ? 0 : 200)}</span>
+                <span>Rs. {grandTotal}</span>
               </div>
               <button
                 onClick={() => setIsCheckoutOpen(true)}
-                className="w-full bg-[#000000] hover:bg-[#333333] text-white font-bold text-[10px] md:text-xs uppercase tracking-widest py-3 md:py-3.5 rounded-xl flex items-center justify-center space-x-2 shadow-lg transition"
+                className="w-full bg-[#6f0c07] hover:bg-[#580a06] text-white font-bold text-[10px] md:text-xs uppercase tracking-widest py-3 md:py-3.5 rounded-xl flex items-center justify-center space-x-2 shadow-lg transition"
               >
                 <span>PROCEED TO CHECKOUT</span>
                 <ArrowRight className="w-4 h-4" />
@@ -132,7 +131,6 @@ export default function CartPage() {
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

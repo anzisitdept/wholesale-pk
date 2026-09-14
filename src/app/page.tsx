@@ -3,7 +3,6 @@
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import HeroSlider from '@/components/home/HeroSlider';
 import ProductCarousel from '@/components/home/ProductCarousel';
 import CustomerReviews from '@/components/reviews/ReviewCarousel';
@@ -34,7 +33,6 @@ export default function Home() {
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

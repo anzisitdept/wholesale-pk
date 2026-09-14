@@ -10,12 +10,10 @@ import {
   Gift,
   Watch,
   MapPin,
-  MessageCircle,
   LogOut,
   User as UserIcon,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
-import { WHATSAPP_CUSTOM_DESIGN_URL } from '@/lib/whatsapp';
 
 /* ─── Jewelry-specific SVG Icons to match screenshot ─────────────────── */
 
@@ -223,7 +221,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
             transition={{ duration: 0.2 }}
             onClick={onClose}
             aria-label="Close menu"
-            className="fixed top-3.5 right-3.5 z-[110] w-10 h-10 rounded-full bg-[#202328]/85 text-white/90 hover:text-white flex items-center justify-center border border-white/10 hover:bg-[#2c3038] active:scale-95 transition shadow-lg cursor-pointer"
+            className="fixed top-3.5 right-3.5 z-[110] w-10 h-10 rounded-full bg-[#580a06]/85 text-white/90 hover:text-white flex items-center justify-center border border-white/20 hover:bg-[#7a0f09] active:scale-95 transition shadow-lg cursor-pointer"
           >
             <X className="w-5 h-5 stroke-[2.5]" />
           </motion.button>
@@ -235,7 +233,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-            className="relative w-[84%] max-w-[340px] h-full bg-[#141415] text-[#f4f4f5] flex flex-col z-[105] shadow-2xl border-r border-[#22252c] overflow-hidden"
+            className="relative w-[84%] max-w-[340px] h-full bg-[#6f0c07] text-white flex flex-col z-[105] shadow-2xl border-r border-[#580a06] overflow-hidden"
           >
             {/* Scrollable Content Container */}
             <div className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar px-3 pt-3 pb-2">
@@ -244,7 +242,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
               {user ? (
                 <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.04] mb-3 border border-white/5">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-10 h-10 rounded-full bg-[#007aff] text-white font-bold flex items-center justify-center flex-shrink-0 text-sm">
+                    <div className="w-10 h-10 rounded-full bg-white text-[#6f0c07] font-bold flex items-center justify-center flex-shrink-0 text-sm">
                       {(profile?.displayName || user.email || 'U').charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0">
@@ -275,7 +273,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                   }}
                   className="w-full flex items-center gap-3 p-2 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group mb-3 text-left cursor-pointer"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#202328] text-gray-200 flex items-center justify-center flex-shrink-0 group-hover:bg-[#2c3038] transition border border-white/5">
+                  <div className="w-10 h-10 rounded-full bg-white/15 text-gray-100 flex items-center justify-center flex-shrink-0 group-hover:bg-white/25 transition border border-white/20">
                     <RingIcon className="w-5 h-5 text-gray-200" />
                   </div>
                   <span className="text-base font-bold text-white tracking-wide font-display">
@@ -465,16 +463,16 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
               <div className="h-px bg-white/10 my-3 mx-1" />
 
 
-              {/* Social Icons Row (WhatsApp, TikTok, Instagram) */}
+              {/* Social Icons Row (Facebook, TikTok, Instagram) */}
               <div className="grid grid-cols-3 gap-2 px-1 mt-2">
                 <a
-                  href="https://wa.me/923100005480"
+                  href="https://www.facebook.com/share/1JfmNRYKKp/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="WhatsApp"
-                  className="h-10 rounded-xl bg-[#202328] hover:bg-[#2b2f38] text-gray-300 hover:text-white flex items-center justify-center border border-white/5 transition"
+                  aria-label="Facebook"
+                  className="h-10 rounded-xl bg-white/15 hover:bg-white/25 text-gray-100 hover:text-white flex items-center justify-center border border-white/20 transition"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <FacebookIcon className="w-5 h-5" />
                 </a>
 
                 <a
@@ -482,41 +480,40 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TikTok"
-                  className="h-10 rounded-xl bg-[#202328] hover:bg-[#2b2f38] text-gray-300 hover:text-white flex items-center justify-center border border-white/5 transition"
+                  className="h-10 rounded-xl bg-white/15 hover:bg-white/25 text-gray-100 hover:text-white flex items-center justify-center border border-white/20 transition"
                 >
                   <TiktokIcon className="w-5 h-5" />
                 </a>
 
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/waadajewels?stkn=ZDlsMDdoenQ4Z3Rh"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="h-10 rounded-xl bg-[#202328] hover:bg-[#2b2f38] text-gray-300 hover:text-white flex items-center justify-center border border-white/5 transition"
+                  className="h-10 rounded-xl bg-white/15 hover:bg-white/25 text-gray-100 hover:text-white flex items-center justify-center border border-white/20 transition"
                 >
                   <InstagramIcon className="w-5 h-5" />
                 </a>
               </div>
 
               {/* 24/7 Support Button */}
-              <a
-                href="https://wa.me/923100005480?text=Hello%20Customer%20Support"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 h-10 rounded-xl bg-[#007aff] hover:bg-[#0066dd] active:bg-[#0055cc] px-2.5 flex items-center justify-between transition cursor-pointer"
+              <Link
+                href="/pages/contact-us"
+                onClick={onClose}
+                className="mt-2 h-10 rounded-xl bg-white hover:bg-gray-100 active:bg-gray-200 px-2.5 flex items-center justify-between transition cursor-pointer"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#202328] flex items-center justify-center text-white border border-white/5">
+                  <div className="w-8 h-8 rounded-lg bg-[#f5ecea] flex items-center justify-center text-[#6f0c07] border border-[#e8d8d5]">
                     <FacebookIcon className="w-4 h-4" />
                   </div>
-                  <span className="text-sm font-semibold text-gray-100">
+                  <span className="text-sm font-semibold text-[#6f0c07]">
                     Support
                   </span>
                 </div>
-                <span className="text-xs font-black tracking-wide px-3 py-1 rounded-full bg-[#007aff] text-white shadow-sm font-display">
+                <span className="text-xs font-black tracking-wide px-3 py-1 rounded-full bg-[#6f0c07] text-white shadow-sm font-display">
                   24/7
                 </span>
-              </a>
+              </Link>
 
             </div>
           </motion.div>

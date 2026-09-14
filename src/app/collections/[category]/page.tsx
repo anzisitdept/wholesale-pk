@@ -15,8 +15,6 @@ import {
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import ReviewsWidget from '@/components/layout/ReviewsWidget';
 
 import { Product } from '@/types';
 import { useStoreData } from '@/context/StoreDataContext';
@@ -28,19 +26,19 @@ import { getJewelryMetaLabel } from '@/lib/productMeta';
 function SideSection({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(true);
   return (
-    <div className="border-b border-[#262932] pb-4 mb-4">
+    <div className="border-b border-[#ece7e6] pb-4 mb-4">
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
         className="w-full flex justify-between items-center bg-transparent border-none cursor-pointer py-1 text-left group"
       >
-        <span className="text-xs font-bold tracking-wider text-gray-200 uppercase font-display group-hover:text-white transition-colors">
+        <span className="text-xs font-bold tracking-wider text-[#6f0c07] uppercase font-display group-hover:text-[#580a06] transition-colors">
           {title}
         </span>
         {open ? (
-          <ChevronUp size={14} className="text-gray-400 group-hover:text-white transition-colors" />
+          <ChevronUp size={14} className="text-[#6f0c07] group-hover:text-[#580a06] transition-colors" />
         ) : (
-          <ChevronDown size={14} className="text-gray-400 group-hover:text-white transition-colors" />
+          <ChevronDown size={14} className="text-[#6f0c07] group-hover:text-[#580a06] transition-colors" />
         )}
       </button>
       {open && <div className="pt-2">{children}</div>}
@@ -166,7 +164,7 @@ export function CategoryInner({
   ).map(([value, label]) => ({ label, value }));
 
   const Sidebar = () => (
-    <aside className="lg:border-r lg:border-[#262932] lg:pr-5">
+    <aside className="lg:border-r lg:border-[#ece7e6] lg:pr-5">
       <SideSection title="Categories">
         <div className="flex flex-col gap-1">
           {categories.map(cat => {
@@ -178,8 +176,8 @@ export function CategoryInner({
                 onClick={() => setShowFilter(false)}
                 className={`text-xs px-2.5 py-2 rounded-lg flex items-center justify-between transition-colors ${
                   isActive
-                    ? 'bg-[#007aff]/15 text-[#007aff] font-bold border-l-2 border-[#007aff]'
-                    : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
+                    ? 'bg-[#6f0c07]/15 text-[#6f0c07] font-bold border-l-2 border-[#6f0c07]'
+                    : 'text-[#6f0c07]/80 hover:text-[#6f0c07] hover:bg-[#6f0c07]/5'
                 }`}
               >
                 <span>{cat.name.split('(')[0].trim()}</span>
@@ -190,22 +188,22 @@ export function CategoryInner({
       </SideSection>
 
       <SideSection title="Availability">
-        <div className="flex flex-col gap-2 text-xs text-gray-300">
-          <label className="flex items-center gap-2.5 cursor-pointer hover:text-white transition-colors select-none">
+        <div className="flex flex-col gap-2 text-xs text-[#6f0c07]/90">
+          <label className="flex items-center gap-2.5 cursor-pointer hover:text-[#6f0c07] transition-colors select-none">
             <input
               type="checkbox"
               checked={inStockFilter}
               onChange={e => setInStockFilter(e.target.checked)}
-              className="w-4 h-4 rounded border-[#262932] bg-[#1a1c22] accent-[#007aff] cursor-pointer"
+              className="w-4 h-4 rounded border-[#ece7e6] bg-[#ffffff] accent-[#6f0c07] cursor-pointer"
             />
             <span>In Stock ({inStockCount})</span>
           </label>
-          <label className={`flex items-center gap-2.5 cursor-pointer hover:text-white transition-colors select-none ${outOfStockCount === 0 ? 'opacity-50' : ''}`}>
+          <label className={`flex items-center gap-2.5 cursor-pointer hover:text-[#6f0c07] transition-colors select-none ${outOfStockCount === 0 ? 'opacity-50' : ''}`}>
             <input
               type="checkbox"
               checked={outOfStockFilter}
               onChange={e => setOutOfStockFilter(e.target.checked)}
-              className="w-4 h-4 rounded border-[#262932] bg-[#1a1c22] accent-[#007aff] cursor-pointer"
+              className="w-4 h-4 rounded border-[#ece7e6] bg-[#ffffff] accent-[#6f0c07] cursor-pointer"
             />
             <span>Out Of Stock ({outOfStockCount})</span>
           </label>
@@ -219,18 +217,18 @@ export function CategoryInner({
               key={p.id}
               type="button"
               onClick={() => openQuickView(p)}
-              className="w-full flex gap-2.5 items-center p-1.5 rounded-xl hover:bg-white/[0.04] transition group text-left cursor-pointer"
+              className="w-full flex gap-2.5 items-center p-1.5 rounded-xl hover:bg-gray-100 transition group text-left cursor-pointer"
             >
-              <div className="relative w-14 h-14 rounded-lg bg-[#20232a] border border-[#262932] overflow-hidden flex-shrink-0">
+              <div className="relative w-14 h-14 rounded-lg bg-[#fafafa] border border-[#ece7e6] overflow-hidden flex-shrink-0">
                 {p.discountBadge && (
-                  <div className="absolute top-0 left-0 bg-[#ff5722] text-white text-[8px] font-black px-1 py-0.5 z-10 rounded-br">
+                  <div className="absolute top-0 left-0 bg-[#d63026] text-white text-[8px] font-black px-1 py-0.5 z-10 rounded-br">
                     {p.discountBadge}
                   </div>
                 )}
                 <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs text-gray-300 group-hover:text-white leading-snug line-clamp-2 mb-1 transition-colors text-left">
+                <p className="text-xs text-[#6f0c07]/85 group-hover:text-[#6f0c07] leading-snug line-clamp-2 mb-1 transition-colors text-left">
                   {p.name.split('(')[0].trim()}
                 </p>
                 <p className="text-xs text-left">
@@ -239,7 +237,7 @@ export function CategoryInner({
                       Rs.{p.originalPrice.toLocaleString()}
                     </span>
                   ) : null}
-                  <span className="text-white font-bold font-display">
+                  <span className="text-[#6f0c07] font-bold font-display">
                     Rs.{p.price.toLocaleString()}
                   </span>
                 </p>
@@ -254,18 +252,18 @@ export function CategoryInner({
   return (
     <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-2">
       {/* Breadcrumb Navigation */}
-      <nav className="py-4 text-xs text-gray-400 flex items-center flex-wrap gap-2">
-        <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+      <nav className="py-4 text-xs text-[#6f0c07]/70 flex items-center flex-wrap gap-2">
+        <Link href="/" className="text-[#6f0c07]/70 hover:text-[#6f0c07] transition-colors">
           Home
         </Link>
-        <span className="text-gray-600">/</span>
-        <Link href={`/collections/${categorySlug}`} className="text-gray-200 hover:text-white transition-colors">
+        <span className="text-[#6f0c07]/50">/</span>
+        <Link href={`/collections/${categorySlug}`} className="text-[#6f0c07]/80 hover:text-[#6f0c07] transition-colors">
           {categoryTitle}
         </Link>
         {activeSub && (
           <>
-            <span className="text-gray-600">/</span>
-            <span className="text-[#007aff] font-semibold">
+            <span className="text-[#6f0c07]/50">/</span>
+            <span className="text-[#6f0c07] font-semibold">
               {categoryData?.subcategories?.find(s => s.slug === activeSub || s.id === activeSub)?.name || activeSub.replace(/-/g, ' ')}
             </span>
           </>
@@ -284,12 +282,12 @@ export function CategoryInner({
         {showFilter && (
           <div className="fixed inset-0 z-[105] lg:hidden">
             <div className="absolute inset-0 bg-black/70 backdrop-blur-xs" onClick={() => setShowFilter(false)} />
-            <div className="absolute left-0 top-0 bottom-0 w-[85%] max-w-sm bg-[#141415] text-[#f4f4f5] border-r border-[#262932] shadow-2xl overflow-y-auto p-5 animate-slideUp">
-              <div className="flex items-center justify-between mb-5 pb-3 border-b border-[#262932]">
-                <h3 className="font-display font-bold text-base text-white uppercase tracking-wide">Filters</h3>
+            <div className="absolute left-0 top-0 bottom-0 w-[85%] max-w-sm bg-[#ffffff] text-[#1a1a1a] border-r border-[#ece7e6] shadow-2xl overflow-y-auto p-5 animate-slideUp">
+              <div className="flex items-center justify-between mb-5 pb-3 border-b border-[#ece7e6]">
+                <h3 className="font-display font-bold text-base text-gray-900 uppercase tracking-wide">Filters</h3>
                 <button 
                   onClick={() => setShowFilter(false)} 
-                  className="p-1.5 text-gray-400 hover:text-white rounded-lg hover:bg-white/5 cursor-pointer" 
+                  className="p-1.5 text-gray-500 hover:text-gray-900 rounded-lg hover:bg-gray-100 cursor-pointer" 
                   aria-label="Close filters"
                 >
                   <X className="w-5 h-5" />
@@ -303,10 +301,10 @@ export function CategoryInner({
         {/* Right Content */}
         <div className="min-w-0">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-4">
-            <h1 className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-white uppercase tracking-tight [text-shadow:0_0_20px_rgba(255,255,255,0.15)]">
+            <h1 className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-[#6f0c07] uppercase tracking-tight">
               {categoryTitle}
             </h1>
-            <span className="text-xs text-gray-400 font-medium">
+            <span className="text-xs text-gray-500 font-medium">
               Showing {displayed.length} of {filtered.length} products
             </span>
           </div>
@@ -319,8 +317,8 @@ export function CategoryInner({
                 onClick={() => setActiveSub(null)}
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all flex-shrink-0 cursor-pointer ${
                   !activeSub
-                    ? 'bg-[#007aff] text-white shadow-md shadow-[#007aff]/20'
-                    : 'bg-[#1a1c22] text-gray-300 hover:text-white border border-[#262932] hover:border-gray-500'
+                    ? 'bg-[#6f0c07] text-white shadow-md shadow-[#6f0c07]/20'
+                    : 'bg-[#ffffff] text-gray-600 hover:text-gray-900 border border-[#ece7e6] hover:border-gray-500'
                 }`}
               >
                 All {categoryData.name.replace(/\s*\([^)]*\)/g, '').trim()}
@@ -334,8 +332,8 @@ export function CategoryInner({
                     onClick={() => setActiveSub(isActive ? null : sub.slug)}
                     className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all border flex-shrink-0 cursor-pointer ${
                       isActive
-                        ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
-                        : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                        ? 'bg-[#6f0c07] text-white border-[#6f0c07] shadow-md shadow-[#6f0c07]/20'
+                        : 'bg-[#ffffff] text-gray-600 border-[#ece7e6] hover:border-gray-500 hover:text-gray-900'
                     }`}
                   >
                     {sub.image && (
@@ -355,14 +353,14 @@ export function CategoryInner({
           {/* Material Filter Chips */}
           {availableMaterials.length > 0 && (
             <div className="flex items-center gap-2 overflow-x-auto py-3 mb-2 no-scrollbar">
-              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider flex-shrink-0">Material</span>
+              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider flex-shrink-0">Material</span>
               <button
                 type="button"
                 onClick={() => setMaterialFilter(null)}
                 className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer ${
                   !materialFilter
-                    ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
-                    : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                    ? 'bg-[#6f0c07] text-white border-[#6f0c07] shadow-md shadow-[#6f0c07]/20'
+                    : 'bg-[#ffffff] text-gray-600 border-[#ece7e6] hover:border-gray-500 hover:text-gray-900'
                 }`}
               >
                 All
@@ -376,8 +374,8 @@ export function CategoryInner({
                     onClick={() => setMaterialFilter(isActive ? null : m.value)}
                     className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
-                        : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                        ? 'bg-[#6f0c07] text-white border-[#6f0c07] shadow-md shadow-[#6f0c07]/20'
+                        : 'bg-[#ffffff] text-gray-600 border-[#ece7e6] hover:border-gray-500 hover:text-gray-900'
                     }`}
                   >
                     {m.label}
@@ -390,14 +388,14 @@ export function CategoryInner({
           {/* Gemstone Filter Chips */}
           {availableGemstones.length > 0 && (
             <div className="flex items-center gap-2 overflow-x-auto py-3 mb-4 no-scrollbar">
-              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider flex-shrink-0">Gemstone</span>
+              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider flex-shrink-0">Gemstone</span>
               <button
                 type="button"
                 onClick={() => setGemstoneFilter(null)}
                 className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer ${
                   !gemstoneFilter
-                    ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
-                    : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                    ? 'bg-[#6f0c07] text-white border-[#6f0c07] shadow-md shadow-[#6f0c07]/20'
+                    : 'bg-[#ffffff] text-gray-600 border-[#ece7e6] hover:border-gray-500 hover:text-gray-900'
                 }`}
               >
                 All
@@ -411,8 +409,8 @@ export function CategoryInner({
                     onClick={() => setGemstoneFilter(isActive ? null : g.value)}
                     className={`flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-[#007aff] text-white border-[#007aff] shadow-md shadow-[#007aff]/20'
-                        : 'bg-[#1a1c22] text-gray-300 border-[#262932] hover:border-gray-500 hover:text-white'
+                        ? 'bg-[#6f0c07] text-white border-[#6f0c07] shadow-md shadow-[#6f0c07]/20'
+                        : 'bg-[#ffffff] text-gray-600 border-[#ece7e6] hover:border-gray-500 hover:text-gray-900'
                     }`}
                   >
                     {g.label}
@@ -423,14 +421,14 @@ export function CategoryInner({
           )}
 
           {/* Control Bar */}
-          <div className="flex items-center gap-3 py-3 border-y border-[#262932] mb-6 flex-wrap">
+          <div className="flex items-center gap-3 py-3 border-y border-[#ece7e6] mb-6 flex-wrap">
 
             {/* Mobile Filter Button */}
             <button
               onClick={() => setShowFilter(true)}
-              className="lg:hidden flex items-center gap-2 bg-[#1a1c22] text-gray-200 border border-[#262932] hover:bg-[#20232a] rounded-xl px-3.5 py-2 text-xs font-bold transition cursor-pointer"
+              className="lg:hidden flex items-center gap-2 bg-[#ffffff] text-gray-700 border border-[#ece7e6] hover:bg-[#fafafa] rounded-xl px-3.5 py-2 text-xs font-bold transition cursor-pointer"
             >
-              <SlidersHorizontal className="w-3.5 h-3.5 text-[#007aff]" />
+              <SlidersHorizontal className="w-3.5 h-3.5 text-[#6f0c07]" />
               <span>Filters</span>
             </button>
 
@@ -438,35 +436,35 @@ export function CategoryInner({
 
             {/* Items Per Page */}
             <div className="flex items-center gap-2">
-              <span className="hidden sm:inline text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+              <span className="hidden sm:inline text-[11px] font-bold text-gray-500 uppercase tracking-wider">
                 Items
               </span>
               <select
                 value={itemsPerPage}
                 onChange={e => setItemsPerPage(Number(e.target.value))}
-                className="bg-[#1a1c22] text-gray-200 border border-[#262932] hover:border-[#383d4a] focus:border-[#007aff] focus:ring-1 focus:ring-[#007aff] rounded-xl px-3 py-1.5 text-xs font-semibold cursor-pointer transition outline-none"
+                className="bg-[#ffffff] text-gray-700 border border-[#ece7e6] hover:border-[#e0d8d6] focus:border-[#6f0c07] focus:ring-1 focus:ring-[#6f0c07] rounded-xl px-3 py-1.5 text-xs font-semibold cursor-pointer transition outline-none"
               >
-                <option value={20} className="bg-[#1a1c22] text-white">20</option>
-                <option value={40} className="bg-[#1a1c22] text-white">40</option>
-                <option value={60} className="bg-[#1a1c22] text-white">60</option>
+                <option value={20} className="bg-[#ffffff] text-gray-900">20</option>
+                <option value={40} className="bg-[#ffffff] text-gray-900">40</option>
+                <option value={60} className="bg-[#ffffff] text-gray-900">60</option>
               </select>
             </div>
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2">
-              <span className="hidden sm:inline text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+              <span className="hidden sm:inline text-[11px] font-bold text-gray-500 uppercase tracking-wider">
                 Sort by
               </span>
               <select
                 value={sortBy}
                 onChange={e => setSortBy(e.target.value)}
-                className="bg-[#1a1c22] text-gray-200 border border-[#262932] hover:border-[#383d4a] focus:border-[#007aff] focus:ring-1 focus:ring-[#007aff] rounded-xl px-3 py-1.5 text-xs font-semibold cursor-pointer transition outline-none"
+                className="bg-[#ffffff] text-gray-700 border border-[#ece7e6] hover:border-[#e0d8d6] focus:border-[#6f0c07] focus:ring-1 focus:ring-[#6f0c07] rounded-xl px-3 py-1.5 text-xs font-semibold cursor-pointer transition outline-none"
               >
-                <option value="featured" className="bg-[#1a1c22] text-white">Featured</option>
-                <option value="best-selling" className="bg-[#1a1c22] text-white">Best Selling</option>
-                <option value="title" className="bg-[#1a1c22] text-white">Alphabetically, A-Z</option>
-                <option value="price-low" className="bg-[#1a1c22] text-white">Price, low to high</option>
-                <option value="price-high" className="bg-[#1a1c22] text-white">Price, high to low</option>
+                <option value="featured" className="bg-[#ffffff] text-gray-900">Featured</option>
+                <option value="best-selling" className="bg-[#ffffff] text-gray-900">Best Selling</option>
+                <option value="title" className="bg-[#ffffff] text-gray-900">Alphabetically, A-Z</option>
+                <option value="price-low" className="bg-[#ffffff] text-gray-900">Price, low to high</option>
+                <option value="price-high" className="bg-[#ffffff] text-gray-900">Price, high to low</option>
               </select>
             </div>
 
@@ -475,43 +473,43 @@ export function CategoryInner({
           {/* Active Filter Chips */}
           {(inStockFilter || outOfStockFilter || activeSub || materialFilter || gemstoneFilter) && (
             <div className="flex items-center gap-2 mb-6 flex-wrap">
-              <span className="text-xs text-gray-400">Filtered by:</span>
+              <span className="text-xs text-gray-500">Filtered by:</span>
               {activeSub && (
-                <span className="inline-flex items-center gap-1.5 bg-[#20232a] text-xs px-3 py-1 rounded-full text-gray-200 border border-[#262932]">
+                <span className="inline-flex items-center gap-1.5 bg-[#fafafa] text-xs px-3 py-1 rounded-full text-gray-700 border border-[#ece7e6]">
                   Sub: {activeSub}
-                  <button onClick={() => setActiveSub(null)} className="hover:text-white transition cursor-pointer">
+                  <button onClick={() => setActiveSub(null)} className="hover:text-gray-900 transition cursor-pointer">
                     <X size={12} />
                   </button>
                 </span>
               )}
               {materialFilter && (
-                <span className="inline-flex items-center gap-1.5 bg-[#20232a] text-xs px-3 py-1 rounded-full text-gray-200 border border-[#262932]">
+                <span className="inline-flex items-center gap-1.5 bg-[#fafafa] text-xs px-3 py-1 rounded-full text-gray-700 border border-[#ece7e6]">
                   Material: {materialFilter}
-                  <button onClick={() => setMaterialFilter(null)} className="hover:text-white transition cursor-pointer">
+                  <button onClick={() => setMaterialFilter(null)} className="hover:text-gray-900 transition cursor-pointer">
                     <X size={12} />
                   </button>
                 </span>
               )}
               {gemstoneFilter && (
-                <span className="inline-flex items-center gap-1.5 bg-[#20232a] text-xs px-3 py-1 rounded-full text-gray-200 border border-[#262932]">
+                <span className="inline-flex items-center gap-1.5 bg-[#fafafa] text-xs px-3 py-1 rounded-full text-gray-700 border border-[#ece7e6]">
                   Gemstone: {gemstoneFilter}
-                  <button onClick={() => setGemstoneFilter(null)} className="hover:text-white transition cursor-pointer">
+                  <button onClick={() => setGemstoneFilter(null)} className="hover:text-gray-900 transition cursor-pointer">
                     <X size={12} />
                   </button>
                 </span>
               )}
               {inStockFilter && (
-                <span className="inline-flex items-center gap-1.5 bg-[#20232a] text-xs px-3 py-1 rounded-full text-gray-200 border border-[#262932]">
+                <span className="inline-flex items-center gap-1.5 bg-[#fafafa] text-xs px-3 py-1 rounded-full text-gray-700 border border-[#ece7e6]">
                   In Stock
-                  <button onClick={() => setInStockFilter(false)} className="hover:text-white transition cursor-pointer">
+                  <button onClick={() => setInStockFilter(false)} className="hover:text-gray-900 transition cursor-pointer">
                     <X size={12} />
                   </button>
                 </span>
               )}
               {outOfStockFilter && (
-                <span className="inline-flex items-center gap-1.5 bg-[#20232a] text-xs px-3 py-1 rounded-full text-gray-200 border border-[#262932]">
+                <span className="inline-flex items-center gap-1.5 bg-[#fafafa] text-xs px-3 py-1 rounded-full text-gray-700 border border-[#ece7e6]">
                   Out Of Stock
-                  <button onClick={() => setOutOfStockFilter(false)} className="hover:text-white transition cursor-pointer">
+                  <button onClick={() => setOutOfStockFilter(false)} className="hover:text-gray-900 transition cursor-pointer">
                     <X size={12} />
                   </button>
                 </span>
@@ -524,7 +522,7 @@ export function CategoryInner({
                   setMaterialFilter(null);
                   setGemstoneFilter(null);
                 }}
-                className="text-xs text-[#ff5722] hover:underline font-bold ml-1 cursor-pointer"
+                className="text-xs text-[#d63026] hover:underline font-bold ml-1 cursor-pointer"
               >
                 Clear all
               </button>
@@ -533,19 +531,19 @@ export function CategoryInner({
 
           {/* Product Grid or Coming Soon State */}
           {filtered.length === 0 ? (
-            <div className="py-16 md:py-24 text-center bg-[#1a1c22] rounded-2xl border border-dashed border-[#2b2f3a] px-6 my-4">
-              <div className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4 text-white">
-                <Clock className="w-6 h-6 text-gray-400" />
+            <div className="py-16 md:py-24 text-center bg-[#ffffff] rounded-2xl border border-dashed border-[#e8e2e1] px-6 my-4">
+              <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4 text-gray-700">
+                <Clock className="w-6 h-6 text-gray-500" />
               </div>
-              <h3 className="font-display text-lg md:text-xl font-bold text-white mb-2 uppercase tracking-wider">
+              <h3 className="font-display text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase tracking-wider">
                 Products Coming Soon
               </h3>
-              <p className="text-xs md:text-sm text-gray-400 max-w-md mx-auto leading-relaxed mb-6 font-body">
+              <p className="text-xs md:text-sm text-gray-500 max-w-md mx-auto leading-relaxed mb-6 font-body">
                 We are stocking fresh products for {categoryTitle.toLowerCase()}. As soon as products are added from the admin panel, they will appear here automatically!
               </p>
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 bg-[#007aff] hover:bg-[#0069d9] text-white px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition font-display"
+                className="inline-flex items-center gap-2 bg-[#6f0c07] hover:bg-[#580a06] text-white px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition font-display"
               >
                 Return to Home
               </Link>
@@ -576,13 +574,11 @@ export default function CategoryCollectionPage({
     <>
       <TopBar />
       <Header />
-      <ReviewsWidget />
-      <Suspense fallback={<div className="py-24 text-center text-gray-400 font-medium">Loading Category…</div>}>
+      <Suspense fallback={<div className="py-24 text-center text-gray-500 font-medium">Loading Category…</div>}>
         <CategoryInner forcedCategory={forcedCategory} forcedSubCategory={forcedSubCategory} />
       </Suspense>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

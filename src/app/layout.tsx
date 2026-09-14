@@ -44,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} ${inter.variable}`} suppressHydrationWarning>
-      <body className="antialiased min-h-screen flex flex-col font-sans bg-[#141415] text-[#f4f4f5]" suppressHydrationWarning>
+      <body className="antialiased min-h-screen flex flex-col font-sans bg-[#ffffff] text-[#1a1a1a]" suppressHydrationWarning>
         <AuthProvider>
           <StoreDataProvider>
             <CartProvider>

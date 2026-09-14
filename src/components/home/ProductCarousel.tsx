@@ -64,20 +64,20 @@ export default function ProductCarousel({
 
   if (!filteredProducts || filteredProducts.length === 0) {
     return (
-      <section className="py-8 md:py-12 bg-[#141415] w-full overflow-hidden">
+      <section className="py-8 md:py-12 bg-[#ffffff] w-full overflow-hidden">
         <div className="container mx-auto px-3 md:px-4 lg:px-8 max-w-7xl">
           {/* Title Header */}
           <SectionHeading title={title} subtitle="Coming Soon" className="mb-6 md:mb-8" />
 
           {/* Coming Soon Card */}
-          <div className="py-10 md:py-14 text-center bg-[#1a1c22] rounded-2xl border border-dashed border-[#2b2f3a] max-w-xl mx-auto px-6">
-            <div className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-3 text-white">
-              <Clock className="w-5 h-5 text-gray-400" />
+          <div className="py-10 md:py-14 text-center bg-[#fafafa] rounded-2xl border border-dashed border-[#e8e2e1] max-w-xl mx-auto px-6">
+            <div className="w-11 h-11 rounded-full bg-[#6f0c07]/10 flex items-center justify-center mx-auto mb-3">
+              <Clock className="w-5 h-5 text-[#6f0c07]" />
             </div>
-            <h3 className="font-display text-sm md:text-base font-bold text-white mb-1.5 uppercase tracking-wider">
+            <h3 className="font-display text-sm md:text-base font-bold text-[#1a1a1a] mb-1.5 uppercase tracking-wider">
               Products Coming Soon
             </h3>
-            <p className="text-xs text-gray-400 max-w-md mx-auto leading-relaxed font-body">
+            <p className="text-xs text-gray-500 max-w-md mx-auto leading-relaxed font-body">
               We are curating and stocking premium products for this section. Once added from the admin panel, they will appear here automatically!
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function ProductCarousel({
   }
 
   return (
-    <section className="py-8 md:py-12 bg-[#141415] w-full overflow-hidden">
+    <section className="py-8 md:py-12 bg-[#ffffff] w-full overflow-hidden">
       <div className="container mx-auto px-3 md:px-4 lg:px-8 max-w-7xl">
         
         {/* Title Header */}

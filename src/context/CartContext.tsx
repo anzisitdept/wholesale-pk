@@ -29,6 +29,11 @@ interface CartContextType {
   clearCart: () => void;
   subtotal: number;
   totalCount: number;
+  freeShippingThreshold: number;
+  amountNeededForFreeShipping: number;
+  shippingFee: number;
+  deliveryFee: number;
+  grandTotal: number;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
   isSearchOpen: boolean;
@@ -43,8 +48,6 @@ interface CartContextType {
   isInWishlist: (productId: string) => boolean;
   toastMessage: string | null;
   showToast: (msg: string) => void;
-  freeShippingThreshold: number;
-  amountNeededForFreeShipping: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -62,6 +65,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const closeQuickView = () => setQuickViewProduct(null);
 
   const freeShippingThreshold = 3000;
+  const shippingFee = 200;
 
   // Load cart and wishlist from localStorage on mount
   useEffect(() => {
@@ -206,6 +210,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const amountNeededForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
+  const deliveryFee = subtotal >= freeShippingThreshold ? 0 : shippingFee;
+  const grandTotal = subtotal + deliveryFee;
 
   return (
     <CartContext.Provider
@@ -232,13 +238,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         toastMessage,
         showToast,
         freeShippingThreshold,
-        amountNeededForFreeShipping
+        amountNeededForFreeShipping,
+        shippingFee,
+        deliveryFee,
+        grandTotal
       }}
     >
       {children}
       {/* Global Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-[999] bg-[#000000] text-white px-5 py-3 rounded-lg shadow-2xl flex items-center space-x-3 text-sm font-medium animate-bounce">
+        <div className="fixed bottom-6 right-6 z-[999] bg-[#6f0c07] text-white px-5 py-3 rounded-lg shadow-2xl flex items-center space-x-3 text-sm font-medium animate-bounce">
           <span className="text-lg">✓</span>
           <span>{toastMessage}</span>
         </div>

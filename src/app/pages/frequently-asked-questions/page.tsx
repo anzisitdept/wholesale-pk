@@ -6,13 +6,11 @@ import { ChevronDown, HelpCircle } from 'lucide-react';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import ReviewsWidget from '@/components/layout/ReviewsWidget';
 
 const FAQS = [
   {
     q: 'How can I place an order on Wholesaler-PK?',
-    a: 'You can easily place an order by browsing our website, clicking "ADD TO CART" or "BUY IT NOW" on any product, and filling out your Cash on Delivery (COD) shipping address at checkout. You can also order directly via WhatsApp at 0310-0005480.'
+    a: 'You can easily place an order by browsing our website, clicking "ADD TO CART" or "BUY IT NOW" on any product, and filling out your Cash on Delivery (COD) shipping address at checkout.'
   },
   {
     q: 'What payment methods do you accept?',
@@ -32,7 +30,7 @@ const FAQS = [
   },
   {
     q: 'What if I receive a damaged or incorrect item?',
-    a: 'We package all items securely to prevent damage during transit. If your parcel arrives damaged or incorrect, simply send us a photo on WhatsApp (0310-0005480) within 24 hours and we will arrange a FREE replacement or refund immediately!'
+    a: 'We package all items securely to prevent damage during transit. If your parcel arrives damaged or incorrect, simply send us a clear photo or video by email within 24 hours and we will arrange a FREE replacement or refund immediately!'
   }
 ];
 
@@ -43,7 +41,6 @@ export default function FAQPage() {
     <>
       <TopBar />
       <Header />
-      <ReviewsWidget />
 
       <section className="bg-[#f5f5f5] py-10 border-b border-gray-200">
         <div className="container mx-auto px-4 max-w-7xl text-center">
@@ -88,7 +85,6 @@ export default function FAQPage() {
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

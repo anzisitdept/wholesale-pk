@@ -6,7 +6,6 @@ import { Package, Truck, CheckCircle, Clock } from 'lucide-react';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import ReviewsWidget from '@/components/layout/ReviewsWidget';
 
 export default function OrdersPage() {
@@ -66,14 +65,6 @@ export default function OrdersPage() {
 
               <div className="flex justify-between items-center pt-2 border-t text-xs">
                 <span className="font-bold text-gray-900">Total: Rs. {order.total}</span>
-                <a
-                  href={`https://wa.me/923100005480?text=Hi%20Wholesaler-PK,%20please%20update%20status%20for%20order%20${order.id}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-green-700 font-bold hover:underline"
-                >
-                  Track on WhatsApp →
-                </a>
               </div>
             </div>
           ))}
@@ -81,7 +72,6 @@ export default function OrdersPage() {
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Share2, MessageCircle, Check, BadgeCheck } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Share2, Check, BadgeCheck } from 'lucide-react';
 import { Product, Review } from '@/types';
 import { useCart } from '@/context/CartContext';
 import CustomerReviewsSection from '@/components/reviews/CustomerReviewsSection';
@@ -100,11 +100,6 @@ export default function ProductDetailClient({ product }: { product: Product }) {
       addToCart(product, undefined, quantity, specialInstructions);
     }
     setIsCheckoutOpen(true);
-  };
-
-  const handleBargainClick = () => {
-    const message = encodeURIComponent(`Hi! I am looking for a discount on ${product.name}${optionLabel ? ` (${optionLabel})` : ''}.`);
-    window.open(`https://wa.me/923100005480?text=${message}`, '_blank');
   };
 
   const hasHighlights = Array.isArray(product.highlights) && product.highlights.length > 0;
@@ -296,20 +291,6 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             </p>
           )}
 
-          {/* Need a Better Price ~ Chat with Us! Box */}
-          <div className="mb-6">
-            <p className="font-serif text-base sm:text-lg font-bold text-gray-900 mb-2.5 flex items-center gap-2">
-              Need a Better Wholesale Price? Chat with Us! <MessageCircle className="w-5 h-5 text-[#25d366]" />
-            </p>
-            <button
-              onClick={handleBargainClick}
-              className="w-full bg-[#25d366] hover:bg-[#20bd5a] active:scale-[0.99] text-white font-bold text-xs sm:text-sm tracking-wider py-3.5 px-5 rounded-md transition duration-200 shadow-md shadow-green-600/20 flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>BARGAIN NOW</span>
-            </button>
-          </div>
-
           {/* Universal Variant Selector */}
           {hasVariants && (
             <div className="mb-5">
@@ -356,7 +337,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               value={specialInstructions}
               onChange={(e) => setSpecialInstructions(e.target.value.slice(0, 500))}
               maxLength={500}
-              className="w-full bg-white border border-gray-200 rounded-xl p-3 text-xs text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-[#007aff] outline-none resize-none min-h-[85px] transition"
+              className="w-full bg-white border border-gray-200 rounded-xl p-3 text-xs text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-[#6f0c07] outline-none resize-none min-h-[85px] transition"
             />
             <div className="text-right text-[10px] text-gray-400 font-medium">
               {specialInstructions.length}/500
@@ -414,7 +395,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               className={`w-full md:flex-1 h-[48px] px-4 rounded-lg font-bold text-xs md:text-xs tracking-wider uppercase flex items-center justify-center gap-2 transition duration-200 shadow-sm active:scale-[0.99] cursor-pointer ${
                 isOutOfStock
                   ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-[#1a1a1a] hover:bg-black text-white shadow-gray-900/10'
+                  : 'bg-[#6f0c07] hover:bg-[#580a06] text-white shadow-gray-900/10'
               }`}
             >
               {isOutOfStock ? (
@@ -545,7 +526,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 Buy {product.name} Online in Pakistan
               </h3>
               <p style={{ color: '#555', marginBottom: '20px' }}>
-                {product.description || `Explore ${product.name} at the best wholesale prices in Pakistan. For bulk ordering or instant price confirmation, contact our team on WhatsApp.`}
+                {product.description || `Explore ${product.name} at the best wholesale prices in Pakistan. For bulk ordering or instant price confirmation, contact our team via email.`}
               </p>
             </div>
           )}
@@ -655,7 +636,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             <button
               onClick={handleAddToCart}
               disabled={isOutOfStock}
-              className="bg-[#1a1a1a] hover:bg-black text-white font-bold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded disabled:bg-gray-300 disabled:cursor-not-allowed transition cursor-pointer active:scale-95 shadow-xs"
+              className="bg-[#6f0c07] hover:bg-[#580a06] text-white font-bold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded disabled:bg-gray-300 disabled:cursor-not-allowed transition cursor-pointer active:scale-95 shadow-xs"
             >
               {isOutOfStock ? 'OUT OF STOCK' : 'ADD TO CART'}
             </button>
@@ -663,7 +644,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             <button
               onClick={handleBuyNow}
               disabled={isOutOfStock}
-              className="bg-[#000000] hover:bg-[#333333] text-white font-bold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded disabled:bg-gray-300 disabled:cursor-not-allowed transition cursor-pointer active:scale-95 shadow-xs"
+              className="bg-[#6f0c07] hover:bg-[#580a06] text-white font-bold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded disabled:bg-gray-300 disabled:cursor-not-allowed transition cursor-pointer active:scale-95 shadow-xs"
             >
               BUY NOW
             </button>
@@ -688,7 +669,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               <button
                 onClick={handleAddToCart}
                 disabled={isOutOfStock}
-                className="bg-[#1a1a1a] active:bg-black text-white font-bold text-[11px] uppercase tracking-wider px-4 py-2.5 rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed transition flex-shrink-0 shadow-sm cursor-pointer"
+                className="bg-[#6f0c07] active:bg-[#580a06] text-white font-bold text-[11px] uppercase tracking-wider px-4 py-2.5 rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed transition flex-shrink-0 shadow-sm cursor-pointer"
               >
                 {isOutOfStock ? 'OUT OF STOCK' : 'ADD TO CART'}
               </button>

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useStoreData } from '@/context/StoreDataContext';
 import { Category } from '@/types';
-import { WHATSAPP_CUSTOM_DESIGN_URL } from '@/lib/whatsapp';
 
 interface CategoryCarouselProps {
   title?: string;
@@ -79,13 +78,11 @@ export default function CategoryCarousel({
             const isCustomDesign = cat.slug === 'custom-design' || cat.id === 'custom-design';
             return (
             <Link
-              href={isCustomDesign ? WHATSAPP_CUSTOM_DESIGN_URL : `/collections/${cat.slug || cat.id}`}
-              target={isCustomDesign ? '_blank' : undefined}
-              rel={isCustomDesign ? 'noopener noreferrer' : undefined}
+              href={isCustomDesign ? '/pages/contact-us' : `/collections/${cat.slug || cat.id}`}
               key={cat.id || i}
               className="flex-[0_0_50%] sm:flex-[0_0_33.33%] md:flex-[0_0_25%] min-w-0 flex flex-col items-center group cursor-pointer"
             >
-              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden mb-4 md:mb-6 border-4 border-transparent group-hover:border-[#000000] transition-all duration-300 bg-gray-100 flex items-center justify-center">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden mb-4 md:mb-6 border-4 border-transparent group-hover:border-[#6f0c07] transition-all duration-300 bg-gray-100 flex items-center justify-center">
                 {cat.image && cat.image.trim() !== '' ? (
                   <img
                     src={cat.image}
@@ -96,7 +93,7 @@ export default function CategoryCarousel({
                   <span className="text-gray-400 font-bold text-sm uppercase">{cat.name?.slice(0, 2)}</span>
                 )}
               </div>
-              <h3 className="font-bold text-[#232323] uppercase tracking-wider text-xs md:text-sm group-hover:text-[#000000] transition-colors text-center">
+              <h3 className="font-bold text-[#6f0c07] uppercase tracking-wider text-xs md:text-sm group-hover:text-[#580a06] transition-colors text-center">
                 {cat.name}
               </h3>
             </Link>
@@ -114,7 +111,7 @@ export default function CategoryCarousel({
               onClick={() => scrollTo(i)}
               aria-label={`Go to slide ${i + 1}`}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                selectedIndex === i ? 'w-6 bg-[#000000]' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                selectedIndex === i ? 'w-6 bg-[#6f0c07]' : 'w-2 bg-gray-300 hover:bg-gray-400'
               }`}
             />
           ))}

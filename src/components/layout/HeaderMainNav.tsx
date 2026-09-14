@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { useStoreData } from '@/context/StoreDataContext';
-import { WHATSAPP_CUSTOM_DESIGN_URL } from '@/lib/whatsapp';
 
 interface HeaderMainNavProps {
   onNavigate?: () => void;
@@ -66,20 +65,20 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
       <Link
         href="/"
         onClick={handleItemClick}
-        className="text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider relative group py-1 transition-colors whitespace-nowrap block"
+        className="text-[#6f0c07] font-bold text-[11px] sm:text-xs uppercase tracking-wider relative group py-1 transition-colors whitespace-nowrap block"
       >
         Home
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6f0c07] transition-all duration-300 group-hover:w-full" />
       </Link>
 
       {/* Shop */}
       <Link
         href="/collections/all-products"
         onClick={handleItemClick}
-        className="text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider relative group py-1 transition-colors whitespace-nowrap block"
+        className="text-[#6f0c07] font-bold text-[11px] sm:text-xs uppercase tracking-wider relative group py-1 transition-colors whitespace-nowrap block"
       >
         Shop
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6f0c07] transition-all duration-300 group-hover:w-full" />
       </Link>
 
       {/* Collections — Mega Dropdown */}
@@ -92,18 +91,18 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
           href="/collections/all-products"
           onClick={handleItemClick}
           className={`flex items-center gap-1.5 font-bold text-[11px] sm:text-xs uppercase tracking-wider relative group py-1 transition-colors whitespace-nowrap ${
-            isOpen ? 'text-white' : 'text-white/90 hover:text-white'
+            isOpen ? 'text-[#580a06]' : 'text-[#6f0c07] hover:text-[#580a06]'
           }`}
         >
           <span>Collections</span>
           <ChevronDown
             size={14}
             className={`transition-transform duration-200 ${
-              isOpen ? 'rotate-180 text-white' : 'rotate-0 opacity-70 group-hover:opacity-100'
+              isOpen ? 'rotate-180 text-[#6f0c07]' : 'rotate-0 opacity-70 group-hover:opacity-100'
             }`}
           />
           <span
-            className={`absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-300 ${
+            className={`absolute bottom-0 left-0 h-0.5 bg-[#6f0c07] transition-all duration-300 ${
               isOpen ? 'w-full' : 'w-0 group-hover:w-full'
             }`}
           />
@@ -116,11 +115,11 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
             onMouseLeave={handleHideDropDown}
           >
             <div
-              className="flex bg-[#0a0a0a] border border-white/15 rounded-2xl overflow-hidden shadow-2xl"
-              style={{ width: 560, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.9), 0 0 1px 1px rgba(255,255,255,0.08)' }}
+              className="flex bg-[#580a06] border border-white/15 rounded-2xl overflow-hidden shadow-2xl"
+              style={{ width: 560, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.35), 0 0 1px 1px rgba(255,255,255,0.08)' }}
             >
               {/* Left Sidebar — Categories */}
-              <div className="w-[200px] flex-shrink-0 border-r border-white/10 py-2 bg-[#0f0f0f]">
+              <div className="w-[200px] flex-shrink-0 border-r border-white/10 py-2 bg-[#4d0805]">
                 <Link
                   href="/collections/all-products"
                   onClick={handleItemClick}
@@ -142,9 +141,7 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
                       onClick={handleItemClick}
                     >
                       <Link
-                        href={cat.slug === 'custom-design' ? WHATSAPP_CUSTOM_DESIGN_URL : (needsDropdown ? cat.slug : `/collections/${cat.slug}`)}
-                        target={cat.slug === 'custom-design' ? '_blank' : undefined}
-                        rel={cat.slug === 'custom-design' ? 'noopener noreferrer' : undefined}
+                        href={cat.slug === 'custom-design' ? '/pages/contact-us' : (needsDropdown ? cat.slug : `/collections/${cat.slug}`)}
                         className={`flex items-center justify-between px-4 py-2.5 text-[12px] font-semibold tracking-wide transition-colors ${
                           activeCategory === cat.id || activeCategory === `__link_${cat.id}`
                             ? 'text-white bg-white/[0.06]'

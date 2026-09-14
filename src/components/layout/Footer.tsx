@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { useStoreData } from '@/context/StoreDataContext';
-import { WHATSAPP_CUSTOM_DESIGN_URL } from '@/lib/whatsapp';
 
 /* ─── Collapsible Footer Section (dropdown on mobile, always open on desktop) ─── */
 function FooterSection({ title, children }: { title: string; children: React.ReactNode }) {
@@ -73,7 +72,7 @@ export default function Footer() {
     <footer className="w-full font-body">
 
       {/* Main Footer Content */}
-      <div className="bg-[#101114] border-t border-[#22252e] text-white pt-12 md:pt-14 pb-4 md:pb-6">
+      <div className="bg-[#6f0c07] border-t border-[#580a06] text-white pt-12 md:pt-14 pb-4 md:pb-6">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1320px]">
 
           {/* 4-Column Grid matching official layout */}
@@ -88,9 +87,7 @@ export default function Footer() {
                       return (
                     <li key={cat.id || cat.slug}>
                       <Link
-                        href={isCustomDesign ? WHATSAPP_CUSTOM_DESIGN_URL : `/collections/${cat.slug}`}
-                        target={isCustomDesign ? '_blank' : undefined}
-                        rel={isCustomDesign ? 'noopener noreferrer' : undefined}
+                        href={isCustomDesign ? '/pages/contact-us' : `/collections/${cat.slug}`}
                         className="hover:text-white transition hover:underline"
                       >
                         {cat.name.replace(/\s*\([^)]*\)/g, '')}
@@ -139,64 +136,22 @@ export default function Footer() {
                   type="email"
                   required
                   placeholder="Enter Your Email Address"
-                  className="w-full px-3 py-2.5 bg-[#1c1e25] text-white text-xs font-medium border border-[#2b2f3a] focus:outline-none focus:border-[#007aff] placeholder-gray-500 rounded-xl"
+                  className="w-full px-3 py-2.5 bg-[#580a06] text-white text-xs font-medium border border-[#8f3b35] focus:outline-none focus:border-white placeholder-white/50 rounded-xl"
                 />
                 <button
                   suppressHydrationWarning
                   type="submit"
-                  className="bg-[#007aff] text-white font-display font-black text-xs tracking-wider uppercase px-4 py-2.5 hover:bg-[#0069d9] transition rounded-xl flex-shrink-0 cursor-pointer shadow-sm"
+                  className="bg-white text-[#6f0c07] font-display font-black text-xs tracking-wider uppercase px-4 py-2.5 hover:bg-gray-100 transition rounded-xl flex-shrink-0 cursor-pointer shadow-sm"
                 >
                   SUBMIT
                 </button>
               </form>
-
-              {/* 4 Professional White Circle Social Icons */}
-              <div className="flex items-center gap-3 pt-1">
-                {/* Facebook */}
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-9 h-9 rounded-full bg-white text-[#000000] flex items-center justify-center transition-all duration-200 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white"
-                  title="Facebook"
-                >
-                  <FacebookIcon />
-                </a>
-                {/* Instagram */}
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-9 h-9 rounded-full bg-white text-[#000000] flex items-center justify-center transition-all duration-200 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white"
-                  title="Instagram"
-                >
-                  <InstagramIcon />
-                </a>
-                {/* TikTok */}
-                <a
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-9 h-9 rounded-full bg-white text-[#000000] flex items-center justify-center transition-all duration-200 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white"
-                  title="TikTok"
-                >
-                  <TiktokIcon />
-                </a>
-              </div>
             </div>
 
             {/* Column 4: CUSTOMER SERVICE */}
             <div>
               <h3 className="font-bold text-xs tracking-widest uppercase mb-5 text-white font-sans">CUSTOMER SERVICE</h3>
-              <ul className="space-y-3 text-xs font-normal text-gray-200 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <span>📞</span>
-                  <span>WhatsApp us on <strong>+92 310 0005480</strong></span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span>📞</span>
-                  <span>WhatsApp or ☎ Call us on <strong>0310-0005480</strong>.</span>
-                </li>
+              <ul className="space-y-3 text-xs font-normal text-gray-200 leading-relaxed mb-5">
                 <li className="flex items-start gap-2">
                   <span>✉</span>
                   <span>theewholesaler@gmail.com</span>
@@ -210,6 +165,37 @@ export default function Footer() {
                   <span>7 Days Easy Returns & Exchange Available</span>
                 </li>
               </ul>
+
+              {/* Professional White Circle Social Icons */}
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.facebook.com/share/1JfmNRYKKp/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-9 h-9 rounded-full bg-white text-[#6f0c07] flex items-center justify-center transition-all duration-200 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white"
+                  title="Facebook"
+                >
+                  <FacebookIcon />
+                </a>
+                <a
+                  href="https://www.instagram.com/waadajewels?stkn=ZDlsMDdoenQ4Z3Rh"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-9 h-9 rounded-full bg-white text-[#6f0c07] flex items-center justify-center transition-all duration-200 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white"
+                  title="Instagram"
+                >
+                  <InstagramIcon />
+                </a>
+                <a
+                  href="https://tiktok.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-9 h-9 rounded-full bg-white text-[#6f0c07] flex items-center justify-center transition-all duration-200 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white"
+                  title="TikTok"
+                >
+                  <TiktokIcon />
+                </a>
+              </div>
 
               {/* Developed By ANZI & Co. watermark */}
               <div className="mt-6 pt-5 border-t border-white/20">
@@ -236,8 +222,8 @@ export default function Footer() {
           <div className="border-t border-white/20 pt-5 flex flex-col md:flex-row items-center justify-between text-sm md:text-base text-gray-100 font-medium gap-4">
             <p>Wholesaler-PK @2025. All Rights Reserved</p>
 
-            {/* Payment Method Images rendered side by side directly - with margin so floating WhatsApp widget never overlaps them */}
-            <div className="flex items-center gap-3 sm:mr-16 md:mr-20">
+            {/* Payment Method Images rendered side by side directly */}
+            <div className="flex items-center gap-3">
               <img
                 src="/Visa.png"
                 alt="Visa"

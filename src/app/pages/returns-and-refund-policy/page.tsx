@@ -2,15 +2,12 @@ import React from 'react';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import ReviewsWidget from '@/components/layout/ReviewsWidget';
 
 export default function ReturnsPolicyPage() {
   return (
     <>
       <TopBar />
       <Header />
-      <ReviewsWidget />
 
       <section className="bg-[#f5f5f5] py-10 border-b border-gray-200">
         <div className="container mx-auto px-4 max-w-7xl text-center">
@@ -33,7 +30,7 @@ export default function ReturnsPolicyPage() {
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">1. Damaged or Incorrect Item Replacement</h2>
             <p>
-              If your parcel arrives with a damaged, incorrect, or defective item, please notify us within <strong>24 hours of delivery</strong> by sending a clear photo or video of the parcel (including the packaging) to our WhatsApp helpline at <strong>0310-0005480</strong>. Once verified, we will dispatch a brand-new replacement absolutely <strong>free of cost</strong>.
+              If your parcel arrives with a damaged, incorrect, or defective item, please notify us within <strong>24 hours of delivery</strong> by sending a clear photo or video of the parcel (including the packaging) to our support email at <strong>theewholesaler@gmail.com</strong>. Once verified, we will dispatch a brand-new replacement absolutely <strong>free of cost</strong>.
             </p>
           </div>
 
@@ -64,7 +61,7 @@ export default function ReturnsPolicyPage() {
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">5. How to Submit a Request</h2>
             <p>
-              To raise a return or refund request, WhatsApp us at <strong>0310-0005480</strong> or email <strong>theewholesaler@gmail.com</strong> with your order number, name, and supporting photo/video. Our support team will guide you through the process and resolve your issue as quickly as possible.
+              To raise a return or refund request, email us at <strong>theewholesaler@gmail.com</strong> with your order number, name, and supporting photo/video. Our support team will guide you through the process and resolve your issue as quickly as possible.
             </p>
           </div>
 
@@ -79,7 +76,6 @@ export default function ReturnsPolicyPage() {
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

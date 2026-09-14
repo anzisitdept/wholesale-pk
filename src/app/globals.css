@@ -7,39 +7,41 @@
   --font-display: "Gilroy ExtraBold", var(--font-montserrat), "Montserrat Black", "Akrobat Black", sans-serif;
   --font-body: var(--font-inter), "Inter", "Roboto", "Helvetica Neue", sans-serif;
   
-  --color-primary: #007aff;
-  --color-secondary: #20232a;
-  --color-sale: #ff5722;
-  --color-accent: #007aff;
-  --color-surface: #1a1c22;
-  --color-surface-card: #20232a;
-  --color-muted: #8e9297;
-  --color-border: #262932;
-  --color-accent-blue: #007aff;
+  --color-primary: #6f0c07;
+  --color-primary-hover: #580a06;
+  --color-secondary: #ffffff;
+  --color-sale: #d63026;
+  --color-accent: #6f0c07;
+  --color-surface: #fafafa;
+  --color-surface-card: #ffffff;
+  --color-muted: #6b6f76;
+  --color-border: #ece7e6;
+  --color-accent-blue: #6f0c07;
   --color-accent-gold: #ff9800;
   --color-accent-green: #00c853;
-  --color-accent-orange: #ff5722;
+  --color-accent-orange: #d63026;
 }
 
 :root {
-  --background: #141415;
-  --foreground: #f4f4f5;
+  --background: #ffffff;
+  --foreground: #1a1a1a;
   --font-display: "Gilroy ExtraBold", var(--font-montserrat), "Montserrat Black", "Akrobat Black", sans-serif;
   --font-body: var(--font-inter), "Inter", "Roboto", "Helvetica Neue", sans-serif;
-  --color-primary: #007aff;
-  --color-secondary: #20232a;
-  --color-sale: #ff5722;
-  --color-accent: #007aff;
-  --color-surface: #1a1c22;
-  --color-surface-card: #20232a;
-  --color-text: #ffffff;
-  --color-muted: #8e9297;
-  --color-border: #262932;
+  --color-primary: #6f0c07;
+  --color-primary-hover: #580a06;
+  --color-secondary: #ffffff;
+  --color-sale: #d63026;
+  --color-accent: #6f0c07;
+  --color-surface: #fafafa;
+  --color-surface-card: #ffffff;
+  --color-text: #1a1a1a;
+  --color-muted: #6b6f76;
+  --color-border: #ece7e6;
 }
 
 body {
-  background: #141415;
-  color: #f4f4f5;
+  background: #ffffff;
+  color: #1a1a1a;
   font-family: var(--font-body), "Inter", "Roboto", sans-serif;
   overflow-x: hidden;
 }
@@ -51,20 +53,20 @@ h1, h2, h3, h4, h5, h6, .font-display {
   text-transform: uppercase;
 }
 
-/* Custom Scrollbar (Dark Theme) */
+/* Custom Scrollbar (Light Theme) */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #141415;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b2e38;
+  background: #e0d8d6;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b3f4d;
+  background: #6f0c07;
 }
 
 /* Hide scrollbar utility */
@@ -110,11 +112,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .animate-marquee {
   animation: marquee 20s linear infinite;
-}
-
-/* Hide WhatsApp button on cart page */
-.hide-whatsapp-cart .whatsapp-float {
-  display: none !important;
 }
 
 /* Mobile responsive fixes */

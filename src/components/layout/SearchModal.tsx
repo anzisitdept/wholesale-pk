@@ -212,7 +212,7 @@ export default function SearchModal() {
                                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
                                 {product.discountBadge && (
-                                  <span className="absolute top-1 left-1 bg-[#000000] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-xs">
+                                  <span className="absolute top-1 left-1 bg-[#6f0c07] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-xs">
                                     {product.discountBadge}
                                   </span>
                                 )}

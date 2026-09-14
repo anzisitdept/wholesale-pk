@@ -1,13 +1,34 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { Phone, Mail, MapPin, Clock, MessageSquare, Send, CheckCircle } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import ReviewsWidget from '@/components/layout/ReviewsWidget';
+
+function FacebookIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+    </svg>
+  );
+}
+
+function TiktokIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .56.04.82.11V9.3a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.57a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-3.04-1.12c-.44-.36-.78-.83-1-1.35V6.69z" />
+    </svg>
+  );
+}
 
 export default function ContactUsPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -28,7 +49,6 @@ export default function ContactUsPage() {
     <>
       <TopBar />
       <Header />
-      <ReviewsWidget />
 
       <section className="bg-[#f5f5f5] py-10 border-b border-gray-200">
         <div className="container mx-auto px-4 max-w-7xl text-center">
@@ -59,7 +79,7 @@ export default function ContactUsPage() {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="bg-[#000000] text-white text-xs font-bold px-6 py-2.5 rounded-lg"
+                  className="bg-[#6f0c07] hover:bg-[#580a06] text-white text-xs font-bold px-6 py-2.5 rounded-lg"
                 >
                   Send Another Message
                 </button>
@@ -74,20 +94,20 @@ export default function ContactUsPage() {
                     placeholder="e.g. Hassan Ahmed"
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#000000] outline-none"
+                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#6f0c07] outline-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-semibold text-gray-700 mb-1">Phone / WhatsApp Number *</label>
+                    <label className="block font-semibold text-gray-700 mb-1">Phone Number *</label>
                     <input
                       type="tel"
                       required
                       placeholder="0300 1234567"
                       value={formData.phone}
                       onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#000000] outline-none"
+                      className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#6f0c07] outline-none"
                     />
                   </div>
                   <div>
@@ -97,7 +117,7 @@ export default function ContactUsPage() {
                       placeholder="name@example.com"
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#000000] outline-none"
+                      className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#6f0c07] outline-none"
                     />
                   </div>
                 </div>
@@ -107,7 +127,7 @@ export default function ContactUsPage() {
                   <select
                     value={formData.subject}
                     onChange={e => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#000000] outline-none bg-white"
+                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#6f0c07] outline-none bg-white"
                   >
                     <option value="General Inquiry">General Order Inquiry</option>
                     <option value="Delivery Tracking">Delivery Tracking & Status</option>
@@ -124,13 +144,13 @@ export default function ContactUsPage() {
                     placeholder="Write details about your question or order..."
                     value={formData.message}
                     onChange={e => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#000000] outline-none"
+                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#6f0c07] outline-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-[#000000] hover:bg-[#333333] text-white font-bold text-xs uppercase tracking-widest py-3.5 rounded-xl flex items-center justify-center space-x-2 shadow-md transition"
+                  className="w-full bg-[#6f0c07] hover:bg-[#580a06] text-white font-bold text-xs uppercase tracking-widest py-3.5 rounded-xl flex items-center justify-center space-x-2 shadow-md transition"
                 >
                   <Send className="w-4 h-4" />
                   <span>SUBMIT MESSAGE</span>
@@ -147,34 +167,6 @@ export default function ContactUsPage() {
               </h3>
 
               <div className="space-y-4 text-xs text-gray-800">
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-white rounded-xl text-[#000000] shadow-xs">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 uppercase">Customer Support Helpline</h4>
-                    <p className="font-bold text-sm text-[#000000] mt-0.5">0310-0005480</p>
-                    <p className="text-gray-500 text-[11px]">Available Mon - Sat (9:00 AM - 9:00 PM)</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-white rounded-xl text-green-600 shadow-xs">
-                    <MessageSquare className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 uppercase">WhatsApp Instant Support</h4>
-                    <a
-                      href="https://wa.me/923100005480"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-bold text-sm text-green-700 underline mt-0.5 block hover:text-green-800"
-                    >
-                      Click to chat on WhatsApp (+92 310 0005480)
-                    </a>
-                  </div>
-                </div>
-
                 <div className="flex items-start space-x-4">
                   <div className="p-3 bg-white rounded-xl text-[#000000] shadow-xs">
                     <Mail className="w-5 h-5" />
@@ -197,10 +189,44 @@ export default function ContactUsPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Professional Social Icons */}
+              <div className="pt-4 border-t border-gray-300">
+                <h4 className="font-bold text-gray-900 uppercase text-xs mb-3">Follow Us</h4>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.facebook.com/share/1JfmNRYKKp/"
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Facebook"
+                    className="w-9 h-9 rounded-full bg-[#6f0c07] text-white flex items-center justify-center transition-all duration-200 hover:bg-[#580a06] hover:ring-2 hover:ring-[#6f0c07]/30"
+                  >
+                    <FacebookIcon />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/waadajewels?stkn=ZDlsMDdoenQ4Z3Rh"
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Instagram"
+                    className="w-9 h-9 rounded-full bg-[#6f0c07] text-white flex items-center justify-center transition-all duration-200 hover:bg-[#580a06] hover:ring-2 hover:ring-[#6f0c07]/30"
+                  >
+                    <InstagramIcon />
+                  </a>
+                  <a
+                    href="https://tiktok.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    title="TikTok"
+                    className="w-9 h-9 rounded-full bg-[#6f0c07] text-white flex items-center justify-center transition-all duration-200 hover:bg-[#580a06] hover:ring-2 hover:ring-[#6f0c07]/30"
+                  >
+                    <TiktokIcon />
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Pakistan Coverage Banner */}
-            <div className="bg-gray-900 text-white p-6 rounded-3xl text-center space-y-2">
+            <div className="bg-[#6f0c07] text-white p-6 rounded-3xl text-center space-y-2">
               <h4 className="font-bold text-sm uppercase tracking-wider text-yellow-400">Nationwide Cash on Delivery</h4>
               <p className="text-xs text-gray-300">
                 Delivering premium quality products to Lahore, Karachi, Islamabad, Rawalpindi, Peshawar, Multan, Quetta, and all 300+ cities in Pakistan.
@@ -212,7 +238,6 @@ export default function ContactUsPage() {
       </main>
 
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }
