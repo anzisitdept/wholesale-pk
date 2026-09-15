@@ -195,7 +195,7 @@ export default function CheckoutModal() {
               <h2 className="font-bold text-base sm:text-lg leading-tight uppercase tracking-wider">
                 {isSubmitted ? 'Order Confirmed!' : 'Cash on Delivery (COD) Checkout'}
               </h2>
-              <p className="text-[11px] sm:text-xs text-gray-200">Official Store - Wholesaler-PK</p>
+              <p className="text-[11px] sm:text-xs text-gray-200">Official Store - Waada Jewels</p>
             </div>
           </div>
           <button

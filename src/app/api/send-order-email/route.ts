@@ -10,74 +10,74 @@ const SMTP_FROM = process.env.SMTP_FROM || `"Waada Jewels" <${SMTP_USER}>`;
 
 // Helper to parse order receiving email array from env
 function getReceivingEmails(): string[] {
-    const raw = process.env.ORDER_RECEIVING_EMAILS || process.env.ADMIN_NOTIFICATION_EMAILS || process.env.ADMIN_NOTIFICATION_EMAIL || "thewaadajewels@gmail.com";
-    const trimmed = raw.trim();
-    if (!trimmed) {
-        return [SMTP_USER];
+  const raw = process.env.ORDER_RECEIVING_EMAILS || process.env.ADMIN_NOTIFICATION_EMAILS || process.env.ADMIN_NOTIFICATION_EMAIL || "thewaadajewels@gmail.com";
+  const trimmed = raw.trim();
+  if (!trimmed) {
+    return [SMTP_USER];
+  }
+  // Parse JSON array format: ["email1@domain.com", "email2@domain.com"]
+  if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map((e: any) => String(e).trim()).filter(Boolean);
+      }
+    } catch {
+      // fallback to comma-separated
     }
-    // Parse JSON array format: ["email1@domain.com", "email2@domain.com"]
-    if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
-        try {
-            const parsed = JSON.parse(trimmed);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-                return parsed.map((e: any) => String(e).trim()).filter(Boolean);
-            }
-        } catch {
-            // fallback to comma-separated
-        }
-    }
-    // Parse comma-separated format: email1@domain.com, email2@domain.com
-    return trimmed
-        .split(",")
-        .map((e) => e.trim().replace(/^['"\[\]]+|['"\[\]]+$/g, ""))
-        .filter(Boolean);
+  }
+  // Parse comma-separated format: email1@domain.com, email2@domain.com
+  return trimmed
+    .split(",")
+    .map((e) => e.trim().replace(/^['"\[\]]+|['"\[\]]+$/g, ""))
+    .filter(Boolean);
 }
 
 // Configure reusable Nodemailer transporter
 function getTransporter() {
-    if (!SMTP_PASS || SMTP_PASS.includes("your_16_digit")) {
-        return null;
-    }
-    return nodemailer.createTransport({
-        host: SMTP_HOST,
-        port: SMTP_PORT,
-        secure: SMTP_SECURE,
-        auth: {
-            user: SMTP_USER,
-            pass: SMTP_PASS,
-        },
-    });
+  if (!SMTP_PASS || SMTP_PASS.includes("your_16_digit")) {
+    return null;
+  }
+  return nodemailer.createTransport({
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: SMTP_SECURE,
+    auth: {
+      user: SMTP_USER,
+      pass: SMTP_PASS,
+    },
+  });
 }
 
 export async function POST(req: Request) {
-    try {
-        const transporter = getTransporter();
-        if (!transporter) {
-            console.warn("⚠️ SMTP_PASS is not configured in .env.local yet. Skipping email dispatch.");
-            return NextResponse.json({
-                success: false,
-                message: "SMTP_PASS is not configured in .env.local",
-            });
-        }
+  try {
+    const transporter = getTransporter();
+    if (!transporter) {
+      console.warn("⚠️ SMTP_PASS is not configured in .env.local yet. Skipping email dispatch.");
+      return NextResponse.json({
+        success: false,
+        message: "SMTP_PASS is not configured in .env.local",
+      });
+    }
 
-        const data = await req.json();
-        const {
-            orderId,
-            customerName,
-            customerEmail,
-            customerPhone,
-            shippingAddress,
-            city,
-            items = [],
-            subtotal = 0,
-            shippingFee = 0,
-            totalAmount = 0,
-            paymentMethod = "Cash on Delivery (COD)",
-        } = data;
+    const data = await req.json();
+    const {
+      orderId,
+      customerName,
+      customerEmail,
+      customerPhone,
+      shippingAddress,
+      city,
+      items = [],
+      subtotal = 0,
+      shippingFee = 0,
+      totalAmount = 0,
+      paymentMethod = "Cash on Delivery (COD)",
+    } = data;
 
-        const itemsHtml = items
-            .map(
-                (it: any) => `
+    const itemsHtml = items
+      .map(
+        (it: any) => `
 <tr style="border-bottom: 1px solid #f0f0f0;">
   <td style="padding: 10px 0; color: #333;">
     <strong>${it.name}</strong>
@@ -85,19 +85,19 @@ export async function POST(req: Request) {
   <td style="padding: 10px 0; text-align: center; color: #555;">${it.quantity}</td>
   <td style="padding: 10px 0; text-align: right; color: #111; font-weight: 600;">Rs. ${(it.price * it.quantity).toLocaleString()}</td>
 </tr>`
-            )
-            .join("");
+      )
+      .join("");
 
-        // 1. Send Admin / Store Notification Alert to all receiving emails
-        const receivingEmails = getReceivingEmails();
-        await transporter.sendMail({
-            from: SMTP_FROM,
-            to: receivingEmails,
-            subject: `🚨 New Order #${orderId} Received - Rs. ${totalAmount.toLocaleString()}`,
-            html: `
+    // 1. Send Admin / Store Notification Alert to all receiving emails
+    const receivingEmails = getReceivingEmails();
+    await transporter.sendMail({
+      from: SMTP_FROM,
+      to: receivingEmails,
+      subject: `🚨 New Order #${orderId} Received - Rs. ${totalAmount.toLocaleString()}`,
+      html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #222; border: 1px solid #eee; border-radius: 10px; overflow: hidden;">
-  <div style="background: #000000; padding: 20px; color: white;">
-    <h2 style="margin: 0; font-size: 20px;">🚨 New Store Order #${orderId}</h2>
+  <div style="background: #6f0c07; padding: 20px; color: white;">
+    <h2 style="margin: 0; font-size: 20px;"> Waada Jewels - New Order #${orderId}</h2>
     <p style="margin: 5px 0 0; opacity: 0.9; font-size: 13px;">Total: Rs. ${totalAmount.toLocaleString()} (${paymentMethod})</p>
   </div>
   <div style="padding: 24px;">
@@ -129,18 +129,18 @@ export async function POST(req: Request) {
   </div>
 </div>
 `,
-        });
+    });
 
-        // 2. Send Customer Order Confirmation (if customer provided their email)
-        if (customerEmail) {
-            await transporter.sendMail({
-                from: SMTP_FROM,
-                to: customerEmail,
-                subject: `✅ Order Confirmed! #${orderId} - Wholesaler-PK`,
-                html: `
+    // 2. Send Customer Order Confirmation (if customer provided their email)
+    if (customerEmail) {
+      await transporter.sendMail({
+        from: SMTP_FROM,
+        to: customerEmail,
+        subject: `✅ Order Confirmed! #${orderId} - Waada Jewels`,
+        html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #222; border: 1px solid #eee; border-radius: 12px; overflow: hidden;">
-  <div style="background: #000000; padding: 28px 20px; text-align: center; color: white;">
-    <h1 style="margin: 0; font-size: 24px;">🛍️ Wholesaler-PK</h1>
+  <div style="background: #6f0c07; padding: 28px 20px; text-align: center; color: white;">
+    <h1 style="margin: 0; font-size: 24px; font-weight: 700; letter-spacing: 1px;">💎 Waada Jewels</h1>
     <p style="margin: 6px 0 0; font-size: 14px; opacity: 0.95;">Thank you for your order, ${customerName}!</p>
   </div>
   <div style="padding: 24px;">
@@ -161,7 +161,7 @@ export async function POST(req: Request) {
     <div style="margin-top: 16px; padding-top: 12px; border-top: 2px solid #eee;">
       <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 14px;"><span>Subtotal:</span><span>Rs. ${subtotal.toLocaleString()}</span></div>
       <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 14px;"><span>Shipping Fee:</span><span>${shippingFee === 0 ? "FREE" : `Rs. ${shippingFee}`}</span></div>
-      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 16px; margin-top: 8px; border-top: 1px solid #eee; padding-top: 8px; color: #000000;">
+      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 16px; margin-top: 8px; border-top: 1px solid #eee; padding-top: 8px; color: #6f0c07;">
         <span>Total Amount (COD):</span><span>Rs. ${totalAmount.toLocaleString()}</span>
       </div>
     </div>
@@ -173,16 +173,16 @@ export async function POST(req: Request) {
     </div>
   </div>
   <div style="background: #fafafa; border-top: 1px solid #eee; padding: 16px; text-align: center; font-size: 12px; color: #888;">
-    Wholesaler-PK · Premium Products & Everyday Essentials
+    Waada Jewels · Fine Jewelry & Everyday Luxury
   </div>
 </div>
 `,
-            });
-        }
-
-        return NextResponse.json({ success: true });
-    } catch (error: any) {
-        console.error("Order email error via Nodemailer:", error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+      });
     }
+
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    console.error("Order email error via Nodemailer:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }

@@ -25,8 +25,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Wholesaler-PK | Premium Products & Everyday Essentials",
-  description: "Wholesaler-PK brings you premium quality products and everyday essentials at the best prices, delivered across Pakistan.",
+  title: "Waada Jewels | Fine Jewelry & Luxury Accessories",
+  description: "Waada Jewels brings you premium quality handcrafted jewelry, necklaces, rings, bracelets, firelighters, and watches delivered across Pakistan.",
   icons: {
     icon: [
       { url: "/favicon.png", type: "image/png" },

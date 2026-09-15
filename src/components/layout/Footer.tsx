@@ -220,7 +220,7 @@ export default function Footer() {
 
           {/* Bottom Bar: Copyright & Visa / Mastercard Logos without white container background */}
           <div className="border-t border-white/20 pt-5 flex flex-col md:flex-row items-center justify-between text-sm md:text-base text-gray-100 font-medium gap-4">
-            <p>Wholesaler-PK @2025. All Rights Reserved</p>
+            <p>Waada Jewels @2026. All Rights Reserved</p>
 
             {/* Payment Method Images rendered side by side directly */}
             <div className="flex items-center gap-3">
