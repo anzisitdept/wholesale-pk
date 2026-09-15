@@ -173,7 +173,7 @@ export default function ContactUsPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 uppercase">Email Support</h4>
-                    <p className="font-semibold text-gray-800">theewholesaler@gmail.com</p>
+                    <p className="font-semibold text-gray-800">thewaadajewels@gmail.com</p>
                   </div>
                 </div>
 
@@ -213,7 +213,7 @@ export default function ContactUsPage() {
                     <InstagramIcon />
                   </a>
                   <a
-                    href="https://tiktok.com"
+                    href="https://www.tiktok.com/@waadajewels"
                     target="_blank"
                     rel="noreferrer"
                     title="TikTok"

@@ -4,13 +4,13 @@ import nodemailer from "nodemailer";
 const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
 const SMTP_PORT = Number(process.env.SMTP_PORT) || 465;
 const SMTP_SECURE = process.env.SMTP_SECURE !== "false"; // true for 465, false for 587
-const SMTP_USER = process.env.SMTP_USER || "theewholesaler@gmail.com";
+const SMTP_USER = process.env.SMTP_USER || "thewaadajewels@gmail.com";
 const SMTP_PASS = process.env.SMTP_PASS;
-const SMTP_FROM = process.env.SMTP_FROM || `"Wholesaler-PK" <${SMTP_USER}>`;
+const SMTP_FROM = process.env.SMTP_FROM || `"Waada Jewels" <${SMTP_USER}>`;
 
 // Helper to parse order receiving email array from env
 function getReceivingEmails(): string[] {
-    const raw = process.env.ORDER_RECEIVING_EMAILS || process.env.ADMIN_NOTIFICATION_EMAILS || process.env.ADMIN_NOTIFICATION_EMAIL || "theewholesaler@gmail.com";
+    const raw = process.env.ORDER_RECEIVING_EMAILS || process.env.ADMIN_NOTIFICATION_EMAILS || process.env.ADMIN_NOTIFICATION_EMAIL || "thewaadajewels@gmail.com";
     const trimmed = raw.trim();
     if (!trimmed) {
         return [SMTP_USER];

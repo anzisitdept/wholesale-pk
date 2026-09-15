@@ -54,9 +54,9 @@ export default function HeaderMainNav({ onNavigate }: HeaderMainNavProps) {
   const activeCat = categories.find(c => c.id === activeCategory) || categories[0];
 
   // Desktop Collections dropdown shows the same set as the mobile drawer:
-  // Necklaces, Rings, Bracelets, Firefighters
+  // Necklaces, Rings, Bracelets, FireLighters, Watches
   const navCategories = categories.filter(c =>
-    ['necklaces', 'rings', 'bracelets', 'firefighters'].includes(c.id || c.slug)
+    ['necklaces', 'rings', 'bracelets', 'firefighters', 'firelighters', 'firelighter', 'watches', 'watch'].includes(c.id || c.slug)
   );
 
   return (

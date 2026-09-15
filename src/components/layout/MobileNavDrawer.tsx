@@ -68,12 +68,13 @@ function ShopIcon({ className = 'w-5 h-5' }: { className?: string }) {
   );
 }
 
-function FirefighterIcon({ className = 'w-5 h-5' }: { className?: string }) {
+function FireLighterIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2C6.5 2 2 6.5 2 12c0 5 4 9.5 10 10 6-.5 10-5 10-10 0-5.5-4.5-10-10-10z" />
-      <path d="M12 6v8" />
-      <path d="M8 10l4-4 4 4" />
+      <rect x="6" y="10" width="12" height="11" rx="2" />
+      <path d="M7 10V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
+      <circle cx="15" cy="8.5" r="1" />
+      <path d="M9.5 6C9.5 4.2 10.5 2.5 10.5 2.5S11.5 4.2 11.5 6a1 1 0 0 1-2 0z" fill="currentColor" fillOpacity="0.25" />
     </svg>
   );
 }
@@ -443,16 +444,30 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                   </AnimatePresence>
                 </div>
 
-                {/* Firefighters */}
+                {/* FireLighters */}
                 <Link
-                  href="/collections/all-products?category=firefighters"
+                  href="/collections/all-products?category=firelighter"
                   onClick={onClose}
                   className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
                 >
                   <div className="flex items-center gap-3.5">
-                    <FirefighterIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
+                    <FireLighterIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
                     <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
-                      Firefighters
+                      FireLighters
+                    </span>
+                  </div>
+                </Link>
+
+                {/* Watches */}
+                <Link
+                  href="/collections/all-products?category=watches"
+                  onClick={onClose}
+                  className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <Watch className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
+                    <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
+                      Watches
                     </span>
                   </div>
                 </Link>
@@ -476,7 +491,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                 </a>
 
                 <a
-                  href="https://tiktok.com"
+                  href="https://www.tiktok.com/@waadajewels"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TikTok"

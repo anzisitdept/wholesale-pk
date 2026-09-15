@@ -170,7 +170,7 @@ export default function Header() {
                   <InstagramIcon />
                 </a>
                 <a
-                  href="https://tiktok.com"
+                  href="https://www.tiktok.com/@waadajewels"
                   target="_blank"
                   rel="noreferrer"
                   title="TikTok"

@@ -74,7 +74,7 @@ export default function ShippingPolicyPage() {
           <div>
             <h2 className="font-bold text-gray-900 text-base uppercase mb-2">7. Order Tracking &amp; Support</h2>
             <p>
-              Once your parcel is dispatched, you will receive a tracking number by email. For any delivery-related query, please email our support team at <strong>theewholesaler@gmail.com</strong>. Our support team is available Mon - Sat (9:00 AM - 9:00 PM).
+              Once your parcel is dispatched, you will receive a tracking number by email. For any delivery-related query, please email our support team at <strong>thewaadajewels@gmail.com</strong>. Our support team is available Mon - Sat (9:00 AM - 9:00 PM).
             </p>
           </div>
 

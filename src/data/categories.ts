@@ -5,7 +5,6 @@ export const CATEGORIES: Category[] = [
     id: 'necklaces',
     slug: 'necklaces',
     name: 'Necklaces',
-    urduName: 'ہار',
     description: 'Elegant necklaces, pendants, and chokers crafted for every occasion.',
     itemCount: 0,
     subcategories: [
@@ -27,7 +26,6 @@ export const CATEGORIES: Category[] = [
     id: 'rings',
     slug: 'rings',
     name: 'Rings',
-    urduName: 'انگوٹھی',
     description: 'Statement rings, diamond rings, and stackable bands.',
     itemCount: 0,
     subcategories: [
@@ -49,7 +47,6 @@ export const CATEGORIES: Category[] = [
     id: 'bracelets',
     slug: 'bracelets',
     name: 'Bracelets',
-    urduName: 'چوڑیاں',
     description: 'Bracelets, bangles, and cuffs to adorn your wrist.',
     itemCount: 0,
     subcategories: [
@@ -62,20 +59,20 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: 'firefighters',
-    slug: 'firefighters',
-    name: 'Firefighters',
-    urduName: 'فائر فائٹرز',
-    description: 'Premium firefighters equipment and essentials.',
+    id: 'firelighters',
+    slug: 'firelighters',
+    name: 'FireLighters',
+    description: 'Premium lighters and essentials.',
     itemCount: 0,
-    subcategories: [
-      {
-        id: 'firefighter-equipment',
-        slug: 'firefighter-equipment',
-        name: 'Equipment & Gear',
-        itemCount: 0,
-      },
-    ],
+    subcategories: [],
+  },
+  {
+    id: 'watches',
+    slug: 'watches',
+    name: 'Watches',
+    description: 'Luxury and everyday watches.',
+    itemCount: 0,
+    subcategories: [],
   },
 ];
 

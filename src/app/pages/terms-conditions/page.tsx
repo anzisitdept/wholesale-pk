@@ -59,7 +59,7 @@ export default function TermsPage() {
           <p>We reserve the right to update or modify these Terms &amp; Conditions at any time without prior notice. Continued use of the website after changes are posted constitutes acceptance of the revised terms.</p>
 
           <h3 className="font-bold text-gray-900 uppercase">Contact Us</h3>
-          <p>If you have any questions regarding these Terms &amp; Conditions, please email us at <strong>theewholesaler@gmail.com</strong>.</p>
+          <p>If you have any questions regarding these Terms &amp; Conditions, please email us at <strong>thewaadajewels@gmail.com</strong>.</p>
         </div>
       </main>
 

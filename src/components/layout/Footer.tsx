@@ -154,7 +154,7 @@ export default function Footer() {
               <ul className="space-y-3 text-xs font-normal text-gray-200 leading-relaxed mb-5">
                 <li className="flex items-start gap-2">
                   <span>✉</span>
-                  <span>theewholesaler@gmail.com</span>
+                  <span>thewaadajewels@gmail.com</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span>🚚</span>
@@ -187,7 +187,7 @@ export default function Footer() {
                   <InstagramIcon />
                 </a>
                 <a
-                  href="https://tiktok.com"
+                  href="https://www.tiktok.com/@waadajewels"
                   target="_blank"
                   rel="noreferrer"
                   className="w-9 h-9 rounded-full bg-white text-[#6f0c07] flex items-center justify-center transition-all duration-200 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white"
