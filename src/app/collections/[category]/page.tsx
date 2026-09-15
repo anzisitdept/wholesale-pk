@@ -48,6 +48,24 @@ function SideSection({ title, children }: { title: string; children: React.React
 
 import ProductCardClient from './ProductCardClient';
 
+export function ProductSkeletonGrid() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4 animate-pulse my-4">
+      {[1, 2, 3, 4, 5, 6].map(i => (
+        <div key={i} className="bg-white rounded-2xl border border-gray-100 p-3 flex flex-col space-y-3">
+          <div className="w-full h-48 sm:h-56 bg-gray-200/80 rounded-xl" />
+          <div className="h-4 bg-gray-200/80 rounded w-3/4" />
+          <div className="h-3 bg-gray-200/80 rounded w-1/2" />
+          <div className="flex justify-between items-center pt-2">
+            <div className="h-5 bg-gray-200/80 rounded w-1/3" />
+            <div className="h-8 bg-gray-200/80 rounded-lg w-20" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function CategoryInner({
   forcedCategory,
   forcedSubCategory
@@ -58,7 +76,7 @@ export function CategoryInner({
   const params = useParams();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { products, categories } = useStoreData();
+  const { products, categories, isLoading } = useStoreData();
   const { openQuickView } = useCart();
 
   const categorySlug = forcedCategory || (params?.category as string) || 'all-products';
@@ -309,47 +327,6 @@ export function CategoryInner({
             </span>
           </div>
 
-          {/* Sub-Category Horizontal Pill Filters */}
-          {categoryData?.subcategories && categoryData.subcategories.length > 0 && (
-            <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar">
-              <button
-                type="button"
-                onClick={() => setActiveSub(null)}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all flex-shrink-0 cursor-pointer ${
-                  !activeSub
-                    ? 'bg-[#6f0c07] text-white shadow-md shadow-[#6f0c07]/20'
-                    : 'bg-[#ffffff] text-gray-600 hover:text-gray-900 border border-[#ece7e6] hover:border-gray-500'
-                }`}
-              >
-                All {categoryData.name.replace(/\s*\([^)]*\)/g, '').trim()}
-              </button>
-              {categoryData.subcategories.map(sub => {
-                const isActive = activeSub?.toLowerCase() === sub.slug.toLowerCase();
-                return (
-                  <button
-                    key={sub.id || sub.slug}
-                    type="button"
-                    onClick={() => setActiveSub(isActive ? null : sub.slug)}
-                    className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all border flex-shrink-0 cursor-pointer ${
-                      isActive
-                        ? 'bg-[#6f0c07] text-white border-[#6f0c07] shadow-md shadow-[#6f0c07]/20'
-                        : 'bg-[#ffffff] text-gray-600 border-[#ece7e6] hover:border-gray-500 hover:text-gray-900'
-                    }`}
-                  >
-                    {sub.image && (
-                      <img
-                        src={sub.image}
-                        alt={sub.name}
-                        className="w-4 h-4 rounded-full object-cover"
-                      />
-                    )}
-                    <span>{sub.name}</span>
-                  </button>
-                );
-              })}
-            </div>
-          )}
-
           {/* Material Filter Chips */}
           {availableMaterials.length > 0 && (
             <div className="flex items-center gap-2 overflow-x-auto py-3 mb-2 no-scrollbar">
@@ -529,8 +506,10 @@ export function CategoryInner({
             </div>
           )}
 
-          {/* Product Grid or Coming Soon State */}
-          {filtered.length === 0 ? (
+          {/* Product Grid, Skeleton Loading, or Coming Soon State */}
+          {isLoading ? (
+            <ProductSkeletonGrid />
+          ) : filtered.length === 0 ? (
             <div className="py-16 md:py-24 text-center bg-[#ffffff] rounded-2xl border border-dashed border-[#e8e2e1] px-6 my-4">
               <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4 text-gray-700">
                 <Clock className="w-6 h-6 text-gray-500" />
@@ -574,7 +553,11 @@ export default function CategoryCollectionPage({
     <>
       <TopBar />
       <Header />
-      <Suspense fallback={<div className="py-24 text-center text-gray-500 font-medium">Loading Category…</div>}>
+      <Suspense fallback={
+        <div className="container mx-auto px-4 py-8 max-w-7xl">
+          <ProductSkeletonGrid />
+        </div>
+      }>
         <CategoryInner forcedCategory={forcedCategory} forcedSubCategory={forcedSubCategory} />
       </Suspense>
 

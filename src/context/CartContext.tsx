@@ -3,6 +3,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product, ProductVariant } from '@/data/products';
 import { getProductUnit } from '@/lib/productPrice';
+import { db } from '@/lib/firebase';
+import { doc, onSnapshot } from 'firebase/firestore';
 
 export interface CartItem {
   specialInstructions: string | undefined;
@@ -64,8 +66,35 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const openQuickView = (product: Product) => setQuickViewProduct(product);
   const closeQuickView = () => setQuickViewProduct(null);
 
-  const freeShippingThreshold = 3000;
-  const shippingFee = 200;
+  const [freeShippingThreshold, setFreeShippingThreshold] = useState(2999);
+  const [shippingFee, setShippingFee] = useState(0);
+
+  // Fetch shipping settings from Firestore
+  useEffect(() => {
+    const docRef = doc(db, 'store_settings', 'general');
+    const unsubscribe = onSnapshot(
+      docRef,
+      (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          if (typeof data.shippingFee === 'number') setShippingFee(data.shippingFee);
+          if (typeof data.freeShippingThreshold === 'number') setFreeShippingThreshold(data.freeShippingThreshold);
+        }
+      },
+      () => {
+        // Fallback: try store_content/homepage for shipping fields
+        const fallbackRef = doc(db, 'store_content', 'homepage');
+        onSnapshot(fallbackRef, (snap) => {
+          if (snap.exists()) {
+            const data = snap.data();
+            if (typeof data.shippingFee === 'number') setShippingFee(data.shippingFee);
+            if (typeof data.freeShippingThreshold === 'number') setFreeShippingThreshold(data.freeShippingThreshold);
+          }
+        });
+      }
+    );
+    return () => unsubscribe();
+  }, []);
 
   // Load cart and wishlist from localStorage on mount
   useEffect(() => {

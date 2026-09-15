@@ -287,12 +287,13 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
               <Link
                 href="/collections/all-products"
                 onClick={onClose}
-                className="block relative w-full mb-3.5 rounded-2xl overflow-hidden hover:opacity-90 active:scale-[0.99] transition group shadow-md"
+                className="block relative w-full mb-3.5 rounded-2xl overflow-hidden hover:opacity-90 active:scale-[0.99] transition group"
               >
                 <img
                   src="/free-cod.png"
                   alt="FREE Cash on Delivery (COD) on All Orders"
-                  className="w-full h-auto object-cover block rounded-2xl -my-3"
+                  className="w-full block"
+                  style={{ height: '110px', objectFit: 'cover', objectPosition: 'center center' }}
                 />
               </Link>
 
@@ -328,125 +329,50 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
                 </Link>
 
                 {/* Necklaces */}
-                <div>
-                  <div
-                    onClick={() => toggleSection('necklaces')}
-                    className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <NecklaceIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
-                      <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
-                        Necklaces
-                      </span>
-                    </div>
-                    <ChevronDown
-                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${expandedMenu === 'necklaces' ? 'rotate-180 text-white' : ''
-                        }`}
-                    />
+                <Link
+                  href="/collections/necklaces"
+                  onClick={onClose}
+                  className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <NecklaceIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
+                    <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
+                      Necklaces
+                    </span>
                   </div>
-                  <AnimatePresence>
-                    {expandedMenu === 'necklaces' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden pl-11 pr-2 py-1 flex flex-col space-y-1"
-                      >
-                        <Link href="/collections/all-products?category=necklaces" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          All Necklaces
-                        </Link>
-                        <Link href="/collections/all-products?category=pendant-necklaces" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          Pendants &amp; Chains
-                        </Link>
-                        <Link href="/collections/all-products?category=chokers" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          Chokers
-                        </Link>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                </Link>
 
                 {/* Rings */}
-                <div>
-                  <div
-                    onClick={() => toggleSection('rings')}
-                    className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <RingIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
-                      <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
-                        Rings
-                      </span>
-                    </div>
-                    <ChevronDown
-                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${expandedMenu === 'rings' ? 'rotate-180 text-white' : ''
-                        }`}
-                    />
+                <Link
+                  href="/collections/rings"
+                  onClick={onClose}
+                  className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <RingIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
+                    <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
+                      Rings
+                    </span>
                   </div>
-                  <AnimatePresence>
-                    {expandedMenu === 'rings' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden pl-11 pr-2 py-1 flex flex-col space-y-1"
-                      >
-                        <Link href="/collections/all-products?category=rings" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          All Rings
-                        </Link>
-                        <Link href="/collections/all-products?category=diamond-rings" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          Diamond Rings
-                        </Link>
-                        <Link href="/collections/all-products?category=bands" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          Bands &amp; Stacks
-                        </Link>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                </Link>
 
                 {/* Bracelets */}
-                <div>
-                  <div
-                    onClick={() => toggleSection('bracelets')}
-                    className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <BraceletIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
-                      <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
-                        Bracelets
-                      </span>
-                    </div>
-                    <ChevronDown
-                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${expandedMenu === 'bracelets' ? 'rotate-180 text-white' : ''
-                        }`}
-                    />
+                <Link
+                  href="/collections/bracelets"
+                  onClick={onClose}
+                  className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <BraceletIcon className="w-5 h-5 text-gray-300 group-hover:text-white transition" />
+                    <span className="text-sm font-semibold text-gray-100 group-hover:text-white tracking-wide">
+                      Bracelets
+                    </span>
                   </div>
-                  <AnimatePresence>
-                    {expandedMenu === 'bracelets' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden pl-11 pr-2 py-1 flex flex-col space-y-1"
-                      >
-                        <Link href="/collections/all-products?category=bracelets" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          All Bracelets
-                        </Link>
-                        <Link href="/collections/all-products?category=bangles" onClick={onClose} className="py-1.5 text-xs text-gray-300 hover:text-white transition">
-                          Bangles &amp; Cuffs
-                        </Link>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                </Link>
 
                 {/* FireLighters */}
                 <Link
-                  href="/collections/all-products?category=firelighter"
+                  href="/collections/firelighters"
                   onClick={onClose}
                   className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
                 >
@@ -460,7 +386,7 @@ export default function MobileNavDrawer({ isOpen, onClose }: MobileNavDrawerProp
 
                 {/* Watches */}
                 <Link
-                  href="/collections/all-products?category=watches"
+                  href="/collections/watches"
                   onClick={onClose}
                   className="flex items-center justify-between h-[46px] px-3 rounded-xl hover:bg-white/[0.04] active:bg-white/[0.08] transition group"
                 >

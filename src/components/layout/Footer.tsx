@@ -83,18 +83,18 @@ export default function Footer() {
               <FooterSection title="SHOP">
                 <ul className="space-y-2.5 text-xs font-normal text-gray-300">
                   {categories.map((cat) => {
-                      const isCustomDesign = cat.slug === 'custom-design' || cat.id === 'custom-design';
-                      return (
-                    <li key={cat.id || cat.slug}>
-                      <Link
-                        href={isCustomDesign ? '/pages/contact-us' : `/collections/${cat.slug}`}
-                        className="hover:text-white transition hover:underline"
-                      >
-                        {cat.name.replace(/\s*\([^)]*\)/g, '')}
-                      </Link>
-                    </li>
-                      );
-                    })}
+                    const isCustomDesign = cat.slug === 'custom-design' || cat.id === 'custom-design';
+                    return (
+                      <li key={cat.id || cat.slug}>
+                        <Link
+                          href={isCustomDesign ? '/pages/contact-us' : `/collections/${cat.slug}`}
+                          className="hover:text-white transition hover:underline"
+                        >
+                          {cat.name.replace(/\s*\([^)]*\)/g, '')}
+                        </Link>
+                      </li>
+                    );
+                  })}
                   <li>
                     <Link href="/collections/all-products" className="hover:text-white transition hover:underline">
                       All Products
@@ -196,45 +196,24 @@ export default function Footer() {
                   <TiktokIcon />
                 </a>
               </div>
-
-              {/* Developed By ANZI & Co. watermark */}
-              <div className="mt-6 pt-5 border-t border-white/20">
-                <p className="text-xs font-semibold text-white uppercase tracking-wider mb-2.5">Developed By</p>
-                <a
-                  href="https://www.anziandco.com?ref=wholesalerpk"
-                  target="_blank"
-                  rel="noopener"
-                  className="inline-block transition-transform duration-200 hover:scale-[1.03] focus:outline-none"
-                  title="ANZI & Co."
-                >
-                  <img
-                    src="/watermark.png"
-                    alt="ANZI & Co."
-                    className="w-56 max-w-full h-auto object-contain"
-                  />
-                </a>
-              </div>
             </div>
 
           </div>
 
-          {/* Bottom Bar: Copyright & Visa / Mastercard Logos without white container background */}
-          <div className="border-t border-white/20 pt-5 flex flex-col md:flex-row items-center justify-between text-sm md:text-base text-gray-100 font-medium gap-4">
-            <p>Waada Jewels @2026. All Rights Reserved</p>
-
-            {/* Payment Method Images rendered side by side directly */}
-            <div className="flex items-center gap-3">
-              <img
-                src="/Visa.png"
-                alt="Visa"
-                className="h-9 md:h-10 w-auto object-contain rounded-sm"
-              />
-              <img
-                src="/mastercard.jpg"
-                alt="Mastercard"
-                className="h-9 md:h-10 w-auto object-contain rounded-sm"
-              />
-            </div>
+          {/* Bottom Bar: Watermark */}
+          <div className="border-t border-white/20 pt-5 pb-14 md:pb-6 flex items-center justify-center text-center px-4">
+            <p className="text-xs sm:text-sm md:text-base text-white font-bold tracking-wide leading-relaxed">
+              Developed by:{' '}
+              <a
+                href="https://www.anziandco.com?ref=wholesalerpk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-white/80 transition-colors"
+                title="ANZI & Co."
+              >
+                ANZI & Co.
+              </a>
+            </p>
           </div>
         </div>
       </div>
